@@ -11,7 +11,7 @@ import cn.com.bestpay.posp.netty.initializer.FrontHttpInitializer;
 import cn.com.bestpay.posp.netty.module.Contants;
 
 /**
- * 前台通知 接收 http服务
+ * 后台通知 接收 异步  http 服务
  * 
  * @author yzh
  * 

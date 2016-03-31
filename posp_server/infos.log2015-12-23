@@ -1,0 +1,29 @@
+INFO main cn.com.bestpay.posp.netty.module.Contants - TCP端口:9880
+INFO main cn.com.bestpay.posp.netty.module.Contants - HTTP端口:8025
+DEBUG main io.netty.util.internal.logging.InternalLoggerFactory - Using Log4J as the default logging framework
+DEBUG main io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 8
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+DEBUG main io.netty.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: true
+DEBUG main io.netty.util.internal.PlatformDependent - Platform: Windows
+DEBUG main io.netty.util.internal.PlatformDependent - Java version: 7
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noUnsafe: false
+DEBUG main io.netty.util.internal.PlatformDependent - sun.misc.Unsafe: available
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noJavassist: false
+DEBUG main io.netty.util.internal.PlatformDependent - Javassist: unavailable
+DEBUG main io.netty.util.internal.PlatformDependent - You don't have Javassist in your class path or you don't have enough permission to load dynamically generated classes.  Please check the configuration for better performance.
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.tmpdir: C:\Users\yzh\AppData\Local\Temp (java.io.tmpdir)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+DEBUG main io.netty.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+DEBUG main io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+DEBUG main io.netty.util.internal.ThreadLocalRandom - -Dio.netty.initialSeedUniquifier: 0x077912d4de5324e2 (took 10 ms)
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: unpooled
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 65536
+DEBUG main io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+DEBUG main io.netty.util.NetUtil - Loopback interface: lo (Software Loopback Interface 1, 127.0.0.1)
+DEBUG main io.netty.util.NetUtil - \proc\sys\net\core\somaxconn: 200 (non-existent)
+INFO main cn.com.bestpay.posp.netty.httpserver.BackHttpServer - 后台通知服务启动
+INFO main cn.com.bestpay.posp.netty.tcpserver.PospTCPServer - TCP Server start! 
+INFO main cn.com.bestpay.posp.netty.ApplicationMain - 暂时没有交易...

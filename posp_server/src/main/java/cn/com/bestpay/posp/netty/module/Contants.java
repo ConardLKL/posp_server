@@ -1,5 +1,7 @@
 package cn.com.bestpay.posp.netty.module;
 
+import java.util.Properties;
+
 import org.apache.log4j.Logger;
 
 public class Contants {
@@ -37,10 +39,11 @@ public class Contants {
 	public static final String frontRes="1";
 	static {
 		try {
-			TCP_SERVER_PORT = Integer.valueOf(PropertiesUtil.getProperties(Contants.ENV_FILE).getProperty("tcpserver_port"));
-			TCP_BIZTHREADSIZE = Integer.valueOf(PropertiesUtil.getProperties(Contants.ENV_FILE).getProperty("tcp_bizth_readsize"));
-			HTTP_BACK_PORT = Integer.valueOf(PropertiesUtil.getProperties(Contants.ENV_FILE).getProperty("backserver_port"));
-			isSSL = Boolean.valueOf(PropertiesUtil.getProperties(Contants.ENV_FILE).getProperty("HTTP_SSL"));
+			Properties p = PropertiesUtil.getProperties(Contants.ENV_FILE);
+			TCP_SERVER_PORT = Integer.valueOf(p.getProperty("tcpserver_port"));
+			TCP_BIZTHREADSIZE = Integer.valueOf(p.getProperty("tcp_bizth_readsize"));
+			HTTP_BACK_PORT = Integer.valueOf(p.getProperty("backserver_port"));
+			isSSL = Boolean.valueOf(p.getProperty("HTTP_SSL"));
 		} catch (Exception e) {
 			logger.error("加载环境变量失败："+Contants.ENV_FILE+"\n"+e.getMessage());
 		}

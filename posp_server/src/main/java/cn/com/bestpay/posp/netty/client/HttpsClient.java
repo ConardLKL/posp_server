@@ -235,6 +235,7 @@ public class HttpsClient {
 			}
 			reqstr = sf.substring(0, sf.length() - 1);
 		}
+		
 		logger.debug("发银联url["+url.toString()+"]的请求报文:[" + reqstr + "]");
 		return reqstr;
 	}

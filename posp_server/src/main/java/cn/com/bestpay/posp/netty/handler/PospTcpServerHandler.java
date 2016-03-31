@@ -31,7 +31,7 @@ public class PospTcpServerHandler extends SimpleChannelInboundHandler<Object> {
 	protected void channelRead0(ChannelHandlerContext ctx, Object data) throws Exception {
 		SocketChannel sc = (SocketChannel) ctx.channel();
 		String clientId = "";
-		logger.debug(String.format("收到POSP请求:[%s]", data.toString()));
+//		logger.debug(String.format("收到POSP请求:[%s]", data.toString()));
 		ApplicationMain.setTrans(true);
 		Map<String, String> map = new HashMap<String, String>();
 		if (data instanceof String) {
@@ -42,13 +42,11 @@ public class PospTcpServerHandler extends SimpleChannelInboundHandler<Object> {
 		} else if (data instanceof TranDatas) {
 			TranDatas td = (TranDatas) data;
 			map = td.getData();
-			
 			//测试返回
 //			td.setClient("1");
 //			map.put("respCode", "00");
 //			sc.writeAndFlush(td);
 //			logger.debug("原报文返回");
-
 		} else {
 			map.put("respCode", "98");
 //			sc.writeAndFlush(map);

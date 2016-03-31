@@ -134,5 +134,9 @@ public class DataAnalysis {
 			map.put(key, temp.toString());
 		}
 	}
-
+	
+//	private static String getSafeStr(String data){
+//		
+//	}
+	
 }

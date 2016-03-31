@@ -111,13 +111,15 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
 			logger.error(String.format("[%s]： 银联回调没有找到原交易! respData:%s",clientId,postMap.toString()));
 		}else{
 			if(StringUtils.equals(getUrl, "back")){
-				logger.debug("收到银联后台通知：" + postMap.toString());
+//				logger.debug("收到银联后台通知：" + postMap.toString());
+				logger.debug("收到银联后台通知["+clientId+"]");
 				ptc.setBackGet(true);
 			}else if(StringUtils.equals(getUrl, "front")){
-				logger.debug("收到银联前台通知：" + postMap.toString());
+//				logger.debug("收到银联前台通知：" + postMap.toString());
+				logger.debug("收到银联前台通知["+clientId+"]");
 				ptc.setFrontGet(true);
 			}
-			logger.info(String.format("[%s]交易完成",clientId));
+			logger.info(String.format("[%s]交易完成,respCode:[%s]",clientId,postMap.get("respCode")));
 			SocketChannel sc = ptc.getChannel();
 			TranDatas tr = new TranDatas();
 			tr.setData(postMap);
