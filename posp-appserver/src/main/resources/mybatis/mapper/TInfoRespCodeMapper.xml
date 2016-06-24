@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.bestpay.posp.system.dao.TInfoRespCodeDao" >
+
+  <resultMap id="BaseResultMap" type="cn.com.bestpay.posp.system.entity.TInfoRespCode" >
+	    <result column="RESP_CODE" property="respCode" jdbcType="VARCHAR" />
+	    <result column="EXTSYS_RESP_CODE" property="extsysRespCode" jdbcType="CHAR" />
+	    <result column="CHANNEL_CODE" property="channelCode" jdbcType="DECIMAL" />
+	    <result column="EXTSYS_RESP_DESC" property="extsysRespDesc" jdbcType="VARCHAR" />
+	    <result column="RESP_DESC" property="respDesc" jdbcType="VARCHAR" />
+	    <result column="POSP_CODE" property="pospCode" jdbcType="VARCHAR" />
+	    <result column="POSP_DESC" property="pospDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	RESP_CODE,EXTSYS_RESP_CODE,CHANNEL_CODE,EXTSYS_RESP_DESC,RESP_DESC,POSP_CODE,POSP_DESC
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_INFO_RESP_CODE where RESP_CODE = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="cn.com.bestpay.posp.system.entity.TInfoRespCode" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_RESP_CODE
+  		where 1=1 
+  		
+  		<if test="respCode != null">
+  			and RESP_CODE = #{respCode}
+  		</if>
+  		<if test="extsysRespCode != null">
+  			and EXTSYS_RESP_CODE = #{extsysRespCode}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="extsysRespDesc != null">
+  			and EXTSYS_RESP_DESC = #{extsysRespDesc}
+  		</if>
+  		<if test="respDesc != null">
+  			and RESP_DESC = #{respDesc}
+  		</if>
+  		<if test="pospCode != null">
+  			and POSP_CODE = #{pospCode}
+  		</if>
+  		<if test="pospDesc != null">
+  			and POSP_DESC = #{pospDesc}
+  		</if>
+  		
+  </select>
+  
+  <select id="find" parameterType="cn.com.bestpay.posp.system.entity.TInfoRespCode" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_RESP_CODE
+  		where 1=1 
+  		<if test="respCode != null">
+  			and RESP_CODE = #{respCode}
+  		</if>
+  		<if test="extsysRespCode != null">
+  			and EXTSYS_RESP_CODE = #{extsysRespCode}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="extsysRespDesc != null">
+  			and EXTSYS_RESP_DESC = #{extsysRespDesc}
+  		</if>
+  		<if test="respDesc != null">
+  			and RESP_DESC = #{respDesc}
+  		</if>
+  		<if test="pospCode != null">
+  			and POSP_CODE = #{pospCode}
+  		</if>
+  		<if test="pospDesc != null">
+  			and POSP_DESC = #{pospDesc}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="cn.com.bestpay.posp.system.entity.TInfoRespCode" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_RESP_CODE
+  </select>
+  
+  <select id="countBy" parameterType="cn.com.bestpay.posp.system.entity.TInfoRespCode" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_INFO_RESP_CODE
+  		where 1=1 
+  		<if test="respCode != null">
+  			and RESP_CODE = #{respCode}
+  		</if>
+  		<if test="extsysRespCode != null">
+  			and EXTSYS_RESP_CODE = #{extsysRespCode}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="extsysRespDesc != null">
+  			and EXTSYS_RESP_DESC = #{extsysRespDesc}
+  		</if>
+  		<if test="respDesc != null">
+  			and RESP_DESC = #{respDesc}
+  		</if>
+  		<if test="pospCode != null">
+  			and POSP_CODE = #{pospCode}
+  		</if>
+  		<if test="pospDesc != null">
+  			and POSP_DESC = #{pospDesc}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="cn.com.bestpay.posp.system.entity.TInfoRespCode">
+     <selectKey keyProperty="respCode" resultType="java.lang.Long" order="BEFORE" >
+     	select SQ_RESP_CODE.nextval from dual
+     </selectKey>
+	 INSERT INTO T_INFO_RESP_CODE
+	   (RESP_CODE,EXTSYS_RESP_CODE,CHANNEL_CODE,EXTSYS_RESP_DESC,RESP_DESC,POSP_CODE,POSP_DESC)
+     VALUES (
+	    #{respCode,jdbcType=VARCHAR},
+	    #{extsysRespCode,jdbcType=CHAR},
+	    #{channelCode,jdbcType=DECIMAL},
+	    #{extsysRespDesc,jdbcType=VARCHAR}
+	    #{respDesc,jdbcType=VARCHAR}
+	    #{pospCode,jdbcType=VARCHAR}
+	    #{pospDesc,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="cn.com.bestpay.posp.system.entity.TInfoRespCode">
+	UPDATE T_INFO_RESP_CODE SET
+	  	<if test="respCode != null">
+	  		 RESP_CODE = #{respCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="extsysRespCode != null">
+	  		, EXTSYS_RESP_CODE = #{extsysRespCode,jdbcType=CHAR}
+	  	</if>
+	  	<if test="channelCode != null">
+	  		, CHANNEL_CODE = #{channelCode,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="extsysRespDesc != null">
+	  		, EXTSYS_RESP_DESC = #{extsysRespDesc,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="extsysRespDesc != null">
+	  		, RESP_DESC = #{respDesc,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="extsysRespDesc != null">
+	  		, POSP_CODE = #{pospCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="extsysRespDesc != null">
+	  		, POSP_DESC = #{pospDesc,jdbcType=VARCHAR}
+	  	</if>
+		WHERE RESP_CODE = #{respCode, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

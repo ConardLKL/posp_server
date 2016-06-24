@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <script>
+        <generate template="cupsf.properties.vm"
+                  destfile="WEB-INF/classes/cupsf.properties" charset="UTF-8">
+        </generate>
+    </script>
+    <script>
+        <generate template="logback.xml.vm"
+                  destfile="WEB-INF/classes/logback.xml" charset="UTF-8">
+        </generate>
+    </script>
+</config>

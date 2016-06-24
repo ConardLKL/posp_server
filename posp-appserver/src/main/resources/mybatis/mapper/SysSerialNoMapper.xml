@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.bestpay.posp.system.dao.SysSerialNoDao" >
+
+  <resultMap id="BaseResultMap" type="cn.com.bestpay.posp.system.entity.SysSerialNo" >
+	  <result column="SERIAL_NO" property="serialNo" jdbcType="CHAR" />
+  </resultMap>
+ 
+  <select id="querySerialNo" resultMap="BaseResultMap">
+ 		SELECT cast(TO_CHAR(SYSDATE ,'YYMMDD') || TO_CHAR(SEQ_LOG_TRAN_FLOW_SERIAL_NO.NEXTVAL,'FM099999999999' ) as varchar2(18)) AS serial_no FROM DUAL	 
+  </select>
+ 
+
+</mapper>

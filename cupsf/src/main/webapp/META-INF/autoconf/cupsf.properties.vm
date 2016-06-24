@@ -1,0 +1,9 @@
+local.ip=${local_ip}
+local.port=${local_port}
+local.timeout=${local_timeout}
+bank.ip=${bank_ip}
+bank.port=${bank_port}
+bank.timeout=${bank_timeout}
+local.bank.port=${local_bank_port}
+manger.ip=${manger_ip}
+manger.port=${manger_port}
