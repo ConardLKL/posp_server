@@ -802,7 +802,7 @@ public class IsoMessage implements Cloneable {
 						vt += "*";
 					vt += val.substring(val.length() - 4);
 					log.info(String.format("[%s]  [%2d]: <%s>", id, index, vt));
-				}else if(index == 35 || index == 36  || index == 52
+				}else if(index == 14 || index == 35 || index == 36  || index == 52
 						|| index == 55 || index == 102 || index == 103  ){
 					vt = "";
 					for(int n = 0 ; n < val.length()  ; n ++)

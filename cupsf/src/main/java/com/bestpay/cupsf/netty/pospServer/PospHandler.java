@@ -5,16 +5,14 @@ import com.bestpay.cupsf.entity.CupsfBuffer;
 import com.bestpay.cupsf.entity.UnipayMessage;
 import com.bestpay.cupsf.protocol.IsoMessage;
 import com.bestpay.cupsf.service.BufferService;
-import com.bestpay.cupsf.service.BusinessProcess;
 import com.bestpay.cupsf.utils.HexCodec;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * posp服务端
@@ -35,10 +33,16 @@ public class PospHandler extends SimpleChannelInboundHandler<Object> {
             iso.setPktdef(CupsfBuffer.pkt_def);
             iso.setMessage(HexCodec.hexDecode(body));
             iso.setChannelHandlerContext(ctx);
-            ByteBuf byteBuf = Unpooled.buffer();
-            byteBuf.writeBytes(HexCodec.hexDecode(header + body));
-            BufferService.addPospBuffer(iso);
-            CupsfBuffer.channel.writeAndFlush(byteBuf);
+            if(StringUtils.isEmpty(iso.getField(33))
+                    || StringUtils.equals(Configure.field_33,iso.getField(33))) {
+                ByteBuf byteBuf = Unpooled.buffer();
+                byteBuf.writeBytes(HexCodec.hexDecode(header + body));
+                BufferService.addPospBuffer(iso);
+                CupsfBuffer.channel.writeAndFlush(byteBuf);
+            }else{
+                log.warn("不支持的机构："+ iso.getField(33));
+                ctx.close();
+            }
             iso.printMessage("CLIENT");
             log.info("LOCAL_CLIENT STAN:["+iso.getField(37)+"]");
         }

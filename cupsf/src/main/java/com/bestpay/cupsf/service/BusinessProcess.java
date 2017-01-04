@@ -1,27 +1,48 @@
 package com.bestpay.cupsf.service;
 
+import com.bestpay.cupsf.Cupsf;
 import com.bestpay.cupsf.entity.CupsfBuffer;
-import com.bestpay.cupsf.netty.client.CupClient;
 import com.bestpay.cupsf.protocol.IsoMessage;
+import com.bestpay.cupsf.utils.ByteUtil;
+import com.bestpay.cupsf.utils.HexCodec;
+import com.bestpay.dubbo.PabsService;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.UnsupportedEncodingException;
 
 /**
  * Created by HR on 2016/5/31.
  */
+@Slf4j
 public class BusinessProcess {
+
     /**
      * 重置秘钥
      * @param iso
      */
-    public void resetKey(IsoMessage iso,byte[] message){
-        BufferService.addPospBuffer(iso);
-        CupClient client = new CupClient();
-        ByteBuf msg = Unpooled.buffer();
-        msg.writeBytes(message);
-        client.connect(msg);
+    public void resetKey(IsoMessage iso,byte[] message) {
+        try {
+            BufferService.addPospBuffer(iso);
+//        CupClient client = new CupClient();
+//        ByteBuf msg = Unpooled.buffer();
+//        msg.writeBytes(message);
+//        client.connect(msg);
+            PabsService pabsService = (PabsService) Cupsf.ctx.getBean("pabsService");
+            byte[] msg = pabsService.send(message);
+            if (msg != null) {
+                byte[] body = new byte[msg.length - 50];
+                ByteUtil.getByteContext(body, msg, msg.length - 50, 50);
+                IsoMessage out = new IsoMessage();
+                out.setPktdef(CupsfBuffer.pkt_def);
+                out.setMessage(body);
+                BufferService.addCupBuffer(out, msg);
+                out.printMessage("RETURN");
+            }
+        }catch (Exception e) {
+            log.error("resetKey send error:" + e.getMessage());
+        }
     }
 
     /**
@@ -36,7 +57,7 @@ public class BusinessProcess {
             CupsfBuffer.channel.writeAndFlush(msg);
             iso.printMessage("RETURN");
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Date switch error:"+e.getMessage());
         }
     }
 
@@ -50,11 +71,12 @@ public class BusinessProcess {
         try {
             byte[] body = iso.getMessage();
             byte[] header = Header.getHeader(body.length);
-            msg.writeShort(body.length + 50);
+//            msg.writeShort(body.length + header.length);
             msg.writeBytes(header);
             msg.writeBytes(body);
         } catch (Exception e) {
             e.printStackTrace();
+            log.error("Assembly message error:"+e.getMessage());
         }
         return msg;
     }
@@ -90,61 +112,52 @@ public class BusinessProcess {
 
             String totalLength = String.format("%04d", body_length + 46);
 
-            setByteContext(header, totalLength.getBytes("GBK"), 4, 0);
+            ByteUtil.setByteContext(header, totalLength.getBytes("GBK"), 4, 0);
 //          Field1 头长度（Header Length）1
             byte f1 = (byte)headerLength;
-            setByteContext(header, f1, 4);
+            ByteUtil.setByteContext(header, f1, 4);
 
 //          Field2 头标识和版本号（Header Flag and Version）1
             strText.append(headerFlagAndVersion);
             byte f2 = (byte)headerFlagAndVersion;
-            setByteContext(header, f2, 5);
+            ByteUtil.setByteContext(header, f2, 5);
 
 //          Field3 整个报文长度（Total Message Length）4
             strText.append(totalLength);
-            setByteContext(header, totalLength.getBytes("GBK"), 4, 6);
+            ByteUtil.setByteContext(header, totalLength.getBytes("GBK"), 4, 6);
 
 //		    Field4 目的ID（Destination ID）11
             strText.append(String.format("%-11s", destinationID));
-            setByteContext(header, String.format("%-11s", destinationID).getBytes("GBK"), 11, 10);
+            ByteUtil.setByteContext(header, String.format("%-11s", destinationID).getBytes("GBK"), 11, 10);
 
 
 //		    Field5 源ID（Source ID） 11
             strText.append(String.format("%-11s", sourceID));
-            setByteContext(header, String.format("%-11s", sourceID).getBytes("GBK"), 11, 21);
+            ByteUtil.setByteContext(header, String.format("%-11s", sourceID).getBytes("GBK"), 11, 21);
 
 //		    Field6 保留使用（Reserved for Use） 3
             strText.append("000");
 
-            setByteContext(header, reservedforUse, 3, 32);
+            ByteUtil.setByteContext(header, reservedforUse, 3, 32);
 
 //		    Field7 批次号（Batch Number） 1
             strText.append(batchNumber);
             byte f7 = (byte)(batchNumber >> 8);
-            setByteContext(header, f7, 35);
+            ByteUtil.setByteContext(header, f7, 35);
 
 //		    Field8 交易信息（Transaction Information） 8
             strText.append(String.format("%8s", transactionInfo));
-            setByteContext(header, String.format("%8s", transactionInfo).getBytes("GBK"), 8, 36);
+            ByteUtil.setByteContext(header, String.format("%8s", transactionInfo).getBytes("GBK"), 8, 36);
 
 //		    Field9 用户信息（User Information） 1
             strText.append("0");
             byte f9 = (byte)(0 >> 8);
-            setByteContext(header, f9, 44);
+            ByteUtil.setByteContext(header, f9, 44);
 
 //		    Field10 拒绝码（Reject Code） 5
             strText.append(String.format("%5s", rejectCode));
-            setByteContext(header, String.format("%5s", rejectCode).getBytes("GBK"), 5, 45);
+            ByteUtil.setByteContext(header, String.format("%5s", rejectCode).getBytes("GBK"), 5, 45);
             return header;
-        }
-
-        private static void setByteContext(byte[] a, byte[] b, int len, int s) {
-            for(int i=0; i < len; i++){
-                a[s+i] = b[i];
-            }
-        }
-        private static void setByteContext(byte[] a, byte b, int i) {
-            a[i] = b;
         }
     }
 }

@@ -1,11 +1,8 @@
 package com.bestpay.cupsf.netty.cupServer;
 
-import com.bestpay.cupsf.constant.NettyConstant;
 import com.bestpay.cupsf.entity.Configure;
-import com.bestpay.cupsf.entity.PKT_DEF;
 import com.bestpay.cupsf.netty.LengthFieldFrameDecoder;
 import com.bestpay.cupsf.netty.MessageDecoder;
-import com.bestpay.cupsf.netty.MessageEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
@@ -15,10 +12,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
-import io.netty.handler.timeout.WriteTimeoutHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**

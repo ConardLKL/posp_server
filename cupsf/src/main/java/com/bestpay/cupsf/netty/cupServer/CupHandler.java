@@ -34,14 +34,14 @@ public class CupHandler extends SimpleChannelInboundHandler<Object> {
             iso.setMessage(HexCodec.hexDecode(body));
             log.info("LOCAL_SERVER STAN:[" + iso.getField(37) + "]");
             byte[] message = HexCodec.hexDecode(header + body);
+            String netwk = "201.202.001.002.003.004.005.006.301";
             if (StringUtils.equals(iso.getField(0), "0800")
                     && StringUtils.equals(iso.getField(70), "101")) {
                 BusinessProcess businessProcess = new BusinessProcess();
                 iso.printMessage("CUP");
                 businessProcess.resetKey(iso, message);
             } else if (StringUtils.equals(iso.getField(0), "0820")
-                    && (StringUtils.equals(iso.getField(70), "201")
-                    || StringUtils.equals(iso.getField(70), "202"))) {
+                    && (netwk.contains(iso.getField(70)))) {
                 BusinessProcess businessProcess = new BusinessProcess();
                 iso.printMessage("CUP");
                 businessProcess.dateSwitch(iso);

@@ -51,8 +51,9 @@ public class BufferService {
         String bankPort = PropertiesUtil.getProperty("bank.port");
         String bankTimeout = PropertiesUtil.getProperty("bank.timeout");
         String localBankPort = PropertiesUtil.getProperty("local.bank.port");
-        String mangerIp = PropertiesUtil.getProperty("manger.ip");
-        String mangerPort = PropertiesUtil.getProperty("manger.port");
+//        String mangerIp = PropertiesUtil.getProperty("manger.ip");
+//        String mangerPort = PropertiesUtil.getProperty("manger.port");
+        String field_33 = PropertiesUtil.getProperty("field_33");
         Configure configure = new Configure();
         configure.localIp = localIp;
         configure.localPort = Integer.valueOf(localPort);
@@ -61,7 +62,8 @@ public class BufferService {
         configure.bankPort = Integer.valueOf(bankPort);
         configure.bankTimeout = Integer.valueOf(bankTimeout);
         configure.localBankPort = Integer.valueOf(localBankPort);
-        configure.mangerIp = mangerIp;
-        configure.mangerPort = Integer.valueOf(mangerPort);
+//        configure.mangerIp = mangerIp;
+//        configure.mangerPort = Integer.valueOf(mangerPort);
+        configure.field_33 = field_33;
     }
 }

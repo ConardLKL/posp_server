@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <context:property-placeholder location="classpath*:*.properties"/>
+
+    <import resource="dubbo-provider.xml"/>
+    <import resource="dubbo-consumer.xml"/>
+
+    <bean class="com.bestpay.cupsf.Cupsf"/>
+    <!-- 启动时扫描需要注入的范围 -->
+    <context:component-scan base-package="com.bestpay.*"/>
+
+    <bean id="BufferService" class="com.bestpay.cupsf.service.BufferService" init-method="setConfiger" scope="singleton"/>
+
+    <bean id="PacketDefineInitializer" class="com.bestpay.cupsf.protocol.PacketDefineInitializer" init-method="findPacketDefine" scope="singleton"/>
+
+    <bean id="CupServer" class="com.bestpay.cupsf.netty.cupServer.CupServer" init-method="startup" scope="singleton"/>
+
+    <bean id="PospServer" class="com.bestpay.cupsf.netty.pospServer.PospServer" init-method="startup" scope="singleton"/>
+</beans>

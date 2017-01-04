@@ -11,4 +11,14 @@
                   destfile="WEB-INF/classes/logback.xml" charset="UTF-8">
         </generate>
     </script>
+    <script>
+        <generate template="dubbo-provider.xml.vm"
+                  destfile="WEB-INF/classes/dubbo-provider.xml" charset="UTF-8">
+        </generate>
+    </script>
+    <script>
+        <generate template="dubbo-consumer.xml.vm"
+                  destfile="WEB-INF/classes/dubbo-consumer.xml" charset="UTF-8">
+        </generate>
+    </script>
 </config>

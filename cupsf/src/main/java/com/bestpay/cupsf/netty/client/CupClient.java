@@ -2,10 +2,8 @@ package com.bestpay.cupsf.netty.client;
 
 import com.bestpay.cupsf.entity.Configure;
 import com.bestpay.cupsf.entity.CupsfBuffer;
-import com.bestpay.cupsf.netty.MessageDecoder;
 import com.bestpay.cupsf.netty.MessageEncoder;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -70,32 +68,32 @@ public class CupClient implements Runnable{
         }
     }
 
-    /**
-     * 重置秘钥专用客户端
-     * @param msg
-     */
-    public void connect(ByteBuf msg){
-        EventLoopGroup group = new NioEventLoopGroup();
-        try {
-            Bootstrap b = new Bootstrap();
-            b.group(group).channel(NioSocketChannel.class)
-                    .option(ChannelOption.TCP_NODELAY, true)
-                    .handler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast("Encoder", new MessageEncoder());
-                            ch.pipeline().addLast("Decoder", new MessageDecoder());
-                            ch.pipeline().addLast("Handler", new ClientHandler());
-                        }
-                    });
-            ChannelFuture future = b.connect(new InetSocketAddress(Configure.mangerIp, Configure.mangerPort)).sync();
-            SocketChannel channel = (SocketChannel) future.channel();
-            channel.writeAndFlush(msg);
-            channel.closeFuture().sync();
-        }catch (Exception e){
-            log.error(e.getMessage());
-        }
-    }
+//    /**
+//     * 重置秘钥专用客户端
+//     * @param msg
+//     */
+//    public void connect(ByteBuf msg){
+//        EventLoopGroup group = new NioEventLoopGroup();
+//        try {
+//            Bootstrap b = new Bootstrap();
+//            b.group(group).channel(NioSocketChannel.class)
+//                    .option(ChannelOption.TCP_NODELAY, true)
+//                    .handler(new ChannelInitializer<SocketChannel>() {
+//                        @Override
+//                        protected void initChannel(SocketChannel ch) throws Exception {
+//                            ch.pipeline().addLast("Encoder", new MessageEncoder());
+//                            ch.pipeline().addLast("Decoder", new MessageDecoder());
+//                            ch.pipeline().addLast("Handler", new ClientHandler());
+//                        }
+//                    });
+//            ChannelFuture future = b.connect(new InetSocketAddress(Configure.mangerIp, Configure.mangerPort)).sync();
+//            SocketChannel channel = (SocketChannel) future.channel();
+//            channel.writeAndFlush(msg);
+//            channel.closeFuture().sync();
+//        }catch (Exception e){
+//            log.error(e.getMessage());
+//        }
+//    }
     public void startup(){
         new Thread(this).start();
     }
