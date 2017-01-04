@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TSymRegularDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TSymRegular" >
+	    <result column="KEY_TIP" property="keyTip" jdbcType="VARCHAR" />
+	    <result column="APP_ENCRYPT" property="appEncrypt" jdbcType="VARCHAR" />
+	    <result column="DB_ENCRYPT" property="dbEncrypt" jdbcType="VARCHAR" />
+	    <result column="DB_ENCRYPT2" property="dbEncrypt2" jdbcType="VARCHAR" />
+	    <result column="ORG_SEQ" property="orgSeq" jdbcType="VARCHAR" />
+	    <result column="CRATE_DATE" property="crateDate" jdbcType="DATE" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="DATE" />
+	    <result column="MOD_STAFF" property="modStaff" jdbcType="VARCHAR" />
+  </resultMap>
+   <resultMap id="CipherCardMap" type="com.bestpay.posp.system.entity.CipherCard" >
+	    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+	    <result column="APP_ENCRYPT" property="appEncrypt" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="cipherCard" parameterType="com.bestpay.posp.system.entity.CipherCard" resultType="java.lang.String">
+  	  select 
+  	  		ENCRYPT_DATA_RAW(#{cardNo}, UTL_RAW.CAST_TO_RAW(#{appEncrypt})) 
+  	  from dual
+  </select>
+  
+  <select id="decipherCard" parameterType="com.bestpay.posp.system.entity.CipherCard" resultType="java.lang.String">
+  	  select 
+  	  		DECRYPT_DATA_RAW(#{cardNo}, UTL_RAW.CAST_TO_RAW(#{appEncrypt})) 
+  	  from dual
+  </select>
+  
+  <sql id="Base_Column_List" >
+	KEY_TIP,APP_ENCRYPT,DB_ENCRYPT,DB_ENCRYPT2,ORG_SEQ,CRATE_DATE,MOD_DATE,MOD_STAFF
+  </sql>
+  
+  <select id="findAppKey" parameterType="com.bestpay.posp.system.entity.TSymRegular" resultType="java.lang.String">
+  	  select 
+  	  	cast(UTL_RAW.CAST_TO_VARCHAR2(DECRYPT_DATA_RAW(#{appEncrypt}, UTL_RAW.CAST_TO_RAW(#{dbEncrypt2}))) as varchar2(200) ) 
+  	  	from dual
+  </select>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYM_REGULAR where KEY_TIP = #{id}
+  </select>
+  
+  <select id="findByKeyTip" parameterType="java.lang.String"  resultMap="BaseResultMap">
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYM_REGULAR where KEY_TIP = #{keyTip}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TSymRegular" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_SYM_REGULAR
+  		where 1=1 
+  		
+  		<if test="keyTip != null">
+  			and KEY_TIP = #{keyTip}
+  		</if>
+  		<if test="appEncrypt != null">
+  			and APP_ENCRYPT = #{appEncrypt}
+  		</if>
+  		<if test="dbEncrypt != null">
+  			and DB_ENCRYPT = #{dbEncrypt}
+  		</if>
+  		<if test="dbEncrypt2 != null">
+  			and DB_ENCRYPT2 = #{dbEncrypt2}
+  		</if>
+  		<if test="orgSeq != null">
+  			and ORG_SEQ = #{orgSeq}
+  		</if>
+  		<if test="crateDate != null">
+  			and CRATE_DATE = #{crateDate}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TSymRegular" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_SYM_REGULAR
+  		where 1=1 
+  		<if test="keyTip != null">
+  			and KEY_TIP = #{keyTip}
+  		</if>
+  		<if test="appEncrypt != null">
+  			and APP_ENCRYPT = #{appEncrypt}
+  		</if>
+  		<if test="dbEncrypt != null">
+  			and DB_ENCRYPT = #{dbEncrypt}
+  		</if>
+  		<if test="dbEncrypt2 != null">
+  			and DB_ENCRYPT2 = #{dbEncrypt2}
+  		</if>
+  		<if test="orgSeq != null">
+  			and ORG_SEQ = #{orgSeq}
+  		</if>
+  		<if test="crateDate != null">
+  			and CRATE_DATE = #{crateDate}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TSymRegular" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_SYM_REGULAR
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TSymRegular" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_SYM_REGULAR
+  		where 1=1 
+  		<if test="keyTip != null">
+  			and KEY_TIP = #{keyTip}
+  		</if>
+  		<if test="appEncrypt != null">
+  			and APP_ENCRYPT = #{appEncrypt}
+  		</if>
+  		<if test="dbEncrypt != null">
+  			and DB_ENCRYPT = #{dbEncrypt}
+  		</if>
+  		<if test="dbEncrypt2 != null">
+  			and DB_ENCRYPT2 = #{dbEncrypt2}
+  		</if>
+  		<if test="orgSeq != null">
+  			and ORG_SEQ = #{orgSeq}
+  		</if>
+  		<if test="crateDate != null">
+  			and CRATE_DATE = #{crateDate}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TSymRegular">
+	 INSERT INTO T_SYM_REGULAR
+	   (KEY_TIP,APP_ENCRYPT,DB_ENCRYPT,ORG_SEQ,CRATE_DATE,MOD_DATE,MOD_STAFF)
+     VALUES (
+	    #{keyTip,jdbcType=VARCHAR},
+	    #{appEncrypt,jdbcType=VARCHAR},
+	    #{dbEncrypt,jdbcType=VARCHAR},
+	    #{dbEncrypt2,jdbcType=VARCHAR},
+	    #{orgSeq,jdbcType=VARCHAR},
+	    #{crateDate,jdbcType=DATE},
+	    #{modDate,jdbcType=DATE},
+	    #{modStaff,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TSymRegular">
+	UPDATE T_SYM_REGULAR SET
+	  	<if test="keyTip != null">
+	  		 KEY_TIP = #{keyTip,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="appEncrypt != null">
+	  		, APP_ENCRYPT = #{appEncrypt,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="dbEncrypt != null">
+	  		, DB_ENCRYPT = #{dbEncrypt,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="dbEncrypt2 != null">
+  			and DB_ENCRYPT2 = #{dbEncrypt2,jdbcType=VARCHAR}
+  		</if>
+	  	<if test="orgSeq != null">
+	  		, ORG_SEQ = #{orgSeq,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="crateDate != null">
+	  		, CRATE_DATE = #{crateDate,jdbcType=DATE}
+	  	</if>
+	  	<if test="modDate != null">
+	  		, MOD_DATE = #{modDate,jdbcType=DATE}
+	  	</if>
+	  	<if test="modStaff != null">
+	  		, MOD_STAFF = #{modStaff,jdbcType=VARCHAR}
+	  	</if>
+		WHERE KEY_TIP = #{keyTip, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.bestpay.posp.system.dao.TInfoBranchInfoDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TInfoBranchInfo" >
+	    <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+	    <result column="BRANCH_NO" property="branchNo" jdbcType="VARCHAR" />
+	    <result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+	    <result column="PARENT_AREA" property="parentArea" jdbcType="VARCHAR" />
+	    <result column="AREA_TYPE" property="areaType" jdbcType="VARCHAR" />
+	    <result column="AREA_DESC" property="areaDesc" jdbcType="VARCHAR" />
+	    <result column="ZIP" property="zip" jdbcType="VARCHAR" />
+	    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+	    <result column="STATE" property="state" jdbcType="CHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	AREA_CODE,BRANCH_NO,AREA_NAME,PARENT_AREA,AREA_TYPE,AREA_DESC,ZIP,TEL,STATE
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_INFO_BRANCH_INFO where AREA_CODE = #{id}
+  </select>
+  
+  <select id="findByAreaCode" parameterType="java.lang.String"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_INFO_BRANCH_INFO where AREA_CODE = #{areaCode}
+  </select>
+  
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TInfoBranchInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_BRANCH_INFO
+  		where 1=1 
+  		
+  		<if test="areaCode != null">
+  			and AREA_CODE = #{areaCode}
+  		</if>
+  		<if test="branchNo != null">
+  			and BRANCH_NO = #{branchNo}
+  		</if>
+  		<if test="areaName != null">
+  			and AREA_NAME = #{areaName}
+  		</if>
+  		<if test="parentArea != null">
+  			and PARENT_AREA = #{parentArea}
+  		</if>
+  		<if test="areaType != null">
+  			and AREA_TYPE = #{areaType}
+  		</if>
+  		<if test="areaDesc != null">
+  			and AREA_DESC = #{areaDesc}
+  		</if>
+  		<if test="zip != null">
+  			and ZIP = #{zip}
+  		</if>
+  		<if test="tel != null">
+  			and TEL = #{tel}
+  		</if>
+  		<if test="state != null">
+  			and STATE = #{state}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TInfoBranchInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_BRANCH_INFO
+  		where 1=1 
+  		<if test="areaCode != null">
+  			and AREA_CODE = #{areaCode}
+  		</if>
+  		<if test="branchNo != null">
+  			and BRANCH_NO = #{branchNo}
+  		</if>
+  		<if test="areaName != null">
+  			and AREA_NAME = #{areaName}
+  		</if>
+  		<if test="parentArea != null">
+  			and PARENT_AREA = #{parentArea}
+  		</if>
+  		<if test="areaType != null">
+  			and AREA_TYPE = #{areaType}
+  		</if>
+  		<if test="areaDesc != null">
+  			and AREA_DESC = #{areaDesc}
+  		</if>
+  		<if test="zip != null">
+  			and ZIP = #{zip}
+  		</if>
+  		<if test="tel != null">
+  			and TEL = #{tel}
+  		</if>
+  		<if test="state != null">
+  			and STATE = #{state}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TInfoBranchInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_BRANCH_INFO
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TInfoBranchInfo" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_INFO_BRANCH_INFO
+  		where 1=1 
+  		<if test="areaCode != null">
+  			and AREA_CODE = #{areaCode}
+  		</if>
+  		<if test="branchNo != null">
+  			and BRANCH_NO = #{branchNo}
+  		</if>
+  		<if test="areaName != null">
+  			and AREA_NAME = #{areaName}
+  		</if>
+  		<if test="parentArea != null">
+  			and PARENT_AREA = #{parentArea}
+  		</if>
+  		<if test="areaType != null">
+  			and AREA_TYPE = #{areaType}
+  		</if>
+  		<if test="areaDesc != null">
+  			and AREA_DESC = #{areaDesc}
+  		</if>
+  		<if test="zip != null">
+  			and ZIP = #{zip}
+  		</if>
+  		<if test="tel != null">
+  			and TEL = #{tel}
+  		</if>
+  		<if test="state != null">
+  			and STATE = #{state}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TInfoBranchInfo">
+	 INSERT INTO T_INFO_BRANCH_INFO
+	   (AREA_CODE,BRANCH_NO,AREA_NAME,PARENT_AREA,AREA_TYPE,AREA_DESC,ZIP,TEL,STATE)
+     VALUES (
+	    #{areaCode,jdbcType=VARCHAR},
+	    #{branchNo,jdbcType=VARCHAR},
+	    #{areaName,jdbcType=VARCHAR},
+	    #{parentArea,jdbcType=VARCHAR},
+	    #{areaType,jdbcType=VARCHAR},
+	    #{areaDesc,jdbcType=VARCHAR},
+	    #{zip,jdbcType=VARCHAR},
+	    #{tel,jdbcType=VARCHAR},
+	    #{state,jdbcType=CHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TInfoBranchInfo">
+	UPDATE T_INFO_BRANCH_INFO SET
+	  	<if test="areaCode != null">
+	  		 AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="branchNo != null">
+	  		, BRANCH_NO = #{branchNo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="areaName != null">
+	  		, AREA_NAME = #{areaName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="parentArea != null">
+	  		, PARENT_AREA = #{parentArea,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="areaType != null">
+	  		, AREA_TYPE = #{areaType,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="areaDesc != null">
+	  		, AREA_DESC = #{areaDesc,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="zip != null">
+	  		, ZIP = #{zip,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tel != null">
+	  		, TEL = #{tel,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="state != null">
+	  		, STATE = #{state,jdbcType=CHAR}
+	  	</if>
+		WHERE AREA_CODE = #{areaCode, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

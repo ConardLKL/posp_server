@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TMcmPosinfoDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TMcmPosinfo" >
+	    <result column="POS_ID" property="posId" jdbcType="DECIMAL" />
+	    <result column="POS_CODE" property="posCode" jdbcType="VARCHAR" />
+	    <result column="MCT_CODE" property="mctCode" jdbcType="VARCHAR" />
+	    <result column="SORT_MCTCODE" property="sortMctcode" jdbcType="VARCHAR" />
+	    <result column="MCT_ALIAS" property="mctAlias" jdbcType="VARCHAR" />
+	    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+	    <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+	    <result column="DISTRICT" property="district" jdbcType="VARCHAR" />
+	    <result column="BUSSINESS_NAME" property="bussinessName" jdbcType="VARCHAR" />
+	    <result column="BUSSINESS_ADDR" property="bussinessAddr" jdbcType="VARCHAR" />
+	    <result column="BUSSINESS_LINK" property="bussinessLink" jdbcType="VARCHAR" />
+	    <result column="TEL_AREACODE" property="telAreacode" jdbcType="VARCHAR" />
+	    <result column="LINK_PHONE" property="linkPhone" jdbcType="VARCHAR" />
+	    <result column="INSTALL_DATE" property="installDate" jdbcType="TIMESTAMP" />
+	    <result column="REMOVE_DATE" property="removeDate" jdbcType="TIMESTAMP" />
+	    <result column="POS_STATE" property="posState" jdbcType="VARCHAR" />
+	    <result column="DEPOSIT" property="deposit" jdbcType="DECIMAL" />
+	    <result column="COMNU_TYPE" property="comnuType" jdbcType="VARCHAR" />
+	    <result column="COMNU_NUM" property="comnuNum" jdbcType="VARCHAR" />
+	    <result column="POSTERM_TYPE" property="postermType" jdbcType="VARCHAR" />
+	    <result column="POS_SN" property="posSn" jdbcType="VARCHAR" />
+	    <result column="PIN_SN" property="pinSn" jdbcType="VARCHAR" />
+	    <result column="POW_SN" property="powSn" jdbcType="VARCHAR" />
+	    <result column="KEY_SN" property="keySn" jdbcType="VARCHAR" />
+	    <result column="INSTALL_PROC" property="installProc" jdbcType="VARCHAR" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="TIMESTAMP" />
+	    <result column="MOD_STAFF" property="modStaff" jdbcType="VARCHAR" />
+	    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+	    <result column="SITE_TYPE" property="siteType" jdbcType="VARCHAR" />
+	    <result column="PROC_STATE" property="procState" jdbcType="VARCHAR" />
+	    <result column="AUDIT_MEMO" property="auditMemo" jdbcType="VARCHAR" />
+	    <result column="STOP_DATE" property="stopDate" jdbcType="TIMESTAMP" />
+	    <result column="PSAM_SN" property="psamSn" jdbcType="VARCHAR" />
+	    <result column="BATCH_NO" property="batchNo" jdbcType="VARCHAR" />
+	    <result column="IS_LOGON" property="isLogon" jdbcType="DECIMAL" />
+	    <result column="ALARM_AMOUNT_TRANS" property="alarmAmountTrans" jdbcType="DECIMAL" />
+	    <result column="MAX_AMOUNT_TRANS" property="maxAmountTrans" jdbcType="DECIMAL" />
+	    <result column="PEAK_AMOUNT_PERDAY" property="peakAmountPerday" jdbcType="DECIMAL" />
+	  	<result column="STATION_VAL1" property="stationVal1" jdbcType="VARCHAR" />
+	  	<result column="STATION_VAL2" property="stationVal2" jdbcType="VARCHAR" />
+	  	<result column="STATION_VAL3" property="stationVal3" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	POS_ID,POS_CODE,MCT_CODE,SORT_MCTCODE,MCT_ALIAS,PROVINCE,CITY_NAME,DISTRICT,BUSSINESS_NAME,BUSSINESS_ADDR,BUSSINESS_LINK,TEL_AREACODE,LINK_PHONE,INSTALL_DATE,REMOVE_DATE,POS_STATE,DEPOSIT,COMNU_TYPE,COMNU_NUM,POSTERM_TYPE,POS_SN,PIN_SN,POW_SN,KEY_SN,INSTALL_PROC,MOD_DATE,MOD_STAFF,MEMO,SITE_TYPE,PROC_STATE,AUDIT_MEMO,STOP_DATE,PSAM_SN,BATCH_NO,IS_LOGON,ALARM_AMOUNT_TRANS,MAX_AMOUNT_TRANS,PEAK_AMOUNT_PERDAY,STATION_VAL1,STATION_VAL2,STATION_VAL3
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_MCM_POSINFO where POS_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TMcmPosinfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_POSINFO
+  		where 1=1 
+  		
+  		<if test="posId != null">
+  			and POS_ID = #{posId}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="sortMctcode != null">
+  			and SORT_MCTCODE = #{sortMctcode}
+  		</if>
+  		<if test="mctAlias != null">
+  			and MCT_ALIAS = #{mctAlias}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="cityName != null">
+  			and CITY_NAME = #{cityName}
+  		</if>
+  		<if test="district != null">
+  			and DISTRICT = #{district}
+  		</if>
+  		<if test="bussinessName != null">
+  			and BUSSINESS_NAME = #{bussinessName}
+  		</if>
+  		<if test="bussinessAddr != null">
+  			and BUSSINESS_ADDR = #{bussinessAddr}
+  		</if>
+  		<if test="bussinessLink != null">
+  			and BUSSINESS_LINK = #{bussinessLink}
+  		</if>
+  		<if test="telAreacode != null">
+  			and TEL_AREACODE = #{telAreacode}
+  		</if>
+  		<if test="linkPhone != null">
+  			and LINK_PHONE = #{linkPhone}
+  		</if>
+  		<if test="installDate != null">
+  			and INSTALL_DATE = #{installDate}
+  		</if>
+  		<if test="removeDate != null">
+  			and REMOVE_DATE = #{removeDate}
+  		</if>
+  		<if test="posState != null">
+  			and POS_STATE = #{posState}
+  		</if>
+  		<if test="deposit != null">
+  			and DEPOSIT = #{deposit}
+  		</if>
+  		<if test="comnuType != null">
+  			and COMNU_TYPE = #{comnuType}
+  		</if>
+  		<if test="comnuNum != null">
+  			and COMNU_NUM = #{comnuNum}
+  		</if>
+  		<if test="postermType != null">
+  			and POSTERM_TYPE = #{postermType}
+  		</if>
+  		<if test="posSn != null">
+  			and POS_SN = #{posSn}
+  		</if>
+  		<if test="pinSn != null">
+  			and PIN_SN = #{pinSn}
+  		</if>
+  		<if test="powSn != null">
+  			and POW_SN = #{powSn}
+  		</if>
+  		<if test="keySn != null">
+  			and KEY_SN = #{keySn}
+  		</if>
+  		<if test="installProc != null">
+  			and INSTALL_PROC = #{installProc}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="siteType != null">
+  			and SITE_TYPE = #{siteType}
+  		</if>
+  		<if test="procState != null">
+  			and PROC_STATE = #{procState}
+  		</if>
+  		<if test="auditMemo != null">
+  			and AUDIT_MEMO = #{auditMemo}
+  		</if>
+  		<if test="stopDate != null">
+  			and STOP_DATE = #{stopDate}
+  		</if>
+  		<if test="psamSn != null">
+  			and PSAM_SN = #{psamSn}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="isLogon != null">
+  			and IS_LOGON = #{isLogon}
+  		</if>
+  		<if test="alarmAmountTrans != null">
+  			and ALARM_AMOUNT_TRANS = #{alarmAmountTrans}
+  		</if>
+  		<if test="maxAmountTrans != null">
+  			and MAX_AMOUNT_TRANS = #{maxAmountTrans}
+  		</if>
+  		<if test="peakAmountPerday != null">
+  			and PEAK_AMOUNT_PERDAY = #{peakAmountPerday}
+  		</if>
+  		<if test="stationVal1 != null">
+  			and STATION_VAL1 = #{stationVal1}
+  		</if>
+  		<if test="stationVal2 != null">
+  			and STATION_VAL2 = #{stationVal2}
+  		</if>
+  		<if test="stationVal1 != null">
+  			and STATION_VAL3 = #{stationVal3}
+  		</if>
+
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TMcmPosinfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_POSINFO
+  		where 1=1 
+  		<if test="posId != null">
+  			and POS_ID = #{posId}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="sortMctcode != null">
+  			and SORT_MCTCODE = #{sortMctcode}
+  		</if>
+  		<if test="mctAlias != null">
+  			and MCT_ALIAS = #{mctAlias}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="cityName != null">
+  			and CITY_NAME = #{cityName}
+  		</if>
+  		<if test="district != null">
+  			and DISTRICT = #{district}
+  		</if>
+  		<if test="bussinessName != null">
+  			and BUSSINESS_NAME = #{bussinessName}
+  		</if>
+  		<if test="bussinessAddr != null">
+  			and BUSSINESS_ADDR = #{bussinessAddr}
+  		</if>
+  		<if test="bussinessLink != null">
+  			and BUSSINESS_LINK = #{bussinessLink}
+  		</if>
+  		<if test="telAreacode != null">
+  			and TEL_AREACODE = #{telAreacode}
+  		</if>
+  		<if test="linkPhone != null">
+  			and LINK_PHONE = #{linkPhone}
+  		</if>
+  		<if test="installDate != null">
+  			and INSTALL_DATE = #{installDate}
+  		</if>
+  		<if test="removeDate != null">
+  			and REMOVE_DATE = #{removeDate}
+  		</if>
+  		<if test="posState != null">
+  			and POS_STATE = #{posState}
+  		</if>
+  		<if test="deposit != null">
+  			and DEPOSIT = #{deposit}
+  		</if>
+  		<if test="comnuType != null">
+  			and COMNU_TYPE = #{comnuType}
+  		</if>
+  		<if test="comnuNum != null">
+  			and COMNU_NUM = #{comnuNum}
+  		</if>
+  		<if test="postermType != null">
+  			and POSTERM_TYPE = #{postermType}
+  		</if>
+  		<if test="posSn != null">
+  			and POS_SN = #{posSn}
+  		</if>
+  		<if test="pinSn != null">
+  			and PIN_SN = #{pinSn}
+  		</if>
+  		<if test="powSn != null">
+  			and POW_SN = #{powSn}
+  		</if>
+  		<if test="keySn != null">
+  			and KEY_SN = #{keySn}
+  		</if>
+  		<if test="installProc != null">
+  			and INSTALL_PROC = #{installProc}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="siteType != null">
+  			and SITE_TYPE = #{siteType}
+  		</if>
+  		<if test="procState != null">
+  			and PROC_STATE = #{procState}
+  		</if>
+  		<if test="auditMemo != null">
+  			and AUDIT_MEMO = #{auditMemo}
+  		</if>
+  		<if test="stopDate != null">
+  			and STOP_DATE = #{stopDate}
+  		</if>
+  		<if test="psamSn != null">
+  			and PSAM_SN = #{psamSn}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="isLogon != null">
+  			and IS_LOGON = #{isLogon}
+  		</if>
+  		<if test="alarmAmountTrans != null">
+  			and ALARM_AMOUNT_TRANS = #{alarmAmountTrans}
+  		</if>
+  		<if test="maxAmountTrans != null">
+  			and MAX_AMOUNT_TRANS = #{maxAmountTrans}
+  		</if>
+  		<if test="peakAmountPerday != null">
+  			and PEAK_AMOUNT_PERDAY = #{peakAmountPerday}
+  		</if>
+	  	<if test="stationVal1 != null">
+		  	and STATION_VAL1 = #{stationVal1}
+	  	</if>
+	  	<if test="stationVal2 != null">
+		  	and STATION_VAL2 = #{stationVal2}
+	  	</if>
+	  	<if test="stationVal1 != null">
+		  	and STATION_VAL3 = #{stationVal3}
+	  	</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TMcmPosinfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_POSINFO
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TMcmPosinfo" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_MCM_POSINFO
+  		where 1=1 
+  		<if test="posId != null">
+  			and POS_ID = #{posId}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="sortMctcode != null">
+  			and SORT_MCTCODE = #{sortMctcode}
+  		</if>
+  		<if test="mctAlias != null">
+  			and MCT_ALIAS = #{mctAlias}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="cityName != null">
+  			and CITY_NAME = #{cityName}
+  		</if>
+  		<if test="district != null">
+  			and DISTRICT = #{district}
+  		</if>
+  		<if test="bussinessName != null">
+  			and BUSSINESS_NAME = #{bussinessName}
+  		</if>
+  		<if test="bussinessAddr != null">
+  			and BUSSINESS_ADDR = #{bussinessAddr}
+  		</if>
+  		<if test="bussinessLink != null">
+  			and BUSSINESS_LINK = #{bussinessLink}
+  		</if>
+  		<if test="telAreacode != null">
+  			and TEL_AREACODE = #{telAreacode}
+  		</if>
+  		<if test="linkPhone != null">
+  			and LINK_PHONE = #{linkPhone}
+  		</if>
+  		<if test="installDate != null">
+  			and INSTALL_DATE = #{installDate}
+  		</if>
+  		<if test="removeDate != null">
+  			and REMOVE_DATE = #{removeDate}
+  		</if>
+  		<if test="posState != null">
+  			and POS_STATE = #{posState}
+  		</if>
+  		<if test="deposit != null">
+  			and DEPOSIT = #{deposit}
+  		</if>
+  		<if test="comnuType != null">
+  			and COMNU_TYPE = #{comnuType}
+  		</if>
+  		<if test="comnuNum != null">
+  			and COMNU_NUM = #{comnuNum}
+  		</if>
+  		<if test="postermType != null">
+  			and POSTERM_TYPE = #{postermType}
+  		</if>
+  		<if test="posSn != null">
+  			and POS_SN = #{posSn}
+  		</if>
+  		<if test="pinSn != null">
+  			and PIN_SN = #{pinSn}
+  		</if>
+  		<if test="powSn != null">
+  			and POW_SN = #{powSn}
+  		</if>
+  		<if test="keySn != null">
+  			and KEY_SN = #{keySn}
+  		</if>
+  		<if test="installProc != null">
+  			and INSTALL_PROC = #{installProc}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="siteType != null">
+  			and SITE_TYPE = #{siteType}
+  		</if>
+  		<if test="procState != null">
+  			and PROC_STATE = #{procState}
+  		</if>
+  		<if test="auditMemo != null">
+  			and AUDIT_MEMO = #{auditMemo}
+  		</if>
+  		<if test="stopDate != null">
+  			and STOP_DATE = #{stopDate}
+  		</if>
+  		<if test="psamSn != null">
+  			and PSAM_SN = #{psamSn}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="isLogon != null">
+  			and IS_LOGON = #{isLogon}
+  		</if>
+  		<if test="alarmAmountTrans != null">
+  			and ALARM_AMOUNT_TRANS = #{alarmAmountTrans}
+  		</if>
+  		<if test="maxAmountTrans != null">
+  			and MAX_AMOUNT_TRANS = #{maxAmountTrans}
+  		</if>
+  		<if test="peakAmountPerday != null">
+  			and PEAK_AMOUNT_PERDAY = #{peakAmountPerday}
+  		</if>
+	  	<if test="stationVal1 != null">
+		  	and STATION_VAL1 = #{stationVal1}
+	  	</if>
+	  	<if test="stationVal2 != null">
+		  	and STATION_VAL2 = #{stationVal2}
+	  	</if>
+	  	<if test="stationVal1 != null">
+		  	and STATION_VAL3 = #{stationVal3}
+	  	</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TMcmPosinfo">
+	 INSERT INTO T_MCM_POSINFO
+	   (POS_ID,POS_CODE,MCT_CODE,SORT_MCTCODE,MCT_ALIAS,PROVINCE,CITY_NAME,DISTRICT,BUSSINESS_NAME,BUSSINESS_ADDR,BUSSINESS_LINK,TEL_AREACODE,LINK_PHONE,INSTALL_DATE,REMOVE_DATE,POS_STATE,DEPOSIT,COMNU_TYPE,COMNU_NUM,POSTERM_TYPE,POS_SN,PIN_SN,POW_SN,KEY_SN,INSTALL_PROC,MOD_DATE,MOD_STAFF,MEMO,SITE_TYPE,PROC_STATE,AUDIT_MEMO,STOP_DATE,PSAM_SN,BATCH_NO,IS_LOGON,ALARM_AMOUNT_TRANS,MAX_AMOUNT_TRANS,PEAK_AMOUNT_PERDAY,STATION_VAL1,STATION_VAL2,STATION_VAL3)
+     VALUES (
+	    #{posId,jdbcType=DECIMAL},
+	    #{posCode,jdbcType=VARCHAR},
+	    #{mctCode,jdbcType=VARCHAR},
+	    #{sortMctcode,jdbcType=VARCHAR},
+	    #{mctAlias,jdbcType=VARCHAR},
+	    #{province,jdbcType=VARCHAR},
+	    #{cityName,jdbcType=VARCHAR},
+	    #{district,jdbcType=VARCHAR},
+	    #{bussinessName,jdbcType=VARCHAR},
+	    #{bussinessAddr,jdbcType=VARCHAR},
+	    #{bussinessLink,jdbcType=VARCHAR},
+	    #{telAreacode,jdbcType=VARCHAR},
+	    #{linkPhone,jdbcType=VARCHAR},
+	    #{installDate,jdbcType=TIMESTAMP},
+	    #{removeDate,jdbcType=TIMESTAMP},
+	    #{posState,jdbcType=VARCHAR},
+	    #{deposit,jdbcType=DECIMAL},
+	    #{comnuType,jdbcType=VARCHAR},
+	    #{comnuNum,jdbcType=VARCHAR},
+	    #{postermType,jdbcType=VARCHAR},
+	    #{posSn,jdbcType=VARCHAR},
+	    #{pinSn,jdbcType=VARCHAR},
+	    #{powSn,jdbcType=VARCHAR},
+	    #{keySn,jdbcType=VARCHAR},
+	    #{installProc,jdbcType=VARCHAR},
+	    #{modDate,jdbcType=TIMESTAMP},
+	    #{modStaff,jdbcType=VARCHAR},
+	    #{memo,jdbcType=VARCHAR},
+	    #{siteType,jdbcType=VARCHAR},
+	    #{procState,jdbcType=VARCHAR},
+	    #{auditMemo,jdbcType=VARCHAR},
+	    #{stopDate,jdbcType=TIMESTAMP},
+	    #{psamSn,jdbcType=VARCHAR},
+	    #{batchNo,jdbcType=VARCHAR},
+	    #{isLogon,jdbcType=DECIMAL},
+	    #{alarmAmountTrans,jdbcType=DECIMAL},
+	    #{maxAmountTrans,jdbcType=DECIMAL},
+	    #{peakAmountPerday,jdbcType=DECIMAL},
+	    #{stationVal1,jdbcType=VARCHAR},
+	    #{stationVal2,jdbcType=VARCHAR},
+	    #{stationVal3,jdbcType=VARCHAR}
+     )
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TMcmPosinfo">
+	UPDATE T_MCM_POSINFO SET
+	  	<if test="posCode != null">
+	  	     POS_CODE = #{posCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="mctCode != null">
+	  		, MCT_CODE = #{mctCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="sortMctcode != null">
+	  		, SORT_MCTCODE = #{sortMctcode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="mctAlias != null">
+	  		, MCT_ALIAS = #{mctAlias,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="province != null">
+	  		, PROVINCE = #{province,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="cityName != null">
+	  		, CITY_NAME = #{cityName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="district != null">
+	  		, DISTRICT = #{district,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="bussinessName != null">
+	  		, BUSSINESS_NAME = #{bussinessName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="bussinessAddr != null">
+	  		, BUSSINESS_ADDR = #{bussinessAddr,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="bussinessLink != null">
+	  		, BUSSINESS_LINK = #{bussinessLink,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="telAreacode != null">
+	  		, TEL_AREACODE = #{telAreacode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="linkPhone != null">
+	  		, LINK_PHONE = #{linkPhone,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="installDate != null">
+	  		, INSTALL_DATE = #{installDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="removeDate != null">
+	  		, REMOVE_DATE = #{removeDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="posState != null">
+	  		, POS_STATE = #{posState,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="deposit != null">
+	  		, DEPOSIT = #{deposit,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="comnuType != null">
+	  		, COMNU_TYPE = #{comnuType,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="comnuNum != null">
+	  		, COMNU_NUM = #{comnuNum,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="postermType != null">
+	  		, POSTERM_TYPE = #{postermType,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="posSn != null">
+	  		, POS_SN = #{posSn,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="pinSn != null">
+	  		, PIN_SN = #{pinSn,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="powSn != null">
+	  		, POW_SN = #{powSn,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="keySn != null">
+	  		, KEY_SN = #{keySn,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="installProc != null">
+	  		, INSTALL_PROC = #{installProc,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="modDate != null">
+	  		, MOD_DATE = #{modDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="modStaff != null">
+	  		, MOD_STAFF = #{modStaff,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="memo != null">
+	  		, MEMO = #{memo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="siteType != null">
+	  		, SITE_TYPE = #{siteType,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="procState != null">
+	  		, PROC_STATE = #{procState,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="auditMemo != null">
+	  		, AUDIT_MEMO = #{auditMemo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stopDate != null">
+	  		, STOP_DATE = #{stopDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="psamSn != null">
+	  		, PSAM_SN = #{psamSn,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="batchNo != null">
+	  		, BATCH_NO = #{batchNo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="isLogon != null">
+	  		, IS_LOGON = #{isLogon,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="alarmAmountTrans != null">
+	  		, ALARM_AMOUNT_TRANS = #{alarmAmountTrans,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="maxAmountTrans != null">
+	  		, MAX_AMOUNT_TRANS = #{maxAmountTrans,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="peakAmountPerday != null">
+	  		, PEAK_AMOUNT_PERDAY = #{peakAmountPerday,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="stationVal1 != null">
+		  	, STATION_VAL1 = #{stationVal1,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stationVal2 != null">
+		  	, STATION_VAL2 = #{stationVal2,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stationVal3 != null">
+		  	, STATION_VAL3 = #{stationVal3,jdbcType=VARCHAR}
+	  	</if>
+		WHERE 1=1
+		<if test="posCode != null">
+	  		and POS_CODE = #{posCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="mctCode != null">
+	  		and MCT_CODE = #{mctCode,jdbcType=VARCHAR}
+	  	</if>
+  </update>
+
+</mapper>

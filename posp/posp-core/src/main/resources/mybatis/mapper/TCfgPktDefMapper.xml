@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TCfgPktDefDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TCfgPktDef" >
+	    <result column="PKT_ID" property="pktId" jdbcType="DECIMAL" />
+	    <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+	    <result column="MSG_TYPE" property="msgType" jdbcType="VARCHAR" />
+	    <result column="BIT" property="bit" jdbcType="DECIMAL" />
+	    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+	    <result column="FORMAT" property="format" jdbcType="VARCHAR" />
+	    <result column="SPEC" property="spec" jdbcType="VARCHAR" />
+	    <result column="LENGTH" property="length" jdbcType="DECIMAL" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+  </resultMap>
+  
+  <resultMap id="MsgTypeMap" type="com.bestpay.posp.system.entity.TCfgPktDef">
+  	<result column="MSG_TYPE" property="msgType" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	PKT_ID,CHANNEL_CODE,MSG_TYPE,BIT,TYPE,FORMAT,SPEC,LENGTH,STAT
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_CFG_PKT_DEF where PKT_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TCfgPktDef" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_PKT_DEF
+  		where 1=1 
+  		
+  		<if test="pktId != null">
+  			and PKT_ID = #{pktId}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="msgType != null">
+  			and MSG_TYPE = #{msgType}
+  		</if>
+  		<if test="bit != null">
+  			and BIT = #{bit}
+  		</if>
+  		<if test="type != null">
+  			and TYPE = #{type}
+  		</if>
+  		<if test="format != null">
+  			and FORMAT = #{format}
+  		</if>
+  		<if test="spec != null">
+  			and SPEC = #{spec}
+  		</if>
+  		<if test="length != null">
+  			and LENGTH = #{length}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TCfgPktDef" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_PKT_DEF
+  		where 1=1 
+  		<if test="pktId != null">
+  			and PKT_ID = #{pktId}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="msgType != null">
+  			and MSG_TYPE = #{msgType}
+  		</if>
+  		<if test="bit != null">
+  			and BIT = #{bit}
+  		</if>
+  		<if test="type != null">
+  			and TYPE = #{type}
+  		</if>
+  		<if test="format != null">
+  			and FORMAT = #{format}
+  		</if>
+  		<if test="spec != null">
+  			and SPEC = #{spec}
+  		</if>
+  		<if test="length != null">
+  			and LENGTH = #{length}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TCfgPktDef" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_PKT_DEF
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TCfgPktDef" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_CFG_PKT_DEF
+  		where 1=1 
+  		<if test="pktId != null">
+  			and PKT_ID = #{pktId}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="msgType != null">
+  			and MSG_TYPE = #{msgType}
+  		</if>
+  		<if test="bit != null">
+  			and BIT = #{bit}
+  		</if>
+  		<if test="type != null">
+  			and TYPE = #{type}
+  		</if>
+  		<if test="format != null">
+  			and FORMAT = #{format}
+  		</if>
+  		<if test="spec != null">
+  			and SPEC = #{spec}
+  		</if>
+  		<if test="length != null">
+  			and LENGTH = #{length}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TCfgPktDef">
+	 INSERT INTO T_CFG_PKT_DEF
+	   (PKT_ID,CHANNEL_CODE,MSG_TYPE,BIT,TYPE,FORMAT,SPEC,LENGTH,STAT)
+     VALUES (
+	    #{pktId,jdbcType=DECIMAL},
+	    #{channelCode,jdbcType=VARCHAR},
+	    #{msgType,jdbcType=VARCHAR},
+	    #{bit,jdbcType=DECIMAL},
+	    #{type,jdbcType=VARCHAR},
+	    #{format,jdbcType=VARCHAR},
+	    #{spec,jdbcType=VARCHAR},
+	    #{length,jdbcType=DECIMAL},
+	    #{stat,jdbcType=CHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TCfgPktDef">
+	UPDATE T_CFG_PKT_DEF SET
+	  	<if test="pktId != null">
+	  		 PKT_ID = #{pktId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="channelCode != null">
+	  		, CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="msgType != null">
+	  		, MSG_TYPE = #{msgType,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="bit != null">
+	  		, BIT = #{bit,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="type != null">
+	  		, TYPE = #{type,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="format != null">
+	  		, FORMAT = #{format,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="spec != null">
+	  		, SPEC = #{spec,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="length != null">
+	  		, LENGTH = #{length,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="stat != null">
+	  		, STAT = #{stat,jdbcType=CHAR}
+	  	</if>
+		WHERE PKT_ID = #{pktId, jdbcType=DECIMAL}
+  </update>
+  
+  
+  <select id="selectGroupBy" resultMap="MsgTypeMap"  parameterType="com.bestpay.posp.system.entity.TCfgPktDef" >
+    select CHANNEL_CODE,MSG_TYPE
+    	from T_CFG_PKT_DEF
+ 		WHERE CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+      group by CHANNEL_CODE,MSG_TYPE
+  </select>  
+
+</mapper>

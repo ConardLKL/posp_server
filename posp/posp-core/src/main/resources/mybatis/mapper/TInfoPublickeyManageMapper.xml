@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TInfoPublickeyManageDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TInfoPublickeyManage" >
+	    <result column="PROVIDE_IDENTIFY" property="provideIdentify" jdbcType="VARCHAR" />
+	    <result column="PK_IDX" property="pkIdx" jdbcType="CHAR" />
+	    <result column="HASH_IDENTIFY" property="hashIdentify" jdbcType="CHAR" />
+	    <result column="PK_IDENTIFY" property="pkIdentify" jdbcType="CHAR" />
+	    <result column="PK_MODE" property="pkMode" jdbcType="VARCHAR" />
+	    <result column="PK_INDEX" property="pkIndex" jdbcType="VARCHAR" />
+	    <result column="PK_CHV" property="pkChv" jdbcType="VARCHAR" />
+	    <result column="VALID_DATE" property="validDate" jdbcType="CHAR" />
+	    <result column="CREAT_DATE" property="creatDate" jdbcType="CHAR" />
+	    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	PROVIDE_IDENTIFY,PK_IDX,HASH_IDENTIFY,PK_IDENTIFY,PK_MODE,PK_INDEX,PK_CHV,VALID_DATE,CREAT_DATE,UPDATE_TIME
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_INFO_PUBLICKEY_MANAGE where PROVIDE_IDENTIFY = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TInfoPublickeyManage" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_PUBLICKEY_MANAGE
+  		where 1=1 
+  		
+  		<if test="provideIdentify != null">
+  			and PROVIDE_IDENTIFY = #{provideIdentify}
+  		</if>
+  		<if test="pkIdx != null">
+  			and PK_IDX = #{pkIdx}
+  		</if>
+  		<if test="hashIdentify != null">
+  			and HASH_IDENTIFY = #{hashIdentify}
+  		</if>
+  		<if test="pkIdentify != null">
+  			and PK_IDENTIFY = #{pkIdentify}
+  		</if>
+  		<if test="pkMode != null">
+  			and PK_MODE = #{pkMode}
+  		</if>
+  		<if test="pkIndex != null">
+  			and PK_INDEX = #{pkIndex}
+  		</if>
+  		<if test="pkChv != null">
+  			and PK_CHV = #{pkChv}
+  		</if>
+  		<if test="validDate != null">
+  			and VALID_DATE = #{validDate}
+  		</if>
+  		<if test="creatDate != null">
+  			and CREAT_DATE = #{creatDate}
+  		</if>
+  		<if test="updateTime != null">
+  			and UPDATE_TIME = #{updateTime}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TInfoPublickeyManage" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_PUBLICKEY_MANAGE
+  		where 1=1 
+  		<if test="provideIdentify != null">
+  			and PROVIDE_IDENTIFY = #{provideIdentify}
+  		</if>
+  		<if test="pkIdx != null">
+  			and PK_IDX = #{pkIdx}
+  		</if>
+  		<if test="hashIdentify != null">
+  			and HASH_IDENTIFY = #{hashIdentify}
+  		</if>
+  		<if test="pkIdentify != null">
+  			and PK_IDENTIFY = #{pkIdentify}
+  		</if>
+  		<if test="pkMode != null">
+  			and PK_MODE = #{pkMode}
+  		</if>
+  		<if test="pkIndex != null">
+  			and PK_INDEX = #{pkIndex}
+  		</if>
+  		<if test="pkChv != null">
+  			and PK_CHV = #{pkChv}
+  		</if>
+  		<if test="validDate != null">
+  			and VALID_DATE = #{validDate}
+  		</if>
+  		<if test="creatDate != null">
+  			and CREAT_DATE = #{creatDate}
+  		</if>
+  		<if test="updateTime != null">
+  			and UPDATE_TIME = #{updateTime}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TInfoPublickeyManage" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_PUBLICKEY_MANAGE
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TInfoPublickeyManage" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_INFO_PUBLICKEY_MANAGE
+  		where 1=1 
+  		<if test="provideIdentify != null">
+  			and PROVIDE_IDENTIFY = #{provideIdentify}
+  		</if>
+  		<if test="pkIdx != null">
+  			and PK_IDX = #{pkIdx}
+  		</if>
+  		<if test="hashIdentify != null">
+  			and HASH_IDENTIFY = #{hashIdentify}
+  		</if>
+  		<if test="pkIdentify != null">
+  			and PK_IDENTIFY = #{pkIdentify}
+  		</if>
+  		<if test="pkMode != null">
+  			and PK_MODE = #{pkMode}
+  		</if>
+  		<if test="pkIndex != null">
+  			and PK_INDEX = #{pkIndex}
+  		</if>
+  		<if test="pkChv != null">
+  			and PK_CHV = #{pkChv}
+  		</if>
+  		<if test="validDate != null">
+  			and VALID_DATE = #{validDate}
+  		</if>
+  		<if test="creatDate != null">
+  			and CREAT_DATE = #{creatDate}
+  		</if>
+  		<if test="updateTime != null">
+  			and UPDATE_TIME = #{updateTime}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TInfoPublickeyManage">
+	 INSERT INTO T_INFO_PUBLICKEY_MANAGE
+	   (PROVIDE_IDENTIFY,PK_IDX,HASH_IDENTIFY,PK_IDENTIFY,PK_MODE,PK_INDEX,PK_CHV,VALID_DATE,CREAT_DATE,UPDATE_TIME)
+     VALUES (
+	    #{provideIdentify,jdbcType=VARCHAR},
+	    #{pkIdx,jdbcType=CHAR},
+	    #{hashIdentify,jdbcType=CHAR},
+	    #{pkIdentify,jdbcType=CHAR},
+	    #{pkMode,jdbcType=VARCHAR},
+	    #{pkIndex,jdbcType=VARCHAR},
+	    #{pkChv,jdbcType=VARCHAR},
+	    #{validDate,jdbcType=CHAR},
+	    #{creatDate,jdbcType=CHAR},
+	    #{updateTime,jdbcType=TIMESTAMP}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TInfoPublickeyManage">
+	UPDATE T_INFO_PUBLICKEY_MANAGE SET
+	  	<if test="provideIdentify != null">
+	  		 PROVIDE_IDENTIFY = #{provideIdentify,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="pkIdx != null">
+	  		, PK_IDX = #{pkIdx,jdbcType=CHAR}
+	  	</if>
+	  	<if test="hashIdentify != null">
+	  		, HASH_IDENTIFY = #{hashIdentify,jdbcType=CHAR}
+	  	</if>
+	  	<if test="pkIdentify != null">
+	  		, PK_IDENTIFY = #{pkIdentify,jdbcType=CHAR}
+	  	</if>
+	  	<if test="pkMode != null">
+	  		, PK_MODE = #{pkMode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="pkIndex != null">
+	  		, PK_INDEX = #{pkIndex,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="pkChv != null">
+	  		, PK_CHV = #{pkChv,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="validDate != null">
+	  		, VALID_DATE = #{validDate,jdbcType=CHAR}
+	  	</if>
+	  	<if test="creatDate != null">
+	  		, CREAT_DATE = #{creatDate,jdbcType=CHAR}
+	  	</if>
+	  	<if test="updateTime != null">
+	  		, UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+	  	</if>
+		WHERE PROVIDE_IDENTIFY = #{provideIdentify, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

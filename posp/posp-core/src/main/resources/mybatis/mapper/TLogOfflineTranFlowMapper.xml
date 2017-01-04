@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TLogOfflineTranFlowDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TLogOfflineTranFlow" >
+	    <result column="TERM_CODE" property="termCode" jdbcType="VARCHAR" />
+	    <result column="BATCH_NO" property="batchNo" jdbcType="CHAR" />
+	    <result column="TERM_SERIAL_NO" property="termSerialNo" jdbcType="CHAR" />
+	    <result column="TERM_DATE" property="termDate" jdbcType="CHAR" />
+	    <result column="TERM_TIME" property="termTime" jdbcType="CHAR" />
+	    <result column="TRAN_DATE" property="tranDate" jdbcType="CHAR" />
+	    <result column="SERIAL_NO" property="serialNo" jdbcType="CHAR" />
+	    <result column="TRAN_TYPE" property="tranType" jdbcType="CHAR" />
+	    <result column="SETTLE_FLAG" property="settleFlag" jdbcType="CHAR" />
+	    <result column="SETTLE_DATE" property="settleDate" jdbcType="CHAR" />
+	    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+	    <result column="CARD_TYPE" property="cardType" jdbcType="CHAR" />
+	    <result column="TRAN_AMOUNT" property="tranAmount" jdbcType="DECIMAL" />
+	    <result column="REMAIN_AMOUNT" property="remainAmount" jdbcType="DECIMAL" />
+	    <result column="AMT_AFTER_WITHDRAW" property="amtAfterWithdraw" jdbcType="DECIMAL" />
+	    <result column="AUTH_RESP_CODE" property="authRespCode" jdbcType="CHAR" />
+	    <result column="AUTH_DATE" property="authDate" jdbcType="CHAR" />
+	    <result column="RCV_BANK_CODE" property="rcvBankCode" jdbcType="VARCHAR" />
+	    <result column="RCV_BRANCH_CODE" property="rcvBranchCode" jdbcType="VARCHAR" />
+	    <result column="ISS_BANK_CODE" property="issBankCode" jdbcType="VARCHAR" />
+	    <result column="ISS_INST_CODE" property="issInstCode" jdbcType="VARCHAR" />
+	    <result column="AGT_INST_CODE" property="agtInstCode" jdbcType="VARCHAR" />
+	    <result column="MCC" property="mcc" jdbcType="VARCHAR" />
+	    <result column="MERCH_CODE" property="merchCode" jdbcType="VARCHAR" />
+	    <result column="AGT_SERIAL_NO" property="agtSerialNo" jdbcType="VARCHAR" />
+	    <result column="CHANNEL_TYPE" property="channelType" jdbcType="CHAR" />
+	    <result column="INPUT_MODE" property="inputMode" jdbcType="CHAR" />
+	    <result column="CARD_SEQNO" property="cardSeqno" jdbcType="VARCHAR" />
+	    <result column="TERM_READAB" property="termReadab" jdbcType="CHAR" />
+	    <result column="IC_CONDITION" property="icCondition" jdbcType="VARCHAR" />
+	    <result column="RESP_CODE" property="respCode" jdbcType="VARCHAR" />
+	    <result column="CCY_CODE" property="ccyCode" jdbcType="CHAR" />
+	    <result column="EXP_DATE" property="expDate" jdbcType="CHAR" />
+	    <result column="TERM_FLAG" property="termFlag" jdbcType="CHAR" />
+	    <result column="TRAN_FLAG" property="tranFlag" jdbcType="CHAR" />
+	    <result column="REFER_NO" property="referNo" jdbcType="VARCHAR" />
+	    <result column="BATCH_STATE" property="batchState" jdbcType="CHAR" />
+	    <result column="BATCH_RESULT" property="batchResult" jdbcType="CHAR" />
+	    <result column="STATE" property="state" jdbcType="CHAR" />
+	    <result column="RESULT" property="result" jdbcType="CHAR" />
+	    <result column="TERM_SETTLE_DATE" property="termSettleDate" jdbcType="VARCHAR" />
+	    <result column="TERM_SETTLE_FTIME" property="termSettleFtime" jdbcType="CHAR" />
+	    <result column="IP" property="ip" jdbcType="VARCHAR" />
+	    <result column="RETREFERNO" property="retreferno" jdbcType="VARCHAR" />
+	    <result column="RESERVE" property="reserve" jdbcType="VARCHAR" />
+	    <result column="CARD_FLAG" property="cardFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	TERM_CODE,BATCH_NO,TERM_SERIAL_NO,TERM_DATE,TERM_TIME,TRAN_DATE,SERIAL_NO,TRAN_TYPE,SETTLE_FLAG,SETTLE_DATE,CARD_NO,CARD_TYPE,TRAN_AMOUNT,REMAIN_AMOUNT,AMT_AFTER_WITHDRAW,AUTH_RESP_CODE,AUTH_DATE,RCV_BANK_CODE,RCV_BRANCH_CODE,ISS_BANK_CODE,ISS_INST_CODE,AGT_INST_CODE,MCC,MERCH_CODE,AGT_SERIAL_NO,CHANNEL_TYPE,INPUT_MODE,CARD_SEQNO,TERM_READAB,IC_CONDITION,RESP_CODE,CCY_CODE,EXP_DATE,TERM_FLAG,TRAN_FLAG,REFER_NO,BATCH_STATE,BATCH_RESULT,STATE,RESULT,TERM_SETTLE_DATE,TERM_SETTLE_FTIME,IP,RETREFERNO,RESERVE,CARD_FLAG
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_LOG_OFFLINE_TRAN_FLOW 
+		where 1=1 
+  		
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TLogOfflineTranFlow" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_LOG_OFFLINE_TRAN_FLOW
+  		where 1=1 
+  		
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="termSerialNo != null">
+  			and TERM_SERIAL_NO = #{termSerialNo}
+  		</if>
+  		<if test="termDate != null">
+  			and TERM_DATE = #{termDate}
+  		</if>
+  		<if test="termTime != null">
+  			and TERM_TIME = #{termTime}
+  		</if>
+  		<if test="tranDate != null">
+  			and TRAN_DATE = #{tranDate}
+  		</if>
+  		<if test="serialNo != null">
+  			and SERIAL_NO = #{serialNo}
+  		</if>
+  		<if test="tranType != null">
+  			and TRAN_TYPE = #{tranType}
+  		</if>
+  		<if test="settleFlag != null">
+  			and SETTLE_FLAG = #{settleFlag}
+  		</if>
+  		<if test="settleDate != null">
+  			and SETTLE_DATE = #{settleDate}
+  		</if>
+  		<if test="cardNo != null">
+  			and CARD_NO = #{cardNo}
+  		</if>
+  		<if test="cardType != null">
+  			and CARD_TYPE = #{cardType}
+  		</if>
+  		<if test="tranAmount != null">
+  			and TRAN_AMOUNT = #{tranAmount}
+  		</if>
+  		<if test="remainAmount != null">
+  			and REMAIN_AMOUNT = #{remainAmount}
+  		</if>
+  		<if test="amtAfterWithdraw != null">
+  			and AMT_AFTER_WITHDRAW = #{amtAfterWithdraw}
+  		</if>
+  		<if test="authRespCode != null">
+  			and AUTH_RESP_CODE = #{authRespCode}
+  		</if>
+  		<if test="authDate != null">
+  			and AUTH_DATE = #{authDate}
+  		</if>
+  		<if test="rcvBankCode != null">
+  			and RCV_BANK_CODE = #{rcvBankCode}
+  		</if>
+  		<if test="rcvBranchCode != null">
+  			and RCV_BRANCH_CODE = #{rcvBranchCode}
+  		</if>
+  		<if test="issBankCode != null">
+  			and ISS_BANK_CODE = #{issBankCode}
+  		</if>
+  		<if test="issInstCode != null">
+  			and ISS_INST_CODE = #{issInstCode}
+  		</if>
+  		<if test="agtInstCode != null">
+  			and AGT_INST_CODE = #{agtInstCode}
+  		</if>
+  		<if test="mcc != null">
+  			and MCC = #{mcc}
+  		</if>
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		<if test="agtSerialNo != null">
+  			and AGT_SERIAL_NO = #{agtSerialNo}
+  		</if>
+  		<if test="channelType != null">
+  			and CHANNEL_TYPE = #{channelType}
+  		</if>
+  		<if test="inputMode != null">
+  			and INPUT_MODE = #{inputMode}
+  		</if>
+  		<if test="cardSeqno != null">
+  			and CARD_SEQNO = #{cardSeqno}
+  		</if>
+  		<if test="termReadab != null">
+  			and TERM_READAB = #{termReadab}
+  		</if>
+  		<if test="icCondition != null">
+  			and IC_CONDITION = #{icCondition}
+  		</if>
+  		<if test="respCode != null">
+  			and RESP_CODE = #{respCode}
+  		</if>
+  		<if test="ccyCode != null">
+  			and CCY_CODE = #{ccyCode}
+  		</if>
+  		<if test="expDate != null">
+  			and EXP_DATE = #{expDate}
+  		</if>
+  		<if test="termFlag != null">
+  			and TERM_FLAG = #{termFlag}
+  		</if>
+  		<if test="tranFlag != null">
+  			and TRAN_FLAG = #{tranFlag}
+  		</if>
+  		<if test="referNo != null">
+  			and REFER_NO = #{referNo}
+  		</if>
+  		<if test="batchState != null">
+  			and BATCH_STATE = #{batchState}
+  		</if>
+  		<if test="batchResult != null">
+  			and BATCH_RESULT = #{batchResult}
+  		</if>
+  		<if test="state != null">
+  			and STATE = #{state}
+  		</if>
+  		<if test="result != null">
+  			and RESULT = #{result}
+  		</if>
+  		<if test="termSettleDate != null">
+  			and TERM_SETTLE_DATE = #{termSettleDate}
+  		</if>
+  		<if test="termSettleFtime != null">
+  			and TERM_SETTLE_FTIME = #{termSettleFtime}
+  		</if>
+  		<if test="ip != null">
+  			and IP = #{ip}
+  		</if>
+  		<if test="retreferno != null">
+  			and RETREFERNO = #{retreferno}
+  		</if>
+  		<if test="reserve != null">
+  			and RESERVE = #{reserve}
+  		</if>
+  		<if test="cardFlag != null">
+  			and CARD_FLAG = #{cardFlag}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TLogOfflineTranFlow" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_LOG_OFFLINE_TRAN_FLOW
+  		where 1=1 
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="termSerialNo != null">
+  			and TERM_SERIAL_NO = #{termSerialNo}
+  		</if>
+  		<if test="termDate != null">
+  			and TERM_DATE = #{termDate}
+  		</if>
+  		<if test="termTime != null">
+  			and TERM_TIME = #{termTime}
+  		</if>
+  		<if test="tranDate != null">
+  			and TRAN_DATE = #{tranDate}
+  		</if>
+  		<if test="serialNo != null">
+  			and SERIAL_NO = #{serialNo}
+  		</if>
+  		<if test="tranType != null">
+  			and TRAN_TYPE = #{tranType}
+  		</if>
+  		<if test="settleFlag != null">
+  			and SETTLE_FLAG = #{settleFlag}
+  		</if>
+  		<if test="settleDate != null">
+  			and SETTLE_DATE = #{settleDate}
+  		</if>
+  		<if test="cardNo != null">
+  			and CARD_NO = #{cardNo}
+  		</if>
+  		<if test="cardType != null">
+  			and CARD_TYPE = #{cardType}
+  		</if>
+  		<if test="tranAmount != null">
+  			and TRAN_AMOUNT = #{tranAmount}
+  		</if>
+  		<if test="remainAmount != null">
+  			and REMAIN_AMOUNT = #{remainAmount}
+  		</if>
+  		<if test="amtAfterWithdraw != null">
+  			and AMT_AFTER_WITHDRAW = #{amtAfterWithdraw}
+  		</if>
+  		<if test="authRespCode != null">
+  			and AUTH_RESP_CODE = #{authRespCode}
+  		</if>
+  		<if test="authDate != null">
+  			and AUTH_DATE = #{authDate}
+  		</if>
+  		<if test="rcvBankCode != null">
+  			and RCV_BANK_CODE = #{rcvBankCode}
+  		</if>
+  		<if test="rcvBranchCode != null">
+  			and RCV_BRANCH_CODE = #{rcvBranchCode}
+  		</if>
+  		<if test="issBankCode != null">
+  			and ISS_BANK_CODE = #{issBankCode}
+  		</if>
+  		<if test="issInstCode != null">
+  			and ISS_INST_CODE = #{issInstCode}
+  		</if>
+  		<if test="agtInstCode != null">
+  			and AGT_INST_CODE = #{agtInstCode}
+  		</if>
+  		<if test="mcc != null">
+  			and MCC = #{mcc}
+  		</if>
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		<if test="agtSerialNo != null">
+  			and AGT_SERIAL_NO = #{agtSerialNo}
+  		</if>
+  		<if test="channelType != null">
+  			and CHANNEL_TYPE = #{channelType}
+  		</if>
+  		<if test="inputMode != null">
+  			and INPUT_MODE = #{inputMode}
+  		</if>
+  		<if test="cardSeqno != null">
+  			and CARD_SEQNO = #{cardSeqno}
+  		</if>
+  		<if test="termReadab != null">
+  			and TERM_READAB = #{termReadab}
+  		</if>
+  		<if test="icCondition != null">
+  			and IC_CONDITION = #{icCondition}
+  		</if>
+  		<if test="respCode != null">
+  			and RESP_CODE = #{respCode}
+  		</if>
+  		<if test="ccyCode != null">
+  			and CCY_CODE = #{ccyCode}
+  		</if>
+  		<if test="expDate != null">
+  			and EXP_DATE = #{expDate}
+  		</if>
+  		<if test="termFlag != null">
+  			and TERM_FLAG = #{termFlag}
+  		</if>
+  		<if test="tranFlag != null">
+  			and TRAN_FLAG = #{tranFlag}
+  		</if>
+  		<if test="referNo != null">
+  			and REFER_NO = #{referNo}
+  		</if>
+  		<if test="batchState != null">
+  			and BATCH_STATE = #{batchState}
+  		</if>
+  		<if test="batchResult != null">
+  			and BATCH_RESULT = #{batchResult}
+  		</if>
+  		<if test="state != null">
+  			and STATE = #{state}
+  		</if>
+  		<if test="result != null">
+  			and RESULT = #{result}
+  		</if>
+  		<if test="termSettleDate != null">
+  			and TERM_SETTLE_DATE = #{termSettleDate}
+  		</if>
+  		<if test="termSettleFtime != null">
+  			and TERM_SETTLE_FTIME = #{termSettleFtime}
+  		</if>
+  		<if test="ip != null">
+  			and IP = #{ip}
+  		</if>
+  		<if test="retreferno != null">
+  			and RETREFERNO = #{retreferno}
+  		</if>
+  		<if test="reserve != null">
+  			and RESERVE = #{reserve}
+  		</if>
+  		<if test="cardFlag != null">
+  			and CARD_FLAG = #{cardFlag}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TLogOfflineTranFlow" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_LOG_OFFLINE_TRAN_FLOW
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TLogOfflineTranFlow" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_LOG_OFFLINE_TRAN_FLOW
+  		where 1=1 
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="termSerialNo != null">
+  			and TERM_SERIAL_NO = #{termSerialNo}
+  		</if>
+  		<if test="termDate != null">
+  			and TERM_DATE = #{termDate}
+  		</if>
+  		<if test="termTime != null">
+  			and TERM_TIME = #{termTime}
+  		</if>
+  		<if test="tranDate != null">
+  			and TRAN_DATE = #{tranDate}
+  		</if>
+  		<if test="serialNo != null">
+  			and SERIAL_NO = #{serialNo}
+  		</if>
+  		<if test="tranType != null">
+  			and TRAN_TYPE = #{tranType}
+  		</if>
+  		<if test="settleFlag != null">
+  			and SETTLE_FLAG = #{settleFlag}
+  		</if>
+  		<if test="settleDate != null">
+  			and SETTLE_DATE = #{settleDate}
+  		</if>
+  		<if test="cardNo != null">
+  			and CARD_NO = #{cardNo}
+  		</if>
+  		<if test="cardType != null">
+  			and CARD_TYPE = #{cardType}
+  		</if>
+  		<if test="tranAmount != null">
+  			and TRAN_AMOUNT = #{tranAmount}
+  		</if>
+  		<if test="remainAmount != null">
+  			and REMAIN_AMOUNT = #{remainAmount}
+  		</if>
+  		<if test="amtAfterWithdraw != null">
+  			and AMT_AFTER_WITHDRAW = #{amtAfterWithdraw}
+  		</if>
+  		<if test="authRespCode != null">
+  			and AUTH_RESP_CODE = #{authRespCode}
+  		</if>
+  		<if test="authDate != null">
+  			and AUTH_DATE = #{authDate}
+  		</if>
+  		<if test="rcvBankCode != null">
+  			and RCV_BANK_CODE = #{rcvBankCode}
+  		</if>
+  		<if test="rcvBranchCode != null">
+  			and RCV_BRANCH_CODE = #{rcvBranchCode}
+  		</if>
+  		<if test="issBankCode != null">
+  			and ISS_BANK_CODE = #{issBankCode}
+  		</if>
+  		<if test="issInstCode != null">
+  			and ISS_INST_CODE = #{issInstCode}
+  		</if>
+  		<if test="agtInstCode != null">
+  			and AGT_INST_CODE = #{agtInstCode}
+  		</if>
+  		<if test="mcc != null">
+  			and MCC = #{mcc}
+  		</if>
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		<if test="agtSerialNo != null">
+  			and AGT_SERIAL_NO = #{agtSerialNo}
+  		</if>
+  		<if test="channelType != null">
+  			and CHANNEL_TYPE = #{channelType}
+  		</if>
+  		<if test="inputMode != null">
+  			and INPUT_MODE = #{inputMode}
+  		</if>
+  		<if test="cardSeqno != null">
+  			and CARD_SEQNO = #{cardSeqno}
+  		</if>
+  		<if test="termReadab != null">
+  			and TERM_READAB = #{termReadab}
+  		</if>
+  		<if test="icCondition != null">
+  			and IC_CONDITION = #{icCondition}
+  		</if>
+  		<if test="respCode != null">
+  			and RESP_CODE = #{respCode}
+  		</if>
+  		<if test="ccyCode != null">
+  			and CCY_CODE = #{ccyCode}
+  		</if>
+  		<if test="expDate != null">
+  			and EXP_DATE = #{expDate}
+  		</if>
+  		<if test="termFlag != null">
+  			and TERM_FLAG = #{termFlag}
+  		</if>
+  		<if test="tranFlag != null">
+  			and TRAN_FLAG = #{tranFlag}
+  		</if>
+  		<if test="referNo != null">
+  			and REFER_NO = #{referNo}
+  		</if>
+  		<if test="batchState != null">
+  			and BATCH_STATE = #{batchState}
+  		</if>
+  		<if test="batchResult != null">
+  			and BATCH_RESULT = #{batchResult}
+  		</if>
+  		<if test="state != null">
+  			and STATE = #{state}
+  		</if>
+  		<if test="result != null">
+  			and RESULT = #{result}
+  		</if>
+  		<if test="termSettleDate != null">
+  			and TERM_SETTLE_DATE = #{termSettleDate}
+  		</if>
+  		<if test="termSettleFtime != null">
+  			and TERM_SETTLE_FTIME = #{termSettleFtime}
+  		</if>
+  		<if test="ip != null">
+  			and IP = #{ip}
+  		</if>
+  		<if test="retreferno != null">
+  			and RETREFERNO = #{retreferno}
+  		</if>
+  		<if test="reserve != null">
+  			and RESERVE = #{reserve}
+  		</if>
+  		<if test="cardFlag != null">
+  			and CARD_FLAG = #{cardFlag}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TLogOfflineTranFlow">
+	 INSERT INTO T_LOG_OFFLINE_TRAN_FLOW
+	   (TERM_CODE,BATCH_NO,TERM_SERIAL_NO,TERM_DATE,TERM_TIME,TRAN_DATE,SERIAL_NO,TRAN_TYPE,SETTLE_FLAG,SETTLE_DATE,CARD_NO,CARD_TYPE,TRAN_AMOUNT,REMAIN_AMOUNT,AMT_AFTER_WITHDRAW,AUTH_RESP_CODE,AUTH_DATE,RCV_BANK_CODE,RCV_BRANCH_CODE,ISS_BANK_CODE,ISS_INST_CODE,AGT_INST_CODE,MCC,MERCH_CODE,AGT_SERIAL_NO,CHANNEL_TYPE,INPUT_MODE,CARD_SEQNO,TERM_READAB,IC_CONDITION,RESP_CODE,CCY_CODE,EXP_DATE,TERM_FLAG,TRAN_FLAG,REFER_NO,BATCH_STATE,BATCH_RESULT,STATE,RESULT,TERM_SETTLE_DATE,TERM_SETTLE_FTIME,IP,RETREFERNO,RESERVE,CARD_FLAG)
+     VALUES (
+	    #{termCode,jdbcType=VARCHAR},
+	    #{batchNo,jdbcType=CHAR},
+	    #{termSerialNo,jdbcType=CHAR},
+	    #{termDate,jdbcType=CHAR},
+	    #{termTime,jdbcType=CHAR},
+	    #{tranDate,jdbcType=CHAR},
+	    #{serialNo,jdbcType=CHAR},
+	    #{tranType,jdbcType=CHAR},
+	    #{settleFlag,jdbcType=CHAR},
+	    #{settleDate,jdbcType=CHAR},
+	    #{cardNo,jdbcType=VARCHAR},
+	    #{cardType,jdbcType=CHAR},
+	    #{tranAmount,jdbcType=DECIMAL},
+	    #{remainAmount,jdbcType=DECIMAL},
+	    #{amtAfterWithdraw,jdbcType=DECIMAL},
+	    #{authRespCode,jdbcType=CHAR},
+	    #{authDate,jdbcType=CHAR},
+	    #{rcvBankCode,jdbcType=VARCHAR},
+	    #{rcvBranchCode,jdbcType=VARCHAR},
+	    #{issBankCode,jdbcType=VARCHAR},
+	    #{issInstCode,jdbcType=VARCHAR},
+	    #{agtInstCode,jdbcType=VARCHAR},
+	    #{mcc,jdbcType=VARCHAR},
+	    #{merchCode,jdbcType=VARCHAR},
+	    #{agtSerialNo,jdbcType=VARCHAR},
+	    #{channelType,jdbcType=CHAR},
+	    #{inputMode,jdbcType=CHAR},
+	    #{cardSeqno,jdbcType=VARCHAR},
+	    #{termReadab,jdbcType=CHAR},
+	    #{icCondition,jdbcType=VARCHAR},
+	    #{respCode,jdbcType=VARCHAR},
+	    #{ccyCode,jdbcType=CHAR},
+	    #{expDate,jdbcType=CHAR},
+	    #{termFlag,jdbcType=CHAR},
+	    #{tranFlag,jdbcType=CHAR},
+	    #{referNo,jdbcType=VARCHAR},
+	    #{batchState,jdbcType=CHAR},
+	    #{batchResult,jdbcType=CHAR},
+	    #{state,jdbcType=CHAR},
+	    #{result,jdbcType=CHAR},
+	    #{termSettleDate,jdbcType=VARCHAR},
+	    #{termSettleFtime,jdbcType=CHAR},
+	    #{ip,jdbcType=VARCHAR},
+	    #{retreferno,jdbcType=VARCHAR},
+	    #{reserve,jdbcType=VARCHAR},
+	    #{cardFlag,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TLogOfflineTranFlow">
+	UPDATE T_LOG_OFFLINE_TRAN_FLOW SET
+	  	<if test="serialNo != null">
+	  		SERIAL_NO = #{serialNo,jdbcType=CHAR}
+	  	</if>
+	  	<if test="batchNo != null">
+	  		, BATCH_NO = #{batchNo,jdbcType=CHAR}
+	  	</if>
+	  	<if test="termSerialNo != null">
+	  		, TERM_SERIAL_NO = #{termSerialNo,jdbcType=CHAR}
+	  	</if>
+	  	<if test="termDate != null">
+	  		, TERM_DATE = #{termDate,jdbcType=CHAR}
+	  	</if>
+	  	<if test="termTime != null">
+	  		, TERM_TIME = #{termTime,jdbcType=CHAR}
+	  	</if>
+	  	<if test="tranDate != null">
+	  		, TRAN_DATE = #{tranDate,jdbcType=CHAR}
+	  	</if>
+	  	<if test="termCode != null">
+	  		, TERM_CODE = #{termCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tranType != null">
+	  		, TRAN_TYPE = #{tranType,jdbcType=CHAR}
+	  	</if>
+	  	<if test="settleFlag != null">
+	  		, SETTLE_FLAG = #{settleFlag,jdbcType=CHAR}
+	  	</if>
+	  	<if test="settleDate != null">
+	  		, SETTLE_DATE = #{settleDate,jdbcType=CHAR}
+	  	</if>
+	  	<if test="cardNo != null">
+	  		, CARD_NO = #{cardNo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="cardType != null">
+	  		, CARD_TYPE = #{cardType,jdbcType=CHAR}
+	  	</if>
+	  	<if test="tranAmount != null">
+	  		, TRAN_AMOUNT = #{tranAmount,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="remainAmount != null">
+	  		, REMAIN_AMOUNT = #{remainAmount,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="amtAfterWithdraw != null">
+	  		, AMT_AFTER_WITHDRAW = #{amtAfterWithdraw,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="authRespCode != null">
+	  		, AUTH_RESP_CODE = #{authRespCode,jdbcType=CHAR}
+	  	</if>
+	  	<if test="authDate != null">
+	  		, AUTH_DATE = #{authDate,jdbcType=CHAR}
+	  	</if>
+	  	<if test="rcvBankCode != null">
+	  		, RCV_BANK_CODE = #{rcvBankCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="rcvBranchCode != null">
+	  		, RCV_BRANCH_CODE = #{rcvBranchCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="issBankCode != null">
+	  		, ISS_BANK_CODE = #{issBankCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="issInstCode != null">
+	  		, ISS_INST_CODE = #{issInstCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="agtInstCode != null">
+	  		, AGT_INST_CODE = #{agtInstCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="mcc != null">
+	  		, MCC = #{mcc,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="merchCode != null">
+	  		, MERCH_CODE = #{merchCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="agtSerialNo != null">
+	  		, AGT_SERIAL_NO = #{agtSerialNo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="channelType != null">
+	  		, CHANNEL_TYPE = #{channelType,jdbcType=CHAR}
+	  	</if>
+	  	<if test="inputMode != null">
+	  		, INPUT_MODE = #{inputMode,jdbcType=CHAR}
+	  	</if>
+	  	<if test="cardSeqno != null">
+	  		, CARD_SEQNO = #{cardSeqno,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="termReadab != null">
+	  		, TERM_READAB = #{termReadab,jdbcType=CHAR}
+	  	</if>
+	  	<if test="icCondition != null">
+	  		, IC_CONDITION = #{icCondition,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="respCode != null">
+	  		, RESP_CODE = #{respCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="ccyCode != null">
+	  		, CCY_CODE = #{ccyCode,jdbcType=CHAR}
+	  	</if>
+	  	<if test="expDate != null">
+	  		, EXP_DATE = #{expDate,jdbcType=CHAR}
+	  	</if>
+	  	<if test="termFlag != null">
+	  		, TERM_FLAG = #{termFlag,jdbcType=CHAR}
+	  	</if>
+	  	<if test="tranFlag != null">
+	  		, TRAN_FLAG = #{tranFlag,jdbcType=CHAR}
+	  	</if>
+	  	<if test="referNo != null">
+	  		, REFER_NO = #{referNo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="batchState != null">
+	  		, BATCH_STATE = #{batchState,jdbcType=CHAR}
+	  	</if>
+	  	<if test="batchResult != null">
+	  		, BATCH_RESULT = #{batchResult,jdbcType=CHAR}
+	  	</if>
+	  	<if test="state != null">
+	  		, STATE = #{state,jdbcType=CHAR}
+	  	</if>
+	  	<if test="result != null">
+	  		, RESULT = #{result,jdbcType=CHAR}
+	  	</if>
+	  	<if test="termSettleDate != null">
+	  		, TERM_SETTLE_DATE = #{termSettleDate,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="termSettleFtime != null">
+	  		, TERM_SETTLE_FTIME = #{termSettleFtime,jdbcType=CHAR}
+	  	</if>
+	  	<if test="ip != null">
+	  		, IP = #{ip,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="retreferno != null">
+	  		, RETREFERNO = #{retreferno,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="reserve != null">
+	  		, RESERVE = #{reserve,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="cardFlag != null">
+	  		, CARD_FLAG = #{cardFlag,jdbcType=VARCHAR}
+	  	</if>
+		WHERE SERIAL_NO = #{serialNo,jdbcType=DECIMAL} 
+  </update>
+
+  <update id="updateBatchResult" parameterType="com.bestpay.posp.system.entity.TLogOfflineTranFlow">
+	UPDATE T_LOG_OFFLINE_TRAN_FLOW SET
+	  	<if test="batchState != null">
+	  		BATCH_STATE = #{batchState,jdbcType=CHAR}
+	  	</if>
+	  	<if test="batchResult != null">
+	  		, BATCH_RESULT = #{batchResult,jdbcType=CHAR}
+	  	</if>
+		WHERE TERM_CODE = #{termCode, jdbcType=DECIMAL}
+		<if test="merchCode != null">
+	  		and MERCH_CODE = #{merchCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="batchNo != null">
+	  		and BATCH_NO = #{batchNo,jdbcType=CHAR}
+	  	</if>
+  </update>
+  
+</mapper>

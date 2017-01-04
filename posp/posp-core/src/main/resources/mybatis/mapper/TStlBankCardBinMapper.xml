@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TStlBankCardBinDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TStlBankCardBin" >
+	    <result column="CARD_BIN_ID" property="cardBinId" jdbcType="DECIMAL" />
+	    <result column="BANK" property="bank" jdbcType="VARCHAR" />
+	    <result column="CARDNAME" property="cardname" jdbcType="VARCHAR" />
+	    <result column="ATM_1" property="atm1" jdbcType="VARCHAR" />
+	    <result column="POS_1" property="pos1" jdbcType="VARCHAR" />
+	    <result column="TRACK" property="track" jdbcType="VARCHAR" />
+	    <result column="TRACK_START" property="trackStart" jdbcType="VARCHAR" />
+	    <result column="TRACK_LEN" property="trackLen" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT_START" property="accountStart" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT_LEN" property="accountLen" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT_READ_TRACK" property="accountReadTrack" jdbcType="VARCHAR" />
+	    <result column="BANKID_START" property="bankidStart" jdbcType="VARCHAR" />
+	    <result column="BANKID_LEN" property="bankidLen" jdbcType="VARCHAR" />
+	    <result column="BANKID" property="bankid" jdbcType="VARCHAR" />
+	    <result column="BANKID_READ_TRACK" property="bankidReadTrack" jdbcType="VARCHAR" />
+	    <result column="CARD_TYPE" property="cardType" jdbcType="VARCHAR" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+	    <result column="BANK_1" property="bank1" jdbcType="VARCHAR" />
+	    <result column="BANK_2" property="bank2" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT_PREFIX" property="accountPrefix" jdbcType="VARCHAR" />
+	    <result column="PREFIX_LENGTH" property="prefixLength" jdbcType="DECIMAL" />
+	    <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+	    <result column="BANK_UPID" property="bankUpid" jdbcType="VARCHAR" />
+	    <result column="ACCOUNT_NAME" property="accountName" jdbcType="VARCHAR" />
+	    <result column="ATM" property="atm" jdbcType="DECIMAL" />
+	    <result column="POS" property="pos" jdbcType="DECIMAL" />
+	    <result column="TRACK2" property="track2" jdbcType="DECIMAL" />
+	    <result column="TRACK3" property="track3" jdbcType="DECIMAL" />
+	    <result column="TRACK2_LENGTH" property="track2Length" jdbcType="DECIMAL" />
+	    <result column="TRACK3_LENGTH" property="track3Length" jdbcType="DECIMAL" />
+	    <result column="ACCOUNT_LENGTH" property="accountLength" jdbcType="DECIMAL" />
+	    <result column="ACCOUNT_TYPE" property="accountType" jdbcType="DECIMAL" />
+	    <result column="ACCOUNT_DESC" property="accountDesc" jdbcType="VARCHAR" />
+	    <result column="BANK_CODE" property="bankCode" jdbcType="VARCHAR" />
+	    <result column="CARD_BIN" property="cardBin" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	CARD_BIN_ID,BANK,CARDNAME,ATM_1,POS_1,TRACK,TRACK_START,TRACK_LEN,ACCOUNT_START,ACCOUNT_LEN,ACCOUNT,ACCOUNT_READ_TRACK,BANKID_START,BANKID_LEN,BANKID,BANKID_READ_TRACK,CARD_TYPE,STAT,BANK_1,BANK_2,ACCOUNT_PREFIX,PREFIX_LENGTH,BANK_NAME,BANK_UPID,ACCOUNT_NAME,ATM,POS,TRACK2,TRACK3,TRACK2_LENGTH,TRACK3_LENGTH,ACCOUNT_LENGTH,ACCOUNT_TYPE,ACCOUNT_DESC,BANK_CODE,CARD_BIN
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_STL_BANK_CARD_BIN where CARD_BIN_ID = #{id}
+  </select>
+  
+  <select id="findByCardNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+  		SELECT <include refid="Base_Column_List"/> 
+  		FROM T_STL_BANK_CARD_BIN WHERE  CARD_BIN = SUBSTR(TRIM(#{cardNo}), 0, BANKID_LEN) AND ACCOUNT_LEN = LENGTH(TRIM(#{cardNo}))
+  </select>
+
+	<select id="findByAccountLen" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List"/>
+		FROM T_STL_BANK_CARD_BIN WHERE  ACCOUNT_LEN = #{accountLen}
+	</select>
+
+	<select id="findAccountLen" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT DISTINCT ACCOUNT_LEN
+		FROM T_STL_BANK_CARD_BIN
+	</select>
+
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TStlBankCardBin" resultType="com.bestpay.posp.system.entity.TStlBankCardBin">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_STL_BANK_CARD_BIN
+  		where 1=1 
+  		
+  		<if test="cardBinId != null">
+  			and CARD_BIN_ID = #{cardBinId}
+  		</if>
+  		<if test="bank != null">
+  			and BANK = #{bank}
+  		</if>
+  		<if test="cardname != null">
+  			and CARDNAME = #{cardname}
+  		</if>
+  		<if test="atm1 != null">
+  			and ATM_1 = #{atm1}
+  		</if>
+  		<if test="pos1 != null">
+  			and POS_1 = #{pos1}
+  		</if>
+  		<if test="track != null">
+  			and TRACK = #{track}
+  		</if>
+  		<if test="trackStart != null">
+  			and TRACK_START = #{trackStart}
+  		</if>
+  		<if test="trackLen != null">
+  			and TRACK_LEN = #{trackLen}
+  		</if>
+  		<if test="accountStart != null">
+  			and ACCOUNT_START = #{accountStart}
+  		</if>
+  		<if test="accountLen != null">
+  			and ACCOUNT_LEN = #{accountLen}
+  		</if>
+  		<if test="account != null">
+  			and ACCOUNT = #{account}
+  		</if>
+  		<if test="accountReadTrack != null">
+  			and ACCOUNT_READ_TRACK = #{accountReadTrack}
+  		</if>
+  		<if test="bankidStart != null">
+  			and BANKID_START = #{bankidStart}
+  		</if>
+  		<if test="bankidLen != null">
+  			and BANKID_LEN = #{bankidLen}
+  		</if>
+  		<if test="bankid != null">
+  			and BANKID = #{bankid}
+  		</if>
+  		<if test="bankidReadTrack != null">
+  			and BANKID_READ_TRACK = #{bankidReadTrack}
+  		</if>
+  		<if test="cardType != null">
+  			and CARD_TYPE = #{cardType}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="bank1 != null">
+  			and BANK_1 = #{bank1}
+  		</if>
+  		<if test="bank2 != null">
+  			and BANK_2 = #{bank2}
+  		</if>
+  		<if test="accountPrefix != null">
+  			and ACCOUNT_PREFIX = #{accountPrefix}
+  		</if>
+  		<if test="prefixLength != null">
+  			and PREFIX_LENGTH = #{prefixLength}
+  		</if>
+  		<if test="bankName != null">
+  			and BANK_NAME = #{bankName}
+  		</if>
+  		<if test="bankUpid != null">
+  			and BANK_UPID = #{bankUpid}
+  		</if>
+  		<if test="accountName != null">
+  			and ACCOUNT_NAME = #{accountName}
+  		</if>
+  		<if test="atm != null">
+  			and ATM = #{atm}
+  		</if>
+  		<if test="pos != null">
+  			and POS = #{pos}
+  		</if>
+  		<if test="track2 != null">
+  			and TRACK2 = #{track2}
+  		</if>
+  		<if test="track3 != null">
+  			and TRACK3 = #{track3}
+  		</if>
+  		<if test="track2Length != null">
+  			and TRACK2_LENGTH = #{track2Length}
+  		</if>
+  		<if test="track3Length != null">
+  			and TRACK3_LENGTH = #{track3Length}
+  		</if>
+  		<if test="accountLength != null">
+  			and ACCOUNT_LENGTH = #{accountLength}
+  		</if>
+  		<if test="accountType != null">
+  			and ACCOUNT_TYPE = #{accountType}
+  		</if>
+  		<if test="accountDesc != null">
+  			and ACCOUNT_DESC = #{accountDesc}
+  		</if>
+  		<if test="bankCode != null">
+  			and BANK_CODE = #{bankCode}
+  		</if>
+  		<if test="cardBin != null">
+  			and CARD_BIN = #{cardBin}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TStlBankCardBin" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_STL_BANK_CARD_BIN
+  		where 1=1 
+  		<if test="cardBinId != null">
+  			and CARD_BIN_ID = #{cardBinId}
+  		</if>
+  		<if test="bank != null">
+  			and BANK = #{bank}
+  		</if>
+  		<if test="cardname != null">
+  			and CARDNAME = #{cardname}
+  		</if>
+  		<if test="atm1 != null">
+  			and ATM_1 = #{atm1}
+  		</if>
+  		<if test="pos1 != null">
+  			and POS_1 = #{pos1}
+  		</if>
+  		<if test="track != null">
+  			and TRACK = #{track}
+  		</if>
+  		<if test="trackStart != null">
+  			and TRACK_START = #{trackStart}
+  		</if>
+  		<if test="trackLen != null">
+  			and TRACK_LEN = #{trackLen}
+  		</if>
+  		<if test="accountStart != null">
+  			and ACCOUNT_START = #{accountStart}
+  		</if>
+  		<if test="accountLen != null">
+  			and ACCOUNT_LEN = #{accountLen}
+  		</if>
+  		<if test="account != null">
+  			and ACCOUNT = #{account}
+  		</if>
+  		<if test="accountReadTrack != null">
+  			and ACCOUNT_READ_TRACK = #{accountReadTrack}
+  		</if>
+  		<if test="bankidStart != null">
+  			and BANKID_START = #{bankidStart}
+  		</if>
+  		<if test="bankidLen != null">
+  			and BANKID_LEN = #{bankidLen}
+  		</if>
+  		<if test="bankid != null">
+  			and BANKID = #{bankid}
+  		</if>
+  		<if test="bankidReadTrack != null">
+  			and BANKID_READ_TRACK = #{bankidReadTrack}
+  		</if>
+  		<if test="cardType != null">
+  			and CARD_TYPE = #{cardType}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="bank1 != null">
+  			and BANK_1 = #{bank1}
+  		</if>
+  		<if test="bank2 != null">
+  			and BANK_2 = #{bank2}
+  		</if>
+  		<if test="accountPrefix != null">
+  			and ACCOUNT_PREFIX = #{accountPrefix}
+  		</if>
+  		<if test="prefixLength != null">
+  			and PREFIX_LENGTH = #{prefixLength}
+  		</if>
+  		<if test="bankName != null">
+  			and BANK_NAME = #{bankName}
+  		</if>
+  		<if test="bankUpid != null">
+  			and BANK_UPID = #{bankUpid}
+  		</if>
+  		<if test="accountName != null">
+  			and ACCOUNT_NAME = #{accountName}
+  		</if>
+  		<if test="atm != null">
+  			and ATM = #{atm}
+  		</if>
+  		<if test="pos != null">
+  			and POS = #{pos}
+  		</if>
+  		<if test="track2 != null">
+  			and TRACK2 = #{track2}
+  		</if>
+  		<if test="track3 != null">
+  			and TRACK3 = #{track3}
+  		</if>
+  		<if test="track2Length != null">
+  			and TRACK2_LENGTH = #{track2Length}
+  		</if>
+  		<if test="track3Length != null">
+  			and TRACK3_LENGTH = #{track3Length}
+  		</if>
+  		<if test="accountLength != null">
+  			and ACCOUNT_LENGTH = #{accountLength}
+  		</if>
+  		<if test="accountType != null">
+  			and ACCOUNT_TYPE = #{accountType}
+  		</if>
+  		<if test="accountDesc != null">
+  			and ACCOUNT_DESC = #{accountDesc}
+  		</if>
+  		<if test="bankCode != null">
+  			and BANK_CODE = #{bankCode}
+  		</if>
+  		<if test="cardBin != null">
+  			and CARD_BIN = #{cardBin}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TStlBankCardBin" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_STL_BANK_CARD_BIN
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TStlBankCardBin" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_STL_BANK_CARD_BIN
+  		where 1=1 
+  		<if test="cardBinId != null">
+  			and CARD_BIN_ID = #{cardBinId}
+  		</if>
+  		<if test="bank != null">
+  			and BANK = #{bank}
+  		</if>
+  		<if test="cardname != null">
+  			and CARDNAME = #{cardname}
+  		</if>
+  		<if test="atm1 != null">
+  			and ATM_1 = #{atm1}
+  		</if>
+  		<if test="pos1 != null">
+  			and POS_1 = #{pos1}
+  		</if>
+  		<if test="track != null">
+  			and TRACK = #{track}
+  		</if>
+  		<if test="trackStart != null">
+  			and TRACK_START = #{trackStart}
+  		</if>
+  		<if test="trackLen != null">
+  			and TRACK_LEN = #{trackLen}
+  		</if>
+  		<if test="accountStart != null">
+  			and ACCOUNT_START = #{accountStart}
+  		</if>
+  		<if test="accountLen != null">
+  			and ACCOUNT_LEN = #{accountLen}
+  		</if>
+  		<if test="account != null">
+  			and ACCOUNT = #{account}
+  		</if>
+  		<if test="accountReadTrack != null">
+  			and ACCOUNT_READ_TRACK = #{accountReadTrack}
+  		</if>
+  		<if test="bankidStart != null">
+  			and BANKID_START = #{bankidStart}
+  		</if>
+  		<if test="bankidLen != null">
+  			and BANKID_LEN = #{bankidLen}
+  		</if>
+  		<if test="bankid != null">
+  			and BANKID = #{bankid}
+  		</if>
+  		<if test="bankidReadTrack != null">
+  			and BANKID_READ_TRACK = #{bankidReadTrack}
+  		</if>
+  		<if test="cardType != null">
+  			and CARD_TYPE = #{cardType}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="bank1 != null">
+  			and BANK_1 = #{bank1}
+  		</if>
+  		<if test="bank2 != null">
+  			and BANK_2 = #{bank2}
+  		</if>
+  		<if test="accountPrefix != null">
+  			and ACCOUNT_PREFIX = #{accountPrefix}
+  		</if>
+  		<if test="prefixLength != null">
+  			and PREFIX_LENGTH = #{prefixLength}
+  		</if>
+  		<if test="bankName != null">
+  			and BANK_NAME = #{bankName}
+  		</if>
+  		<if test="bankUpid != null">
+  			and BANK_UPID = #{bankUpid}
+  		</if>
+  		<if test="accountName != null">
+  			and ACCOUNT_NAME = #{accountName}
+  		</if>
+  		<if test="atm != null">
+  			and ATM = #{atm}
+  		</if>
+  		<if test="pos != null">
+  			and POS = #{pos}
+  		</if>
+  		<if test="track2 != null">
+  			and TRACK2 = #{track2}
+  		</if>
+  		<if test="track3 != null">
+  			and TRACK3 = #{track3}
+  		</if>
+  		<if test="track2Length != null">
+  			and TRACK2_LENGTH = #{track2Length}
+  		</if>
+  		<if test="track3Length != null">
+  			and TRACK3_LENGTH = #{track3Length}
+  		</if>
+  		<if test="accountLength != null">
+  			and ACCOUNT_LENGTH = #{accountLength}
+  		</if>
+  		<if test="accountType != null">
+  			and ACCOUNT_TYPE = #{accountType}
+  		</if>
+  		<if test="accountDesc != null">
+  			and ACCOUNT_DESC = #{accountDesc}
+  		</if>
+  		<if test="bankCode != null">
+  			and BANK_CODE = #{bankCode}
+  		</if>
+  		<if test="cardBin != null">
+  			and CARD_BIN = #{cardBin}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TStlBankCardBin">
+	 INSERT INTO T_STL_BANK_CARD_BIN
+	   (CARD_BIN_ID,BANK,CARDNAME,ATM_1,POS_1,TRACK,TRACK_START,TRACK_LEN,ACCOUNT_START,ACCOUNT_LEN,ACCOUNT,ACCOUNT_READ_TRACK,BANKID_START,BANKID_LEN,BANKID,BANKID_READ_TRACK,CARD_TYPE,STAT,BANK_1,BANK_2,ACCOUNT_PREFIX,PREFIX_LENGTH,BANK_NAME,BANK_UPID,ACCOUNT_NAME,ATM,POS,TRACK2,TRACK3,TRACK2_LENGTH,TRACK3_LENGTH,ACCOUNT_LENGTH,ACCOUNT_TYPE,ACCOUNT_DESC,BANK_CODE,CARD_BIN)
+     VALUES (
+	    #{cardBinId,jdbcType=DECIMAL},
+	    #{bank,jdbcType=VARCHAR},
+	    #{cardname,jdbcType=VARCHAR},
+	    #{atm1,jdbcType=VARCHAR},
+	    #{pos1,jdbcType=VARCHAR},
+	    #{track,jdbcType=VARCHAR},
+	    #{trackStart,jdbcType=VARCHAR},
+	    #{trackLen,jdbcType=VARCHAR},
+	    #{accountStart,jdbcType=VARCHAR},
+	    #{accountLen,jdbcType=VARCHAR},
+	    #{account,jdbcType=VARCHAR},
+	    #{accountReadTrack,jdbcType=VARCHAR},
+	    #{bankidStart,jdbcType=VARCHAR},
+	    #{bankidLen,jdbcType=VARCHAR},
+	    #{bankid,jdbcType=VARCHAR},
+	    #{bankidReadTrack,jdbcType=VARCHAR},
+	    #{cardType,jdbcType=VARCHAR},
+	    #{stat,jdbcType=CHAR},
+	    #{bank1,jdbcType=VARCHAR},
+	    #{bank2,jdbcType=VARCHAR},
+	    #{accountPrefix,jdbcType=VARCHAR},
+	    #{prefixLength,jdbcType=DECIMAL},
+	    #{bankName,jdbcType=VARCHAR},
+	    #{bankUpid,jdbcType=VARCHAR},
+	    #{accountName,jdbcType=VARCHAR},
+	    #{atm,jdbcType=DECIMAL},
+	    #{pos,jdbcType=DECIMAL},
+	    #{track2,jdbcType=DECIMAL},
+	    #{track3,jdbcType=DECIMAL},
+	    #{track2Length,jdbcType=DECIMAL},
+	    #{track3Length,jdbcType=DECIMAL},
+	    #{accountLength,jdbcType=DECIMAL},
+	    #{accountType,jdbcType=DECIMAL},
+	    #{accountDesc,jdbcType=VARCHAR},
+	    #{bankCode,jdbcType=VARCHAR},
+	    #{cardBin,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TStlBankCardBin">
+	UPDATE T_STL_BANK_CARD_BIN SET
+	  	CARD_BIN_ID = #{cardBinId,jdbcType=DECIMAL},
+	  	BANK = #{bank,jdbcType=VARCHAR},
+	  	CARDNAME = #{cardname,jdbcType=VARCHAR},
+	  	ATM_1 = #{atm1,jdbcType=VARCHAR},
+	  	POS_1 = #{pos1,jdbcType=VARCHAR},
+	  	TRACK = #{track,jdbcType=VARCHAR},
+	  	TRACK_START = #{trackStart,jdbcType=VARCHAR},
+	  	TRACK_LEN = #{trackLen,jdbcType=VARCHAR},
+	  	ACCOUNT_START = #{accountStart,jdbcType=VARCHAR},
+	  	ACCOUNT_LEN = #{accountLen,jdbcType=VARCHAR},
+	  	ACCOUNT = #{account,jdbcType=VARCHAR},
+	  	ACCOUNT_READ_TRACK = #{accountReadTrack,jdbcType=VARCHAR},
+	  	BANKID_START = #{bankidStart,jdbcType=VARCHAR},
+	  	BANKID_LEN = #{bankidLen,jdbcType=VARCHAR},
+	  	BANKID = #{bankid,jdbcType=VARCHAR},
+	  	BANKID_READ_TRACK = #{bankidReadTrack,jdbcType=VARCHAR},
+	  	CARD_TYPE = #{cardType,jdbcType=VARCHAR},
+	  	STAT = #{stat,jdbcType=CHAR},
+	  	BANK_1 = #{bank1,jdbcType=VARCHAR},
+	  	BANK_2 = #{bank2,jdbcType=VARCHAR},
+	  	ACCOUNT_PREFIX = #{accountPrefix,jdbcType=VARCHAR},
+	  	PREFIX_LENGTH = #{prefixLength,jdbcType=DECIMAL},
+	  	BANK_NAME = #{bankName,jdbcType=VARCHAR},
+	  	BANK_UPID = #{bankUpid,jdbcType=VARCHAR},
+	  	ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+	  	ATM = #{atm,jdbcType=DECIMAL},
+	  	POS = #{pos,jdbcType=DECIMAL},
+	  	TRACK2 = #{track2,jdbcType=DECIMAL},
+	  	TRACK3 = #{track3,jdbcType=DECIMAL},
+	  	TRACK2_LENGTH = #{track2Length,jdbcType=DECIMAL},
+	  	TRACK3_LENGTH = #{track3Length,jdbcType=DECIMAL},
+	  	ACCOUNT_LENGTH = #{accountLength,jdbcType=DECIMAL},
+	  	ACCOUNT_TYPE = #{accountType,jdbcType=DECIMAL},
+	  	ACCOUNT_DESC = #{accountDesc,jdbcType=VARCHAR},
+	  	BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+	  	CARD_BIN = #{cardBin,jdbcType=VARCHAR}
+		WHERE CARD_BIN_ID = #{cardBinId, jdbcType=DECIMAL}
+  </update>
+  <!-- 增加新的接口请在下方编写  -->
+   
+</mapper>

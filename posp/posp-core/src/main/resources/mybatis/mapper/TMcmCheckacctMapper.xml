@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TMcmCheckacctDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TMcmCheckacct" >
+	    <result column="CHECKACCT_ID" property="checkacctId" jdbcType="DECIMAL" />
+	    <result column="MCT_CODE" property="mctCode" jdbcType="VARCHAR" />
+	    <result column="FILE_FORMAT" property="fileFormat" jdbcType="VARCHAR" />
+	    <result column="REV_TYPE" property="revType" jdbcType="VARCHAR" />
+	    <result column="REV_EMAIL" property="revEmail" jdbcType="VARCHAR" />
+	    <result column="FTP_IP" property="ftpIp" jdbcType="VARCHAR" />
+	    <result column="FTP_PORT" property="ftpPort" jdbcType="VARCHAR" />
+	    <result column="FTP_USE" property="ftpUse" jdbcType="VARCHAR" />
+	    <result column="FTP_PWD" property="ftpPwd" jdbcType="VARCHAR" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="TIMESTAMP" />
+	    <result column="MOD_STAFF" property="modStaff" jdbcType="VARCHAR" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+	    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+	    <result column="FTP_ADDR" property="ftpAddr" jdbcType="VARCHAR" />
+	    <result column="LEVER" property="lever" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	CHECKACCT_ID,MCT_CODE,FILE_FORMAT,REV_TYPE,REV_EMAIL,FTP_IP,FTP_PORT,FTP_USE,FTP_PWD,MOD_DATE,MOD_STAFF,STAT,MEMO,FTP_ADDR,LEVER
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_MCM_CHECKACCT where CHECKACCT_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TMcmCheckacct" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_CHECKACCT
+  		where 1=1 
+  		
+  		<if test="checkacctId != null">
+  			and CHECKACCT_ID = #{checkacctId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="fileFormat != null">
+  			and FILE_FORMAT = #{fileFormat}
+  		</if>
+  		<if test="revType != null">
+  			and REV_TYPE = #{revType}
+  		</if>
+  		<if test="revEmail != null">
+  			and REV_EMAIL = #{revEmail}
+  		</if>
+  		<if test="ftpIp != null">
+  			and FTP_IP = #{ftpIp}
+  		</if>
+  		<if test="ftpPort != null">
+  			and FTP_PORT = #{ftpPort}
+  		</if>
+  		<if test="ftpUse != null">
+  			and FTP_USE = #{ftpUse}
+  		</if>
+  		<if test="ftpPwd != null">
+  			and FTP_PWD = #{ftpPwd}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="ftpAddr != null">
+  			and FTP_ADDR = #{ftpAddr}
+  		</if>
+  		<if test="lever != null">
+  			and LEVER = #{lever}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TMcmCheckacct" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_CHECKACCT
+  		where 1=1 
+  		<if test="checkacctId != null">
+  			and CHECKACCT_ID = #{checkacctId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="fileFormat != null">
+  			and FILE_FORMAT = #{fileFormat}
+  		</if>
+  		<if test="revType != null">
+  			and REV_TYPE = #{revType}
+  		</if>
+  		<if test="revEmail != null">
+  			and REV_EMAIL = #{revEmail}
+  		</if>
+  		<if test="ftpIp != null">
+  			and FTP_IP = #{ftpIp}
+  		</if>
+  		<if test="ftpPort != null">
+  			and FTP_PORT = #{ftpPort}
+  		</if>
+  		<if test="ftpUse != null">
+  			and FTP_USE = #{ftpUse}
+  		</if>
+  		<if test="ftpPwd != null">
+  			and FTP_PWD = #{ftpPwd}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="ftpAddr != null">
+  			and FTP_ADDR = #{ftpAddr}
+  		</if>
+  		<if test="lever != null">
+  			and LEVER = #{lever}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TMcmCheckacct" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_CHECKACCT
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TMcmCheckacct" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_MCM_CHECKACCT
+  		where 1=1 
+  		<if test="checkacctId != null">
+  			and CHECKACCT_ID = #{checkacctId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="fileFormat != null">
+  			and FILE_FORMAT = #{fileFormat}
+  		</if>
+  		<if test="revType != null">
+  			and REV_TYPE = #{revType}
+  		</if>
+  		<if test="revEmail != null">
+  			and REV_EMAIL = #{revEmail}
+  		</if>
+  		<if test="ftpIp != null">
+  			and FTP_IP = #{ftpIp}
+  		</if>
+  		<if test="ftpPort != null">
+  			and FTP_PORT = #{ftpPort}
+  		</if>
+  		<if test="ftpUse != null">
+  			and FTP_USE = #{ftpUse}
+  		</if>
+  		<if test="ftpPwd != null">
+  			and FTP_PWD = #{ftpPwd}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="ftpAddr != null">
+  			and FTP_ADDR = #{ftpAddr}
+  		</if>
+  		<if test="lever != null">
+  			and LEVER = #{lever}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TMcmCheckacct">
+	 INSERT INTO T_MCM_CHECKACCT
+	   (CHECKACCT_ID,MCT_CODE,FILE_FORMAT,REV_TYPE,REV_EMAIL,FTP_IP,FTP_PORT,FTP_USE,FTP_PWD,MOD_DATE,MOD_STAFF,STAT,MEMO,FTP_ADDR,LEVER)
+     VALUES (
+	    #{checkacctId,jdbcType=DECIMAL},
+	    #{mctCode,jdbcType=VARCHAR},
+	    #{fileFormat,jdbcType=VARCHAR},
+	    #{revType,jdbcType=VARCHAR},
+	    #{revEmail,jdbcType=VARCHAR},
+	    #{ftpIp,jdbcType=VARCHAR},
+	    #{ftpPort,jdbcType=VARCHAR},
+	    #{ftpUse,jdbcType=VARCHAR},
+	    #{ftpPwd,jdbcType=VARCHAR},
+	    #{modDate,jdbcType=TIMESTAMP},
+	    #{modStaff,jdbcType=VARCHAR},
+	    #{stat,jdbcType=CHAR},
+	    #{memo,jdbcType=VARCHAR},
+	    #{ftpAddr,jdbcType=VARCHAR},
+	    #{lever,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TMcmCheckacct">
+	UPDATE T_MCM_CHECKACCT SET
+	  	<if test="checkacctId != null">
+	  		 CHECKACCT_ID = #{checkacctId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="mctCode != null">
+	  		, MCT_CODE = #{mctCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="fileFormat != null">
+	  		, FILE_FORMAT = #{fileFormat,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="revType != null">
+	  		, REV_TYPE = #{revType,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="revEmail != null">
+	  		, REV_EMAIL = #{revEmail,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="ftpIp != null">
+	  		, FTP_IP = #{ftpIp,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="ftpPort != null">
+	  		, FTP_PORT = #{ftpPort,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="ftpUse != null">
+	  		, FTP_USE = #{ftpUse,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="ftpPwd != null">
+	  		, FTP_PWD = #{ftpPwd,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="modDate != null">
+	  		, MOD_DATE = #{modDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="modStaff != null">
+	  		, MOD_STAFF = #{modStaff,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stat != null">
+	  		, STAT = #{stat,jdbcType=CHAR}
+	  	</if>
+	  	<if test="memo != null">
+	  		, MEMO = #{memo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="ftpAddr != null">
+	  		, FTP_ADDR = #{ftpAddr,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="lever != null">
+	  		, LEVER = #{lever,jdbcType=VARCHAR}
+	  	</if>
+		WHERE CHECKACCT_ID = #{checkacctId, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

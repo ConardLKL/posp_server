@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TMcmPlatformInfoDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TMcmPlatformInfo" >
+	    <result column="ORG_ID" property="orgId" jdbcType="VARCHAR" />
+	    <result column="ORG_NAME" property="orgName" jdbcType="VARCHAR" />
+	    <result column="ORG_SHORT_NAME" property="orgShortName" jdbcType="VARCHAR" />
+	    <result column="FILE_PUSH_MODE" property="filePushMode" jdbcType="VARCHAR" />
+	    <result column="SFTP_SERVER" property="sftpServer" jdbcType="VARCHAR" />
+	    <result column="SFTP_PORT" property="sftpPort" jdbcType="VARCHAR" />
+	    <result column="SFTP_USER" property="sftpUser" jdbcType="VARCHAR" />
+	    <result column="SFTP_PWD" property="sftpPwd" jdbcType="VARCHAR" />
+	    <result column="SFTP_PATH" property="sftpPath" jdbcType="VARCHAR" />
+	    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+	    <result column="FILE_ZIP_PWD" property="fileZipPwd" jdbcType="VARCHAR" />
+	    <result column="IS_TRADE" property="isTrade" jdbcType="VARCHAR" />
+	    <result column="STATE" property="state" jdbcType="VARCHAR" />
+	    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	ORG_ID,ORG_NAME,ORG_SHORT_NAME,FILE_PUSH_MODE,SFTP_SERVER,SFTP_PORT,SFTP_USER,SFTP_PWD,SFTP_PATH,FILE_NAME,FILE_ZIP_PWD,IS_TRADE,STATE,CREATE_TIME
+  </sql>
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_MCM_PLATFORM_INFO where ORG_ID = #{orgId}
+  </select>
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TMcmPlatformInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_PLATFORM_INFO
+  		where 1=1 
+  		<if test="orgId != null">
+  			and ORG_ID = #{orgId}
+  		</if>
+  		<if test="orgName != null">
+  			and ORG_NAME = #{orgName}
+  		</if>
+  		<if test="orgShortName != null">
+  			and ORG_SHORT_NAME = #{orgShortName}
+  		</if>
+  		<if test="filePushMode != null">
+  			and FILE_PUSH_MODE = #{filePushMode}
+  		</if>
+  		<if test="sftpServer != null">
+  			and SFTP_SERVER = #{sftpServer}
+  		</if>
+  		<if test="sftpPort != null">
+  			and SFTP_PORT = #{sftpPort}
+  		</if>
+  		<if test="sftpUser != null">
+  			and SFTP_USER = #{sftpUser}
+  		</if>
+  		<if test="sftpPwd != null">
+  			and SFTP_PWD = #{sftpPwd}
+  		</if>
+  		<if test="sftpPath != null">
+  			and SFTP_PATH = #{sftpPath}
+  		</if>
+  		<if test="fileName != null">
+  			and FILE_NAME = #{fileName}
+  		</if>
+  		<if test="fileZipPwd != null">
+  			and FILE_ZIP_PWD = #{fileZipPwd}
+  		</if>
+  		<if test="isTrade != null">
+  			and IS_TRADE = #{isTrade}
+  		</if>
+  		<if test="state != null">
+  			and STATE= #{state}
+  		</if>
+  		<if test="createTime != null">
+  			and CREATE_TIME  = #{createTime}
+  		</if>
+  		
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TMcmPlatformInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_PLATFORM_INFO
+  		where 1=1 
+  		<if test="orgId != null">
+  			and ORG_ID = #{orgId}
+  		</if>
+  		<if test="orgName != null">
+  			and ORG_NAME = #{orgName}
+  		</if>
+  		<if test="orgShortName != null">
+  			and ORG_SHORT_NAME = #{orgShortName}
+  		</if>
+  		<if test="filePushMode != null">
+  			and FILE_PUSH_MODE = #{filePushMode}
+  		</if>
+  		<if test="sftpServer != null">
+  			and SFTP_SERVER = #{sftpServer}
+  		</if>
+  		<if test="sftpPort != null">
+  			and SFTP_PORT = #{sftpPort}
+  		</if>
+  		<if test="sftpUser != null">
+  			and SFTP_USER = #{sftpUser}
+  		</if>
+  		<if test="sftpPwd != null">
+  			and SFTP_PWD = #{sftpPwd}
+  		</if>
+  		<if test="sftpPath != null">
+  			and SFTP_PATH = #{sftpPath}
+  		</if>
+  		<if test="fileName != null">
+  			and FILE_NAME = #{fileName}
+  		</if>
+  		<if test="fileZipPwd != null">
+  			and FILE_ZIP_PWD = #{fileZipPwd}
+  		</if>
+  		<if test="isTrade != null">
+  			and IS_TRADE = #{isTrade}
+  		</if>
+  		<if test="state != null">
+  			and STATE= #{state}
+  		</if>
+  		<if test="createTime != null">
+  			and CREATE_TIME  = #{createTime}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TMcmPlatformInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_PLATFORM_INFO
+  </select>
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TMcmPlatformInfo" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_MCM_PLATFORM_INFO
+  		where 1=1 
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TMcmPlatformInfo">
+	 INSERT INTO T_MCM_PLATFORM_INFO
+	   (ORG_ID,ORG_NAME,ORG_SHORT_NAME,FILE_PUSH_MODE,SFTP_SERVER,SFTP_PORT,SFTP_USER,SFTP_PWD,SFTP_PATH,FILE_NAME,FILE_ZIP_PWD,IS_TRADE,STATE,CREATE_TIME)
+     VALUES (
+	    #{orgId,jdbcType=VARCHAR},
+	    #{orgName,jdbcType=VARCHAR},
+	    #{orgShortName,jdbcType=VARCHAR},
+	    #{filePushMode,jdbcType=VARCHAR},
+	    #{sftpServer,jdbcType=VARCHAR},
+	    #{sftpPort,jdbcType=VARCHAR},
+	    #{sftpUser,jdbcType=VARCHAR},
+	    #{sftpPwd,jdbcType=VARCHAR},
+	    #{sftpPath,jdbcType=VARCHAR},
+	    #{fileName,jdbcType=VARCHAR},
+	    #{fileZipPwd,jdbcType=VARCHAR},
+	    #{isTrade,jdbcType=VARCHAR},
+	    #{state,jdbcType=VARCHAR},
+	    #{createTime,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TMcmPlatformInfo">
+	UPDATE T_MCM_PLATFORM_INFO SET
+	  	<if test="orgId != null">
+  			 ORG_ID = #{orgId,jdbcType=VARCHAR}
+  		</if>
+  		<if test="orgName != null">
+  			, ORG_NAME = #{orgName,jdbcType=VARCHAR}
+  		</if>
+  		<if test="orgShortName != null">
+  			, ORG_SHORT_NAME = #{orgShortName,jdbcType=VARCHAR}
+  		</if>
+		where 1=1 
+  		
+  		<if test="orgId != null">
+  			and ORG_ID = #{orgId}
+  		</if>
+  </update>
+  
+</mapper>

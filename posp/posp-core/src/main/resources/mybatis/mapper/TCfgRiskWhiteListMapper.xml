@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TCfgRiskWhiteListDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TCfgRiskWhiteList" >
+	    <result column="WHITE_ID" property="whiteId" jdbcType="DECIMAL" />
+	    <result column="INFO_ID" property="infoId" jdbcType="DECIMAL" />
+	    <result column="SERV_AGENT" property="servAgent" jdbcType="VARCHAR" />
+	    <result column="STATION_VAL" property="stationVal" jdbcType="VARCHAR" />
+	    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+	  	<result column="STAT" property="stat" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	WHITE_ID,INFO_ID,SERV_AGENT,STATION_VAL,CREATE_DATE,STAT
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_CFG_RISK_WHITE_LIST where WHITE_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TCfgRiskWhiteList" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_RISK_WHITE_LIST
+  		where 1=1 
+  		
+  		<if test="whiteId != null">
+  			and WHITE_ID = #{whiteId}
+  		</if>
+  		<if test="infoId != null">
+  			and INFO_ID = #{infoId}
+  		</if>
+  		<if test="servAgent != null">
+  			and SERV_AGENT = #{servAgent}
+  		</if>
+  		<if test="stationVal != null">
+  			and STATION_VAL = #{stationVal}
+  		</if>
+  		<if test="createDate != null">
+			and CREATE_DATE = #{createDate}
+		</if>
+	  <if test="stat != null">
+		  and STAT = #{stat}
+	  </if>
+
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TCfgRiskWhiteList" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_RISK_WHITE_LIST
+  		where 1=1 
+  		<if test="whiteId != null">
+  			and WHITE_ID = #{whiteId}
+  		</if>
+  		<if test="infoId != null">
+  			and INFO_ID = #{infoId}
+  		</if>
+  		<if test="servAgent != null">
+  			and SERV_AGENT = #{servAgent}
+  		</if>
+  		<if test="stationVal != null">
+  			and STATION_VAL = #{stationVal}
+  		</if>
+  		<if test="createDate != null">
+  			and CREATE_DATE = #{createDate}
+  		</if>
+	  <if test="stat != null">
+		  and STAT = #{stat}
+	  </if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TCfgRiskWhiteList" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_RISK_WHITE_LIST
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TCfgRiskWhiteList" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_CFG_RISK_WHITE_LIST
+  		where 1=1 
+  		<if test="whiteId != null">
+  			and WHITE_ID = #{whiteId}
+  		</if>
+  		<if test="infoId != null">
+  			and INFO_ID = #{infoId}
+  		</if>
+  		<if test="servAgent != null">
+  			and SERV_AGENT = #{servAgent}
+  		</if>
+  		<if test="stationVal != null">
+  			and STATION_VAL = #{stationVal}
+  		</if>
+  		<if test="createDate != null">
+  			and CREATE_DATE = #{createDate}
+  		</if>
+	  <if test="stat != null">
+		  and STAT = #{stat}
+	  </if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TCfgRiskWhiteList">
+	 INSERT INTO T_CFG_RISK_WHITE_LIST
+	   (WHITE_ID,INFO_ID,SERV_AGENT,STATION_VAL,CREATE_DATE,STAT)
+     VALUES (
+	    #{whiteId,jdbcType=DECIMAL},
+	    #{infoId,jdbcType=DECIMAL},
+	    #{servAgent,jdbcType=VARCHAR},
+	    #{stationVal,jdbcType=VARCHAR},
+	    #{createDate,jdbcType=TIMESTAMP},
+	    #{stat,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TCfgRiskWhiteList">
+	UPDATE T_CFG_RISK_WHITE_LIST SET
+	  	<if test="whiteId != null">
+	  		 WHITE_ID = #{whiteId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="infoId != null">
+	  		, INFO_ID = #{infoId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="servAgent != null">
+	  		, SERV_AGENT = #{servAgent,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stationVal != null">
+	  		, STATION_VAL = #{stationVal,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stationVal != null">
+	  		, CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  <if test="stat != null">
+		  , STAT = #{stat,jdbcType=VARCHAR}
+	  </if>
+		WHERE 1=1
+		  <if test="whiteId != null">
+			  and WHITE_ID = #{whiteId}
+		  </if>
+		  <if test="infoId != null">
+			  and INFO_ID = #{infoId}
+		  </if>
+  </update>
+
+</mapper>

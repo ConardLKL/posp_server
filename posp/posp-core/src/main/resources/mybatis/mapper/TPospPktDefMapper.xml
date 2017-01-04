@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TPospPktDefDao" >
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TPospPktDef" >
+    <result column="PKT_ID" property="pktId" jdbcType="DECIMAL" />
+    <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+    <result column="MSG_TYPE" property="msgType" jdbcType="VARCHAR" />
+    <result column="BIT" property="bit" jdbcType="DECIMAL" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="FORMAT" property="format" jdbcType="VARCHAR" />
+    <result column="SPEC" property="spec" jdbcType="VARCHAR" />
+    <result column="LENGTH" property="length" jdbcType="DECIMAL" />
+    <result column="STAT" property="stat" jdbcType="CHAR" />
+  </resultMap>
+  
+  <resultMap id="MsgTypeMap" type="com.bestpay.posp.system.entity.TPospPktDef">
+  	<result column="MSG_TYPE" property="msgType" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PKT_ID, CHANNEL_CODE, MSG_TYPE, BIT, TYPE, FORMAT, SPEC, LENGTH, STAT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bestpay.posp.system.entity.TPospPktDefExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_POSP_PKT_DEF
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectExampleGroupBy" resultMap="MsgTypeMap"  parameterType="com.bestpay.posp.system.entity.TPospPktDefExample" >
+    select ${groupByClause}
+    from T_POSP_PKT_DEF
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="groupByClause != null" >
+      group by ${groupByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.bestpay.posp.system.entity.TPospPktDefExample" >
+    delete from T_POSP_PKT_DEF
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TPospPktDef" >
+    insert into T_POSP_PKT_DEF (PKT_ID, CHANNEL_CODE, MSG_TYPE, 
+      BIT, TYPE, FORMAT, 
+      SPEC, LENGTH, STAT)
+    values (#{pktId,jdbcType=DECIMAL}, #{channelCode,jdbcType=VARCHAR}, #{msgType,jdbcType=VARCHAR}, 
+      #{bit,jdbcType=DECIMAL}, #{type,jdbcType=VARCHAR}, #{format,jdbcType=VARCHAR}, 
+      #{spec,jdbcType=VARCHAR}, #{length,jdbcType=DECIMAL}, #{stat,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bestpay.posp.system.entity.TPospPktDef" >
+    insert into T_POSP_PKT_DEF
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pktId != null" >
+        PKT_ID,
+      </if>
+      <if test="channelCode != null" >
+        CHANNEL_CODE,
+      </if>
+      <if test="msgType != null" >
+        MSG_TYPE,
+      </if>
+      <if test="bit != null" >
+        BIT,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="format != null" >
+        FORMAT,
+      </if>
+      <if test="spec != null" >
+        SPEC,
+      </if>
+      <if test="length != null" >
+        LENGTH,
+      </if>
+      <if test="stat != null" >
+        STAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pktId != null" >
+        #{pktId,jdbcType=DECIMAL},
+      </if>
+      <if test="channelCode != null" >
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="bit != null" >
+        #{bit,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null" >
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="spec != null" >
+        #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="stat != null" >
+        #{stat,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bestpay.posp.system.entity.TPospPktDefExample" resultType="java.lang.Integer" >
+    select count(*) from T_POSP_PKT_DEF
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update T_POSP_PKT_DEF
+    <set >
+      <if test="record.pktId != null" >
+        PKT_ID = #{record.pktId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.channelCode != null" >
+        CHANNEL_CODE = #{record.channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.msgType != null" >
+        MSG_TYPE = #{record.msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bit != null" >
+        BIT = #{record.bit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.format != null" >
+        FORMAT = #{record.format,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spec != null" >
+        SPEC = #{record.spec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.length != null" >
+        LENGTH = #{record.length,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stat != null" >
+        STAT = #{record.stat,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_POSP_PKT_DEF
+    set PKT_ID = #{record.pktId,jdbcType=DECIMAL},
+      CHANNEL_CODE = #{record.channelCode,jdbcType=VARCHAR},
+      MSG_TYPE = #{record.msgType,jdbcType=VARCHAR},
+      BIT = #{record.bit,jdbcType=DECIMAL},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      FORMAT = #{record.format,jdbcType=VARCHAR},
+      SPEC = #{record.spec,jdbcType=VARCHAR},
+      LENGTH = #{record.length,jdbcType=DECIMAL},
+      STAT = #{record.stat,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

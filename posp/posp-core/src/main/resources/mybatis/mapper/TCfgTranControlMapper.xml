@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TCfgTranControlDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TCfgTranControl" >
+	    <result column="TRAN_CODE" property="tranCode" jdbcType="VARCHAR" />
+	    <result column="TRAN_TYPE" property="tranType" jdbcType="CHAR" />
+	    <result column="CHANNEL_NO" property="channelNo" jdbcType="CHAR" />
+	    <result column="TRAN_NAME" property="tranName" jdbcType="VARCHAR" />
+	    <result column="OPEN_FLAG" property="openFlag" jdbcType="CHAR" />
+	    <result column="OPER_DATE" property="operDate" jdbcType="CHAR" />
+	    <result column="OPER_ID" property="operId" jdbcType="VARCHAR" />
+	    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	TRAN_CODE,TRAN_TYPE,CHANNEL_NO,TRAN_NAME,OPEN_FLAG,OPER_DATE,OPER_ID,REMARK
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_CFG_TRAN_CONTROL where TRAN_CODE = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TCfgTranControl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_TRAN_CONTROL
+  		where 1=1 
+  		
+  		<if test="tranCode != null">
+  			and TRAN_CODE = #{tranCode}
+  		</if>
+  		<if test="tranType != null">
+  			and TRAN_TYPE = #{tranType}
+  		</if>
+  		<if test="channelNo != null">
+  			and CHANNEL_NO = #{channelNo}
+  		</if>
+  		<if test="tranName != null">
+  			and TRAN_NAME = #{tranName}
+  		</if>
+  		<if test="openFlag != null">
+  			and OPEN_FLAG = #{openFlag}
+  		</if>
+  		<if test="operDate != null">
+  			and OPER_DATE = #{operDate}
+  		</if>
+  		<if test="operId != null">
+  			and OPER_ID = #{operId}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TCfgTranControl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_TRAN_CONTROL
+  		where 1=1 
+  		<if test="tranCode != null">
+  			and TRAN_CODE = #{tranCode}
+  		</if>
+  		<if test="tranType != null">
+  			and TRAN_TYPE = #{tranType}
+  		</if>
+  		<if test="channelNo != null">
+  			and CHANNEL_NO = #{channelNo}
+  		</if>
+  		<if test="tranName != null">
+  			and TRAN_NAME = #{tranName}
+  		</if>
+  		<if test="openFlag != null">
+  			and OPEN_FLAG = #{openFlag}
+  		</if>
+  		<if test="operDate != null">
+  			and OPER_DATE = #{operDate}
+  		</if>
+  		<if test="operId != null">
+  			and OPER_ID = #{operId}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TCfgTranControl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_TRAN_CONTROL
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TCfgTranControl" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_CFG_TRAN_CONTROL
+  		where 1=1 
+  		<if test="tranCode != null">
+  			and TRAN_CODE = #{tranCode}
+  		</if>
+  		<if test="tranType != null">
+  			and TRAN_TYPE = #{tranType}
+  		</if>
+  		<if test="channelNo != null">
+  			and CHANNEL_NO = #{channelNo}
+  		</if>
+  		<if test="tranName != null">
+  			and TRAN_NAME = #{tranName}
+  		</if>
+  		<if test="openFlag != null">
+  			and OPEN_FLAG = #{openFlag}
+  		</if>
+  		<if test="operDate != null">
+  			and OPER_DATE = #{operDate}
+  		</if>
+  		<if test="operId != null">
+  			and OPER_ID = #{operId}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TCfgTranControl">
+	 INSERT INTO T_CFG_TRAN_CONTROL
+	   (TRAN_CODE,TRAN_TYPE,CHANNEL_NO,TRAN_NAME,OPEN_FLAG,OPER_DATE,OPER_ID,REMARK)
+     VALUES (
+	    #{tranCode,jdbcType=VARCHAR},
+	    #{tranType,jdbcType=CHAR},
+	    #{channelNo,jdbcType=CHAR},
+	    #{tranName,jdbcType=VARCHAR},
+	    #{openFlag,jdbcType=CHAR},
+	    #{operDate,jdbcType=CHAR},
+	    #{operId,jdbcType=VARCHAR},
+	    #{remark,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TCfgTranControl">
+	UPDATE T_CFG_TRAN_CONTROL SET
+	  	<if test="tranCode != null">
+	  		 TRAN_CODE = #{tranCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tranType != null">
+	  		, TRAN_TYPE = #{tranType,jdbcType=CHAR}
+	  	</if>
+	  	<if test="channelNo != null">
+	  		, CHANNEL_NO = #{channelNo,jdbcType=CHAR}
+	  	</if>
+	  	<if test="tranName != null">
+	  		, TRAN_NAME = #{tranName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="openFlag != null">
+	  		, OPEN_FLAG = #{openFlag,jdbcType=CHAR}
+	  	</if>
+	  	<if test="operDate != null">
+	  		, OPER_DATE = #{operDate,jdbcType=CHAR}
+	  	</if>
+	  	<if test="operId != null">
+	  		, OPER_ID = #{operId,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="remark != null">
+	  		, REMARK = #{remark,jdbcType=VARCHAR}
+	  	</if>
+		WHERE TRAN_CODE = #{tranCode, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

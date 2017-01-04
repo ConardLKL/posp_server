@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+<!--
+    <import resource="classpath:/mybatis/posp-core-dataSource-config.xml" />
+    <bean id="dynamicLoadBean" class="DynamicLoadBean"></bean>
+    <bean id="dataSource" class="DynamicDataSource">
+        <property name="targetDataSources">  
+            <map key-type="java.lang.String">  
+                 <entry key="defaultDataSource" value-ref="pospDynamicdatasource" />   
+                 <entry key="dataSourceA" value-ref="pospDynamicdatasource" />   
+            </map>  
+        </property>  
+        <property name="defaultTargetDataSource" ref="pospDynamicdatasource" />  
+    </bean>  
+    -->
+
+    <bean id="pospDynamicdatasource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+ 		<property name="poolAvailabilityThreshold" value="25"/> 	<!-- 设置连接池阀值 -->
+		<property name="connectionTimeout" value="3000"/> 			<!-- 连接时间  -->
+        <property name="idleConnectionTestPeriod" value="60" />		<!-- 检查数据库连接池中空闲连接的间隔时间，单位是分，默认值：240，如果要取消则设置为0 -->  
+        <property name="idleMaxAge" value="60" />					<!-- 连接池中未使用的链接最大存活时间，单位是分，默认值：60，如果要永远存活设置为0 -->  
+        <property name="maxConnectionsPerPartition" value="100" />	<!-- 每个分区最大的连接数 -->  
+        <property name="minConnectionsPerPartition" value="10" />	<!-- 每个分区最小的连接数 -->  
+        <property name="partitionCount" value="10" />				<!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定-->  
+        <property name="acquireIncrement" value="2" />				<!-- 每次去拿数据库连接的时候一次性要拿几个,默认值：2 -->
+        <property name="statementsCacheSize" value="80" />			<!-- 缓存prepared statements的大小，默认值：0 -->   
+        <property name="releaseHelperThreads" value="3" />			<!-- 每个分区释放链接助理进程的数量，默认值：3，除非你的一个数据库连接的时间内做了很多工作，不然过多的助理进程会影响你的性能 -->  		
+	</bean>
+</beans>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TSymAppkeyDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TSymAppkey" >
+	    <result column="KEY_ID" property="keyId" jdbcType="VARCHAR" />
+	    <result column="APP_ENCRYPT" property="appEncrypt" jdbcType="VARCHAR" />
+	    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+  </resultMap>
+  
+  <resultMap id="CipherCardMap" type="com.bestpay.posp.system.entity.CipherCard" >
+	    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+	    <result column="APP_ENCRYPT" property="appEncrypt" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="cipherCard" parameterType="com.bestpay.posp.system.entity.CipherCard" resultType="java.lang.String">
+  	  select 
+  	  		CRYPTO_UTL.ENCRYPT_3KEY_MODE(#{cardNo},#{appEncrypt})
+  	  from dual
+  </select>
+  
+  <select id="decipherCard" parameterType="com.bestpay.posp.system.entity.CipherCard" resultType="java.lang.String">
+  	  select 
+  	  		CRYPTO_UTL.DECRYPT_3KEY_MODE(#{cardNo},#{appEncrypt})
+  	  from dual
+  </select>
+  
+  <sql id="Base_Column_List" >
+	KEY_ID,APP_ENCRYPT,CREATE_DATE
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYM_APPKEY where KEY_ID = #{id}
+  </select>
+  <select id="findByKeyId" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYM_APPKEY where KEY_ID = #{id}
+  </select>
+	<select id="findUnique" parameterType="com.bestpay.posp.system.entity.TSymAppkey" resultMap="BaseResultMap">
+  </select>
+  
+	<select id="find" parameterType="com.bestpay.posp.system.entity.TSymAppkey" resultMap="BaseResultMap">
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TSymAppkey" resultMap="BaseResultMap">
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TSymAppkey" resultType="java.lang.Integer">
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TSymAppkey">
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TSymAppkey">
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>posp</artifactId>
+    <groupId>com.tisson.bestpay.posp</groupId>
+    <version>2.4.0</version>
+  </parent>
+  <groupId>com.tisson.bestpay.posp</groupId>
+  <artifactId>posp-engine</artifactId>
+  <version>1.0.0</version>
+	<properties>
+		<myliboptpath>${basedir}/../posp-core/lib</myliboptpath>
+	</properties>
+	<build>
+		<finalName>${artifactId}-${version}</finalName>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>  <!--执行器 mvn assembly:assembly -->
+					<execution>
+						<id>make-zip</id><!--名字任意 -->
+						<phase>package</phase><!-- 绑定到package生命周期阶段上 -->
+						<goals>
+							<goal>single</goal><!-- 只运行一次 -->
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>assembly.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<excludes>
+						<exclude> **/spring/**/*.xml</exclude>
+						<exclude> **/spring/**/*.conf</exclude>
+						<exclude> **/spring/**/*.properties</exclude>
+						<exclude> **/assemble/** </exclude>
+						<exclude> **/properties/**</exclude>
+						<exclude> **/logback.xml </exclude>
+						<exclude> **/script/**</exclude>
+						<exclude> **/mapper/**</exclude>
+						<exclude>*.properties</exclude>
+						<exclude>*.xml</exclude>
+						<exclude>*.xsl</exclude>
+						<exclude>*.xls</exclude>
+						<exclude>*.sql</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/Dubbo*Test.java</exclude>
+					</excludes>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.8</source>
+					<target>1.8</target>
+					<!-- 
+					<source>1.7</source>
+					<target>1.7</target>
+					 -->
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unzip-again-zip</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<delete
+									dir="${project.build.outputDirectory}/../${project.artifactId}-${project.version}" />
+								<unzip
+									dest="${project.build.outputDirectory}/.."
+									src="${project.build.outputDirectory}/../${project.artifactId}-${project.version}-assembly.zip" />
+								<zip	
+									destfile="${project.build.outputDirectory}/../${project.artifactId}-${project.version}.zip" >
+									<fileset dir = "${project.build.outputDirectory}/../${project.artifactId}-${project.version}" includes = "**/*.*" />
+								</zip>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

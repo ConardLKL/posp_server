@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TMcmSubacctinfoDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TMcmSubacctinfo" >
+	    <result column="ACCT_ID" property="acctId" jdbcType="DECIMAL" />
+	    <result column="MCT_ID" property="mctId" jdbcType="DECIMAL" />
+	    <result column="MCT_CODE" property="mctCode" jdbcType="VARCHAR" />
+	    <result column="REVACCT_NAME" property="revacctName" jdbcType="VARCHAR" />
+	    <result column="REVACCT_BANK" property="revacctBank" jdbcType="VARCHAR" />
+	    <result column="REV_ACCT" property="revAcct" jdbcType="VARCHAR" />
+	    <result column="LINK_MAN" property="linkMan" jdbcType="VARCHAR" />
+	    <result column="LINK_PHONE" property="linkPhone" jdbcType="VARCHAR" />
+	    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="TIMESTAMP" />
+	    <result column="MOD_STAFF" property="modStaff" jdbcType="VARCHAR" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+	    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+	    <result column="BANK_CODE" property="bankCode" jdbcType="VARCHAR" />
+	    <result column="BANK_AREA" property="bankArea" jdbcType="VARCHAR" />
+	    <result column="SUB_CODE" property="subCode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	ACCT_ID,MCT_ID,MCT_CODE,REVACCT_NAME,REVACCT_BANK,REV_ACCT,LINK_MAN,LINK_PHONE,EMAIL,MOD_DATE,MOD_STAFF,STAT,MEMO,BANK_CODE,BANK_AREA,SUB_CODE
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_MCM_SUBACCTINFO where ACCT_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TMcmSubacctinfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_SUBACCTINFO
+  		where 1=1 
+  		
+  		<if test="acctId != null">
+  			and ACCT_ID = #{acctId}
+  		</if>
+  		<if test="mctId != null">
+  			and MCT_ID = #{mctId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="revacctName != null">
+  			and REVACCT_NAME = #{revacctName}
+  		</if>
+  		<if test="revacctBank != null">
+  			and REVACCT_BANK = #{revacctBank}
+  		</if>
+  		<if test="revAcct != null">
+  			and REV_ACCT = #{revAcct}
+  		</if>
+  		<if test="linkMan != null">
+  			and LINK_MAN = #{linkMan}
+  		</if>
+  		<if test="linkPhone != null">
+  			and LINK_PHONE = #{linkPhone}
+  		</if>
+  		<if test="email != null">
+  			and EMAIL = #{email}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="bankCode != null">
+  			and BANK_CODE = #{bankCode}
+  		</if>
+  		<if test="bankArea != null">
+  			and BANK_AREA = #{bankArea}
+  		</if>
+  		<if test="subCode != null">
+  			and SUB_CODE = #{subCode}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TMcmSubacctinfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_SUBACCTINFO
+  		where 1=1 
+  		<if test="acctId != null">
+  			and ACCT_ID = #{acctId}
+  		</if>
+  		<if test="mctId != null">
+  			and MCT_ID = #{mctId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="revacctName != null">
+  			and REVACCT_NAME = #{revacctName}
+  		</if>
+  		<if test="revacctBank != null">
+  			and REVACCT_BANK = #{revacctBank}
+  		</if>
+  		<if test="revAcct != null">
+  			and REV_ACCT = #{revAcct}
+  		</if>
+  		<if test="linkMan != null">
+  			and LINK_MAN = #{linkMan}
+  		</if>
+  		<if test="linkPhone != null">
+  			and LINK_PHONE = #{linkPhone}
+  		</if>
+  		<if test="email != null">
+  			and EMAIL = #{email}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="bankCode != null">
+  			and BANK_CODE = #{bankCode}
+  		</if>
+  		<if test="bankArea != null">
+  			and BANK_AREA = #{bankArea}
+  		</if>
+  		<if test="subCode != null">
+  			and SUB_CODE = #{subCode}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TMcmSubacctinfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_SUBACCTINFO
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TMcmSubacctinfo" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_MCM_SUBACCTINFO
+  		where 1=1 
+  		<if test="acctId != null">
+  			and ACCT_ID = #{acctId}
+  		</if>
+  		<if test="mctId != null">
+  			and MCT_ID = #{mctId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="revacctName != null">
+  			and REVACCT_NAME = #{revacctName}
+  		</if>
+  		<if test="revacctBank != null">
+  			and REVACCT_BANK = #{revacctBank}
+  		</if>
+  		<if test="revAcct != null">
+  			and REV_ACCT = #{revAcct}
+  		</if>
+  		<if test="linkMan != null">
+  			and LINK_MAN = #{linkMan}
+  		</if>
+  		<if test="linkPhone != null">
+  			and LINK_PHONE = #{linkPhone}
+  		</if>
+  		<if test="email != null">
+  			and EMAIL = #{email}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="bankCode != null">
+  			and BANK_CODE = #{bankCode}
+  		</if>
+  		<if test="bankArea != null">
+  			and BANK_AREA = #{bankArea}
+  		</if>
+  		<if test="subCode != null">
+  			and SUB_CODE = #{subCode}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TMcmSubacctinfo">
+	 INSERT INTO T_MCM_SUBACCTINFO
+	   (ACCT_ID,MCT_ID,MCT_CODE,REVACCT_NAME,REVACCT_BANK,REV_ACCT,LINK_MAN,LINK_PHONE,EMAIL,MOD_DATE,MOD_STAFF,STAT,MEMO,BANK_CODE,BANK_AREA,SUB_CODE)
+     VALUES (
+	    #{acctId,jdbcType=DECIMAL},
+	    #{mctId,jdbcType=DECIMAL},
+	    #{mctCode,jdbcType=VARCHAR},
+	    #{revacctName,jdbcType=VARCHAR},
+	    #{revacctBank,jdbcType=VARCHAR},
+	    #{revAcct,jdbcType=VARCHAR},
+	    #{linkMan,jdbcType=VARCHAR},
+	    #{linkPhone,jdbcType=VARCHAR},
+	    #{email,jdbcType=VARCHAR},
+	    #{modDate,jdbcType=TIMESTAMP},
+	    #{modStaff,jdbcType=VARCHAR},
+	    #{stat,jdbcType=CHAR},
+	    #{memo,jdbcType=VARCHAR},
+	    #{bankCode,jdbcType=VARCHAR},
+	    #{bankArea,jdbcType=VARCHAR},
+	    #{subCode,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TMcmSubacctinfo">
+	UPDATE T_MCM_SUBACCTINFO SET
+	  	<if test="acctId != null">
+	  		 ACCT_ID = #{acctId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="mctId != null">
+	  		, MCT_ID = #{mctId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="mctCode != null">
+	  		, MCT_CODE = #{mctCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="revacctName != null">
+	  		, REVACCT_NAME = #{revacctName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="revacctBank != null">
+	  		, REVACCT_BANK = #{revacctBank,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="revAcct != null">
+	  		, REV_ACCT = #{revAcct,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="linkMan != null">
+	  		, LINK_MAN = #{linkMan,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="linkPhone != null">
+	  		, LINK_PHONE = #{linkPhone,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="email != null">
+	  		, EMAIL = #{email,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="modDate != null">
+	  		, MOD_DATE = #{modDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="modStaff != null">
+	  		, MOD_STAFF = #{modStaff,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stat != null">
+	  		, STAT = #{stat,jdbcType=CHAR}
+	  	</if>
+	  	<if test="memo != null">
+	  		, MEMO = #{memo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="bankCode != null">
+	  		, BANK_CODE = #{bankCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="bankArea != null">
+	  		, BANK_AREA = #{bankArea,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="subCode != null">
+	  		, SUB_CODE = #{subCode,jdbcType=VARCHAR}
+	  	</if>
+		WHERE ACCT_ID = #{acctId, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

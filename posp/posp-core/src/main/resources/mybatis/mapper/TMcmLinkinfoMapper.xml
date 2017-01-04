@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TMcmLinkinfoDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TMcmLinkinfo" >
+	    <result column="LINK_ID" property="linkId" jdbcType="DECIMAL" />
+	    <result column="MCT_CODE" property="mctCode" jdbcType="VARCHAR" />
+	    <result column="LINK_TYPE" property="linkType" jdbcType="VARCHAR" />
+	    <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+	    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+	    <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+	    <result column="DISTRICT" property="district" jdbcType="VARCHAR" />
+	    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+	    <result column="LINK_MAN" property="linkMan" jdbcType="VARCHAR" />
+	    <result column="LINK_POST" property="linkPost" jdbcType="VARCHAR" />
+	    <result column="MOB_NBR" property="mobNbr" jdbcType="VARCHAR" />
+	    <result column="TEL_NBR" property="telNbr" jdbcType="VARCHAR" />
+	    <result column="PHS_NBR" property="phsNbr" jdbcType="VARCHAR" />
+	    <result column="QQ" property="qq" jdbcType="VARCHAR" />
+	    <result column="MSN" property="msn" jdbcType="VARCHAR" />
+	    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+	    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+	    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="TIMESTAMP" />
+	    <result column="MOD_STAFF" property="modStaff" jdbcType="VARCHAR" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+	    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	LINK_ID,MCT_CODE,LINK_TYPE,AREA_CODE,PROVINCE,CITY_NAME,DISTRICT,DEPARTMENT,LINK_MAN,LINK_POST,MOB_NBR,TEL_NBR,PHS_NBR,QQ,MSN,EMAIL,ADDRESS,ZIP_CODE,MOD_DATE,MOD_STAFF,STAT,MEMO
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_MCM_LINKINFO where LINK_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TMcmLinkinfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_LINKINFO
+  		where 1=1 
+  		
+  		<if test="linkId != null">
+  			and LINK_ID = #{linkId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="linkType != null">
+  			and LINK_TYPE = #{linkType}
+  		</if>
+  		<if test="areaCode != null">
+  			and AREA_CODE = #{areaCode}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="cityName != null">
+  			and CITY_NAME = #{cityName}
+  		</if>
+  		<if test="district != null">
+  			and DISTRICT = #{district}
+  		</if>
+  		<if test="department != null">
+  			and DEPARTMENT = #{department}
+  		</if>
+  		<if test="linkMan != null">
+  			and LINK_MAN = #{linkMan}
+  		</if>
+  		<if test="linkPost != null">
+  			and LINK_POST = #{linkPost}
+  		</if>
+  		<if test="mobNbr != null">
+  			and MOB_NBR = #{mobNbr}
+  		</if>
+  		<if test="telNbr != null">
+  			and TEL_NBR = #{telNbr}
+  		</if>
+  		<if test="phsNbr != null">
+  			and PHS_NBR = #{phsNbr}
+  		</if>
+  		<if test="qq != null">
+  			and QQ = #{qq}
+  		</if>
+  		<if test="msn != null">
+  			and MSN = #{msn}
+  		</if>
+  		<if test="email != null">
+  			and EMAIL = #{email}
+  		</if>
+  		<if test="address != null">
+  			and ADDRESS = #{address}
+  		</if>
+  		<if test="zipCode != null">
+  			and ZIP_CODE = #{zipCode}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TMcmLinkinfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_LINKINFO
+  		where 1=1 
+  		<if test="linkId != null">
+  			and LINK_ID = #{linkId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="linkType != null">
+  			and LINK_TYPE = #{linkType}
+  		</if>
+  		<if test="areaCode != null">
+  			and AREA_CODE = #{areaCode}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="cityName != null">
+  			and CITY_NAME = #{cityName}
+  		</if>
+  		<if test="district != null">
+  			and DISTRICT = #{district}
+  		</if>
+  		<if test="department != null">
+  			and DEPARTMENT = #{department}
+  		</if>
+  		<if test="linkMan != null">
+  			and LINK_MAN = #{linkMan}
+  		</if>
+  		<if test="linkPost != null">
+  			and LINK_POST = #{linkPost}
+  		</if>
+  		<if test="mobNbr != null">
+  			and MOB_NBR = #{mobNbr}
+  		</if>
+  		<if test="telNbr != null">
+  			and TEL_NBR = #{telNbr}
+  		</if>
+  		<if test="phsNbr != null">
+  			and PHS_NBR = #{phsNbr}
+  		</if>
+  		<if test="qq != null">
+  			and QQ = #{qq}
+  		</if>
+  		<if test="msn != null">
+  			and MSN = #{msn}
+  		</if>
+  		<if test="email != null">
+  			and EMAIL = #{email}
+  		</if>
+  		<if test="address != null">
+  			and ADDRESS = #{address}
+  		</if>
+  		<if test="zipCode != null">
+  			and ZIP_CODE = #{zipCode}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TMcmLinkinfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_LINKINFO
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TMcmLinkinfo" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_MCM_LINKINFO
+  		where 1=1 
+  		<if test="linkId != null">
+  			and LINK_ID = #{linkId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="linkType != null">
+  			and LINK_TYPE = #{linkType}
+  		</if>
+  		<if test="areaCode != null">
+  			and AREA_CODE = #{areaCode}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="cityName != null">
+  			and CITY_NAME = #{cityName}
+  		</if>
+  		<if test="district != null">
+  			and DISTRICT = #{district}
+  		</if>
+  		<if test="department != null">
+  			and DEPARTMENT = #{department}
+  		</if>
+  		<if test="linkMan != null">
+  			and LINK_MAN = #{linkMan}
+  		</if>
+  		<if test="linkPost != null">
+  			and LINK_POST = #{linkPost}
+  		</if>
+  		<if test="mobNbr != null">
+  			and MOB_NBR = #{mobNbr}
+  		</if>
+  		<if test="telNbr != null">
+  			and TEL_NBR = #{telNbr}
+  		</if>
+  		<if test="phsNbr != null">
+  			and PHS_NBR = #{phsNbr}
+  		</if>
+  		<if test="qq != null">
+  			and QQ = #{qq}
+  		</if>
+  		<if test="msn != null">
+  			and MSN = #{msn}
+  		</if>
+  		<if test="email != null">
+  			and EMAIL = #{email}
+  		</if>
+  		<if test="address != null">
+  			and ADDRESS = #{address}
+  		</if>
+  		<if test="zipCode != null">
+  			and ZIP_CODE = #{zipCode}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TMcmLinkinfo">
+	 INSERT INTO T_MCM_LINKINFO
+	   (LINK_ID,MCT_CODE,LINK_TYPE,AREA_CODE,PROVINCE,CITY_NAME,DISTRICT,DEPARTMENT,LINK_MAN,LINK_POST,MOB_NBR,TEL_NBR,PHS_NBR,QQ,MSN,EMAIL,ADDRESS,ZIP_CODE,MOD_DATE,MOD_STAFF,STAT,MEMO)
+     VALUES (
+	    #{linkId,jdbcType=DECIMAL},
+	    #{mctCode,jdbcType=VARCHAR},
+	    #{linkType,jdbcType=VARCHAR},
+	    #{areaCode,jdbcType=VARCHAR},
+	    #{province,jdbcType=VARCHAR},
+	    #{cityName,jdbcType=VARCHAR},
+	    #{district,jdbcType=VARCHAR},
+	    #{department,jdbcType=VARCHAR},
+	    #{linkMan,jdbcType=VARCHAR},
+	    #{linkPost,jdbcType=VARCHAR},
+	    #{mobNbr,jdbcType=VARCHAR},
+	    #{telNbr,jdbcType=VARCHAR},
+	    #{phsNbr,jdbcType=VARCHAR},
+	    #{qq,jdbcType=VARCHAR},
+	    #{msn,jdbcType=VARCHAR},
+	    #{email,jdbcType=VARCHAR},
+	    #{address,jdbcType=VARCHAR},
+	    #{zipCode,jdbcType=VARCHAR},
+	    #{modDate,jdbcType=TIMESTAMP},
+	    #{modStaff,jdbcType=VARCHAR},
+	    #{stat,jdbcType=CHAR},
+	    #{memo,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TMcmLinkinfo">
+	UPDATE T_MCM_LINKINFO SET
+	  	<if test="linkId != null">
+	  		 LINK_ID = #{linkId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="mctCode != null">
+	  		, MCT_CODE = #{mctCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="linkType != null">
+	  		, LINK_TYPE = #{linkType,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="areaCode != null">
+	  		, AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="province != null">
+	  		, PROVINCE = #{province,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="cityName != null">
+	  		, CITY_NAME = #{cityName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="district != null">
+	  		, DISTRICT = #{district,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="department != null">
+	  		, DEPARTMENT = #{department,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="linkMan != null">
+	  		, LINK_MAN = #{linkMan,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="linkPost != null">
+	  		, LINK_POST = #{linkPost,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="mobNbr != null">
+	  		, MOB_NBR = #{mobNbr,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="telNbr != null">
+	  		, TEL_NBR = #{telNbr,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="phsNbr != null">
+	  		, PHS_NBR = #{phsNbr,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="qq != null">
+	  		, QQ = #{qq,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="msn != null">
+	  		, MSN = #{msn,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="email != null">
+	  		, EMAIL = #{email,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="address != null">
+	  		, ADDRESS = #{address,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="zipCode != null">
+	  		, ZIP_CODE = #{zipCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="modDate != null">
+	  		, MOD_DATE = #{modDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="modStaff != null">
+	  		, MOD_STAFF = #{modStaff,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stat != null">
+	  		, STAT = #{stat,jdbcType=CHAR}
+	  	</if>
+	  	<if test="memo != null">
+	  		, MEMO = #{memo,jdbcType=VARCHAR}
+	  	</if>
+		WHERE LINK_ID = #{linkId, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

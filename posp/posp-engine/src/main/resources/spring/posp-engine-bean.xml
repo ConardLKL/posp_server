@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+        
+    <context:component-scan base-package="cn.com.bestpay.posp" />
+
+	<bean id="sfipJdbcDataSource"  
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"  
+		destroy-method="close">  
+		<property name="dataSourceName" value="SfipJdbcDataSource"/>
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>  
+		<property name="jdbcUrl" value="${sfipManager.managers.sfipJdbcDataSource.jdbcUrl}"/>  
+		<property name="user" value="${sfipManager.managers.sfipJdbcDataSource.user}"/>  
+		<property name="password" value="${sfipManager.managers.sfipJdbcDataSource.password}"/>  
+		<property name="minPoolSize" value="1"/>  
+		<property name="maxPoolSize" value="6"/>  
+		<property name="initialPoolSize" value="1"/>  
+		<property name="maxIdleTime" value="900"/>  
+		<property name="acquireIncrement" value="1"/>  
+		<property name="maxStatements" value="0"/>  
+		<property name="idleConnectionTestPeriod" value="600"/>  
+		<property name="acquireRetryAttempts" value="2"/>  
+		<property name="acquireRetryDelay" value="500"/>
+		<property name="testConnectionOnCheckout" value="false"/>
+		<property name="breakAfterAcquireFailure" value="false"/>
+		<property name="checkoutTimeout" value="30000"/> 
+		<property name="preferredTestQuery" value="select sysdate from dual"/>
+	</bean>  
+
+	<bean id="dBMapping"
+		class="com.tisson.sfip.module.util.DBMapping"
+		scope="singleton">
+		<property name="dataSource" ref="sfipJdbcDataSource" />
+	</bean>
+
+	<bean id="loadFlow"
+		class="cn.com.bestpay.posp.engine.conf.LoadPospFlow"
+		scope="singleton">
+		<property name="dbOpt" ref="dBMapping" />
+	</bean>
+</beans>

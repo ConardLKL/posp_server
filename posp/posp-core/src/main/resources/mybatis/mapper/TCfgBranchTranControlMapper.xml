@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TCfgBranchTranControlDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TCfgBranchTranControl" >
+	    <result column="TRAN_CODE" property="tranCode" jdbcType="VARCHAR" />
+	    <result column="BRANCH_NO" property="branchNo" jdbcType="VARCHAR" />
+	    <result column="CHANNEL_NO" property="channelNo" jdbcType="CHAR" />
+	    <result column="OPEN_FLAG" property="openFlag" jdbcType="CHAR" />
+	    <result column="OPER_ID" property="operId" jdbcType="VARCHAR" />
+	    <result column="OPER_DATE" property="operDate" jdbcType="CHAR" />
+	    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	TRAN_CODE,BRANCH_NO,CHANNEL_NO,OPEN_FLAG,OPER_ID,OPER_DATE,REMARK
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_CFG_BRANCH_TRAN_CONTROL where TRAN_CODE = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TCfgBranchTranControl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_BRANCH_TRAN_CONTROL
+  		where 1=1 
+  		
+  		<if test="tranCode != null">
+  			and TRAN_CODE = #{tranCode}
+  		</if>
+  		<if test="branchNo != null">
+  			and BRANCH_NO = #{branchNo}
+  		</if>
+  		<if test="channelNo != null">
+  			and CHANNEL_NO = #{channelNo}
+  		</if>
+  		<if test="openFlag != null">
+  			and OPEN_FLAG = #{openFlag}
+  		</if>
+  		<if test="operId != null">
+  			and OPER_ID = #{operId}
+  		</if>
+  		<if test="operDate != null">
+  			and OPER_DATE = #{operDate}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TCfgBranchTranControl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_BRANCH_TRAN_CONTROL
+  		where 1=1 
+  		<if test="tranCode != null">
+  			and TRAN_CODE = #{tranCode}
+  		</if>
+  		<if test="branchNo != null">
+  			and BRANCH_NO = #{branchNo}
+  		</if>
+  		<if test="channelNo != null">
+  			and CHANNEL_NO = #{channelNo}
+  		</if>
+  		<if test="openFlag != null">
+  			and OPEN_FLAG = #{openFlag}
+  		</if>
+  		<if test="operId != null">
+  			and OPER_ID = #{operId}
+  		</if>
+  		<if test="operDate != null">
+  			and OPER_DATE = #{operDate}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TCfgBranchTranControl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_BRANCH_TRAN_CONTROL
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TCfgBranchTranControl" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_CFG_BRANCH_TRAN_CONTROL
+  		where 1=1 
+  		<if test="tranCode != null">
+  			and TRAN_CODE = #{tranCode}
+  		</if>
+  		<if test="branchNo != null">
+  			and BRANCH_NO = #{branchNo}
+  		</if>
+  		<if test="channelNo != null">
+  			and CHANNEL_NO = #{channelNo}
+  		</if>
+  		<if test="openFlag != null">
+  			and OPEN_FLAG = #{openFlag}
+  		</if>
+  		<if test="operId != null">
+  			and OPER_ID = #{operId}
+  		</if>
+  		<if test="operDate != null">
+  			and OPER_DATE = #{operDate}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TCfgBranchTranControl">
+	 INSERT INTO T_CFG_BRANCH_TRAN_CONTROL
+	   (TRAN_CODE,BRANCH_NO,CHANNEL_NO,OPEN_FLAG,OPER_ID,OPER_DATE,REMARK)
+     VALUES (
+	    #{tranCode,jdbcType=VARCHAR},
+	    #{branchNo,jdbcType=VARCHAR},
+	    #{channelNo,jdbcType=CHAR},
+	    #{openFlag,jdbcType=CHAR},
+	    #{operId,jdbcType=VARCHAR},
+	    #{operDate,jdbcType=CHAR},
+	    #{remark,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TCfgBranchTranControl">
+	UPDATE T_CFG_BRANCH_TRAN_CONTROL SET
+	  	<if test="tranCode != null">
+	  		 TRAN_CODE = #{tranCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="branchNo != null">
+	  		, BRANCH_NO = #{branchNo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="channelNo != null">
+	  		, CHANNEL_NO = #{channelNo,jdbcType=CHAR}
+	  	</if>
+	  	<if test="openFlag != null">
+	  		, OPEN_FLAG = #{openFlag,jdbcType=CHAR}
+	  	</if>
+	  	<if test="operId != null">
+	  		, OPER_ID = #{operId,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="operDate != null">
+	  		, OPER_DATE = #{operDate,jdbcType=CHAR}
+	  	</if>
+	  	<if test="remark != null">
+	  		, REMARK = #{remark,jdbcType=VARCHAR}
+	  	</if>
+		WHERE TRAN_CODE = #{tranCode, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

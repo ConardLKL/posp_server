@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TCfgCardBlackControlDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TCfgCardBlackControl" >
+	    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+	    <result column="BLACK_FLAG" property="blackFlag" jdbcType="CHAR" />
+	    <result column="OPER_DATE" property="operDate" jdbcType="VARCHAR" />
+	    <result column="OPER_ID" property="operId" jdbcType="VARCHAR" />
+	    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+	    <result column="UPDATE_ID" property="updateId" jdbcType="VARCHAR" />
+	    <result column="UPDATE_DATE" property="updateDate" jdbcType="VARCHAR" />
+	    <result column="STATE" property="state" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	CARD_NO,BLACK_FLAG,OPER_DATE,OPER_ID,REMARK,UPDATE_ID,UPDATE_DATE,STATE
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_CFG_CARD_BLACK_CONTROL where CARD_NO = #{cardNo}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TCfgCardBlackControl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_CARD_BLACK_CONTROL
+  		where 1=1 
+  		
+  		<if test="cardNo != null">
+  			and CARD_NO = #{cardNo}
+  		</if>
+  		<if test="blackFlag != null">
+  			and BLACK_FLAG = #{blackFlag}
+  		</if>
+  		<if test="operDate != null">
+  			and OPER_DATE = #{operDate}
+  		</if>
+  		<if test="operId != null">
+  			and OPER_ID = #{operId}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  		<if test="updateId != null">
+  			and UPDATE_ID = #{updateId}
+  		</if>
+  		<if test="updateDate != null">
+  			and UPDATE_DATE = #{updateDate}
+  		</if>
+  		<if test="state != null">
+  			and STATE = #{state}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TCfgCardBlackControl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_CARD_BLACK_CONTROL
+  		where 1=1 
+  		<if test="cardNo != null">
+  			and CARD_NO = #{cardNo}
+  		</if>
+  		<if test="blackFlag != null">
+  			and BLACK_FLAG = #{blackFlag}
+  		</if>
+  		<if test="operDate != null">
+  			and OPER_DATE = #{operDate}
+  		</if>
+  		<if test="operId != null">
+  			and OPER_ID = #{operId}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  		<if test="updateId != null">
+  			and UPDATE_ID = #{updateId}
+  		</if>
+  		<if test="updateDate != null">
+  			and UPDATE_DATE = #{updateDate}
+  		</if>
+  		<if test="state != null">
+  			and STATE = #{state}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TCfgCardBlackControl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_CARD_BLACK_CONTROL
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TCfgCardBlackControl" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_CFG_CARD_BLACK_CONTROL
+  		where 1=1 
+  		<if test="cardNo != null">
+  			and CARD_NO = #{cardNo}
+  		</if>
+  		<if test="blackFlag != null">
+  			and BLACK_FLAG = #{blackFlag}
+  		</if>
+  		<if test="operDate != null">
+  			and OPER_DATE = #{operDate}
+  		</if>
+  		<if test="operId != null">
+  			and OPER_ID = #{operId}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  		<if test="updateId != null">
+  			and UPDATE_ID = #{updateId}
+  		</if>
+  		<if test="updateDate != null">
+  			and UPDATE_DATE = #{updateDate}
+  		</if>
+  		<if test="state != null">
+  			and STATE = #{state}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TCfgCardBlackControl">
+	 INSERT INTO T_CFG_CARD_BLACK_CONTROL
+	   (CARD_NO,BLACK_FLAG,OPER_DATE,OPER_ID,REMARK,UPDATE_ID,UPDATE_DATE,STATE)
+     VALUES (
+	    #{cardNo,jdbcType=VARCHAR},
+	    #{blackFlag,jdbcType=CHAR},
+	    #{operDate,jdbcType=VARCHAR},
+	    #{operId,jdbcType=VARCHAR},
+	    #{remark,jdbcType=VARCHAR},
+	    #{updateId,jdbcType=VARCHAR},
+	    #{updateDate,jdbcType=VARCHAR},
+	    #{state,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TCfgCardBlackControl">
+	UPDATE T_CFG_CARD_BLACK_CONTROL SET
+	  	<if test="cardNo != null">
+	  		 CARD_NO = #{cardNo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="blackFlag != null">
+	  		, BLACK_FLAG = #{blackFlag,jdbcType=CHAR}
+	  	</if>
+	  	<if test="operDate != null">
+	  		, OPER_DATE = #{operDate,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="operId != null">
+	  		, OPER_ID = #{operId,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="remark != null">
+	  		, REMARK = #{remark,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="updateId != null">
+	  		, UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="updateDate != null">
+	  		, UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="state != null">
+	  		, STATE = #{state,jdbcType=VARCHAR}
+	  	</if>
+		WHERE CARD_NO = #{cardNo, jdbcType=VARCHAR}
+  </update>
+
+</mapper>

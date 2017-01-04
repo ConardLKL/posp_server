@@ -1,0 +1,10 @@
+refresh.ip=${refresh_ip}
+
+union.ip=${union_ip}
+union.port=${union_port}
+union.id=${union_id}
+union.timeOut=${union_timeOut}
+union.conn=${union_conn}
+
+aes.key=${aes_key}
+aes.iv=${aes_iv}

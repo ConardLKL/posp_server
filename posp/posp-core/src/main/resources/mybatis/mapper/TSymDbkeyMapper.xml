@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TSymDbkeyDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TSymDbkey" >
+	    <result column="KEY_ID" property="keyId" jdbcType="VARCHAR" />
+	    <result column="DB_ENCRYPT" property="dbEncrypt" jdbcType="VARCHAR" />
+	    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	KEY_ID,DB_ENCRYPT,CREATE_DATE
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYM_DBKEY where KEY_ID = #{id}
+  </select>
+  <select id="findByKeyId" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYM_DBKEY where KEY_ID = #{id}
+  </select>
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TSymDbkey" resultMap="BaseResultMap">
+  </select>
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TSymDbkey" resultMap="BaseResultMap">
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TSymDbkey" resultMap="BaseResultMap">
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TSymDbkey" resultType="java.lang.Integer">
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TSymDbkey">
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TSymDbkey">
+  </update>
+
+</mapper>

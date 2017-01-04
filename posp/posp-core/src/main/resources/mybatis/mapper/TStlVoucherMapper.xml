@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TStlVoucherDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TStlVoucher" >
+	    <result column="VOUCHER_ID" property="voucherId" jdbcType="DECIMAL" />
+	    <result column="SLOGAN" property="slogan" jdbcType="VARCHAR" />
+	    <result column="SCALE" property="scale" jdbcType="VARCHAR" />
+	    <result column="MCT_CODE" property="mctCode" jdbcType="VARCHAR" />
+	    <result column="POS_CODE" property="posCode" jdbcType="VARCHAR" />
+	    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+	    <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+	    <result column="DISTRICT" property="district" jdbcType="VARCHAR" />
+	    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="TIMESTAMP" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+	    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	VOUCHER_ID,SLOGAN,SCALE,MCT_CODE,POS_CODE,PROVINCE,CITY_NAME,DISTRICT,CREATE_DATE,MOD_DATE,STAT,MEMO
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_STL_VOUCHER where VOUCHER_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TStlVoucher" resultType="com.bestpay.posp.system.entity.TStlVoucher">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_STL_VOUCHER
+  		where 1=1 
+  		
+  		<if test="voucherId != null">
+  			and VOUCHER_ID = #{voucherId}
+  		</if>
+  		<if test="slogan != null">
+  			and SLOGAN = #{slogan}
+  		</if>
+  		<if test="scale != null">
+  			and SCALE = #{scale}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="cityName != null">
+  			and CITY_NAME = #{cityName}
+  		</if>
+  		<if test="district != null">
+  			and DISTRICT = #{district}
+  		</if>
+  		<if test="createDate != null">
+  			and CREATE_DATE = #{createDate}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TStlVoucher" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_STL_VOUCHER
+  		where 1=1 
+  		<if test="voucherId != null">
+  			and VOUCHER_ID = #{voucherId}
+  		</if>
+  		<if test="slogan != null">
+  			and SLOGAN = #{slogan}
+  		</if>
+  		<if test="scale != null">
+  			and SCALE = #{scale}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="cityName != null">
+  			and CITY_NAME = #{cityName}
+  		</if>
+  		<if test="district != null">
+  			and DISTRICT = #{district}
+  		</if>
+  		<if test="createDate != null">
+  			and CREATE_DATE = #{createDate}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TStlVoucher" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_STL_VOUCHER
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TStlVoucher" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_STL_VOUCHER
+  		where 1=1 
+  		<if test="voucherId != null">
+  			and VOUCHER_ID = #{voucherId}
+  		</if>
+  		<if test="slogan != null">
+  			and SLOGAN = #{slogan}
+  		</if>
+  		<if test="scale != null">
+  			and SCALE = #{scale}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="cityName != null">
+  			and CITY_NAME = #{cityName}
+  		</if>
+  		<if test="district != null">
+  			and DISTRICT = #{district}
+  		</if>
+  		<if test="createDate != null">
+  			and CREATE_DATE = #{createDate}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TStlVoucher">
+	 INSERT INTO T_STL_VOUCHER
+	   (VOUCHER_ID,SLOGAN,SCALE,MCT_CODE,POS_CODE,PROVINCE,CITY_NAME,DISTRICT,CREATE_DATE,MOD_DATE,STAT,MEMO)
+     VALUES (
+	    #{voucherId,jdbcType=DECIMAL},
+	    #{slogan,jdbcType=VARCHAR},
+	    #{scale,jdbcType=VARCHAR},
+	    #{mctCode,jdbcType=VARCHAR},
+	    #{posCode,jdbcType=VARCHAR},
+	    #{province,jdbcType=VARCHAR},
+	    #{cityName,jdbcType=VARCHAR},
+	    #{district,jdbcType=VARCHAR},
+	    #{createDate,jdbcType=TIMESTAMP},
+	    #{modDate,jdbcType=TIMESTAMP},
+	    #{stat,jdbcType=CHAR},
+	    #{memo,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TStlVoucher">
+	UPDATE T_STL_VOUCHER SET
+	  	VOUCHER_ID = #{voucherId,jdbcType=DECIMAL},
+	  	SLOGAN = #{slogan,jdbcType=VARCHAR},
+	  	SCALE = #{scale,jdbcType=VARCHAR},
+	  	MCT_CODE = #{mctCode,jdbcType=VARCHAR},
+	  	POS_CODE = #{posCode,jdbcType=VARCHAR},
+	  	PROVINCE = #{province,jdbcType=VARCHAR},
+	  	CITY_NAME = #{cityName,jdbcType=VARCHAR},
+	  	DISTRICT = #{district,jdbcType=VARCHAR},
+	  	CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+	  	MOD_DATE = #{modDate,jdbcType=TIMESTAMP},
+	  	STAT = #{stat,jdbcType=CHAR},
+	  	MEMO = #{memo,jdbcType=VARCHAR}
+		WHERE VOUCHER_ID = #{voucherId, jdbcType=DECIMAL}
+  </update>
+  <!-- 增加新的接口请在下方编写  -->
+   <!-- 查询pos终端优先级最大的签购单 -->
+   <select id="findVoucherByPoJo" parameterType="com.bestpay.posp.system.entity.TStlVoucher" resultType="com.bestpay.posp.system.entity.TStlVoucher">
+	SELECT 
+	     <include refid="Base_Column_List"/>
+			 FROM (SELECT V.* FROM T_MCM_POSINFO P, T_STL_VOUCHER V
+			 WHERE 1=1
+			   AND (
+			     (P.POS_CODE = #{posCode} AND P.MCT_CODE = #{mctCode} AND V.POS_CODE = P.POS_CODE AND V.MCT_CODE = P.MCT_CODE AND V.DISTRICT = P.DISTRICT AND V.CITY_NAME = P.CITY_NAME AND V.PROVINCE = P.PROVINCE)
+			     OR (P.POS_CODE = #{posCode} AND P.MCT_CODE = #{mctCode} AND V.MCT_CODE = P.MCT_CODE AND V.PROVINCE = P.PROVINCE AND V.CITY_NAME = P.CITY_NAME AND V.DISTRICT = P.DISTRICT)
+			     OR (P.POS_CODE = #{posCode} AND P.MCT_CODE = #{mctCode} AND V.DISTRICT = P.DISTRICT AND V.CITY_NAME = P.CITY_NAME AND V.PROVINCE = P.PROVINCE)
+			     OR (P.POS_CODE = #{posCode} AND P.MCT_CODE = #{mctCode} AND V.CITY_NAME = P.CITY_NAME AND V.PROVINCE = P.PROVINCE)
+			     OR (P.POS_CODE = #{posCode} AND P.MCT_CODE = #{mctCode} AND V.PROVINCE = P.PROVINCE)
+			   ) AND V.STAT='S0A' ORDER BY V.SCALE DESC) N WHERE ROWNUM=1
+   </select>
+   <!-- 查询pos终端优先级最大的签购单 -->
+   <select id="findVoucherByParam" parameterType="java.lang.String" resultType="com.bestpay.posp.system.entity.TStlVoucher">
+	SELECT 
+	     <include refid="Base_Column_List"/>
+			 FROM (SELECT V.* FROM T_MCM_POSINFO P, T_STL_VOUCHER V
+			 WHERE 1=1
+			   AND (
+			     (P.POS_CODE = ${posCode} AND P.MCT_CODE = ${mctCode} AND V.POS_CODE = P.POS_CODE AND V.MCT_CODE = P.MCT_CODE AND V.DISTRICT = P.DISTRICT AND V.CITY_NAME = P.CITY_NAME AND V.PROVINCE = P.PROVINCE)
+			     OR (P.POS_CODE = ${posCode} AND P.MCT_CODE = ${mctCode} AND V.MCT_CODE = P.MCT_CODE AND V.PROVINCE = P.PROVINCE AND V.CITY_NAME = P.CITY_NAME AND V.DISTRICT = P.DISTRICT)
+			     OR (P.POS_CODE = ${posCode} AND P.MCT_CODE = ${mctCode} AND V.DISTRICT = P.DISTRICT AND V.CITY_NAME = P.CITY_NAME AND V.PROVINCE = P.PROVINCE)
+			     OR (P.POS_CODE = ${posCode} AND P.MCT_CODE = ${mctCode} AND V.CITY_NAME = P.CITY_NAME AND V.PROVINCE = P.PROVINCE)
+			     OR (P.POS_CODE = ${posCode} AND P.MCT_CODE = ${mctCode} AND V.PROVINCE = P.PROVINCE)
+			   ) AND V.STAT='S0A' ORDER BY V.SCALE DESC) N WHERE ROWNUM=1
+   </select>
+</mapper>

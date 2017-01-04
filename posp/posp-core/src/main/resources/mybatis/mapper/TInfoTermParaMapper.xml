@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TInfoTermParaDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TInfoTermPara" >
+	    <result column="PARA_ID" property="paraId" jdbcType="VARCHAR" />
+	    <result column="AID" property="aid" jdbcType="CHAR" />
+	    <result column="APP_SELECT_ID" property="appSelectId" jdbcType="CHAR" />
+	    <result column="APP_VERSION" property="appVersion" jdbcType="VARCHAR" />
+	    <result column="TAC_DEFAULT" property="tacDefault" jdbcType="VARCHAR" />
+	    <result column="TAC_ONLINE" property="tacOnline" jdbcType="VARCHAR" />
+	    <result column="TAC_DENY" property="tacDeny" jdbcType="VARCHAR" />
+	    <result column="TERM_MIN_LIMIT" property="termMinLimit" jdbcType="VARCHAR" />
+	    <result column="BIAS_RAND_VALUE" property="biasRandValue" jdbcType="VARCHAR" />
+	    <result column="BIAS_RAND_MAX_TARGET_PER" property="biasRandMaxTargetPer" jdbcType="CHAR" />
+	    <result column="RANDOM_TARGET_PER" property="randomTargetPer" jdbcType="CHAR" />
+	    <result column="DEF_DDOL" property="defDdol" jdbcType="VARCHAR" />
+	    <result column="TERM_ONLINE_PIN_CAP" property="termOnlinePinCap" jdbcType="CHAR" />
+	    <result column="TERM_ECASH_LIMIT" property="termEcashLimit" jdbcType="VARCHAR" />
+	    <result column="CONTACTLESS_OFFLINE_LIMIT" property="contactlessOfflineLimit" jdbcType="VARCHAR" />
+	    <result column="CONTACTLESS_LIMIT" property="contactlessLimit" jdbcType="VARCHAR" />
+	    <result column="CVM_LIMIT" property="cvmLimit" jdbcType="VARCHAR" />
+	    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	PARA_ID,AID,APP_SELECT_ID,APP_VERSION,TAC_DEFAULT,TAC_ONLINE,TAC_DENY,TERM_MIN_LIMIT,BIAS_RAND_VALUE,BIAS_RAND_MAX_TARGET_PER,RANDOM_TARGET_PER,DEF_DDOL,TERM_ONLINE_PIN_CAP,TERM_ECASH_LIMIT,CONTACTLESS_OFFLINE_LIMIT,CONTACTLESS_LIMIT,CVM_LIMIT,UPDATE_TIME
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_INFO_TERM_PARA where PARA_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TInfoTermPara" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_TERM_PARA
+  		where 1=1 
+  		
+  		<if test="paraId != null">
+  			and PARA_ID = #{paraId}
+  		</if>
+  		<if test="aid != null">
+  			and AID = #{aid}
+  		</if>
+  		<if test="appSelectId != null">
+  			and APP_SELECT_ID = #{appSelectId}
+  		</if>
+  		<if test="appVersion != null">
+  			and APP_VERSION = #{appVersion}
+  		</if>
+  		<if test="tacDefault != null">
+  			and TAC_DEFAULT = #{tacDefault}
+  		</if>
+  		<if test="tacOnline != null">
+  			and TAC_ONLINE = #{tacOnline}
+  		</if>
+  		<if test="tacDeny != null">
+  			and TAC_DENY = #{tacDeny}
+  		</if>
+  		<if test="termMinLimit != null">
+  			and TERM_MIN_LIMIT = #{termMinLimit}
+  		</if>
+  		<if test="biasRandValue != null">
+  			and BIAS_RAND_VALUE = #{biasRandValue}
+  		</if>
+  		<if test="biasRandMaxTargetPer != null">
+  			and BIAS_RAND_MAX_TARGET_PER = #{biasRandMaxTargetPer}
+  		</if>
+  		<if test="randomTargetPer != null">
+  			and RANDOM_TARGET_PER = #{randomTargetPer}
+  		</if>
+  		<if test="defDdol != null">
+  			and DEF_DDOL = #{defDdol}
+  		</if>
+  		<if test="termOnlinePinCap != null">
+  			and TERM_ONLINE_PIN_CAP = #{termOnlinePinCap}
+  		</if>
+  		<if test="termEcashLimit != null">
+  			and TERM_ECASH_LIMIT = #{termEcashLimit}
+  		</if>
+  		<if test="contactlessOfflineLimit != null">
+  			and CONTACTLESS_OFFLINE_LIMIT = #{contactlessOfflineLimit}
+  		</if>
+  		<if test="contactlessLimit != null">
+  			and CONTACTLESS_LIMIT = #{contactlessLimit}
+  		</if>
+  		<if test="cvmLimit != null">
+  			and CVM_LIMIT = #{cvmLimit}
+  		</if>
+  		<if test="updateTime != null">
+  			and UPDATE_TIME = #{updateTime}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TInfoTermPara" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_TERM_PARA
+  		where 1=1 
+  		<if test="paraId != null">
+  			and PARA_ID = #{paraId}
+  		</if>
+  		<if test="aid != null">
+  			and AID = #{aid}
+  		</if>
+  		<if test="appSelectId != null">
+  			and APP_SELECT_ID = #{appSelectId}
+  		</if>
+  		<if test="appVersion != null">
+  			and APP_VERSION = #{appVersion}
+  		</if>
+  		<if test="tacDefault != null">
+  			and TAC_DEFAULT = #{tacDefault}
+  		</if>
+  		<if test="tacOnline != null">
+  			and TAC_ONLINE = #{tacOnline}
+  		</if>
+  		<if test="tacDeny != null">
+  			and TAC_DENY = #{tacDeny}
+  		</if>
+  		<if test="termMinLimit != null">
+  			and TERM_MIN_LIMIT = #{termMinLimit}
+  		</if>
+  		<if test="biasRandValue != null">
+  			and BIAS_RAND_VALUE = #{biasRandValue}
+  		</if>
+  		<if test="biasRandMaxTargetPer != null">
+  			and BIAS_RAND_MAX_TARGET_PER = #{biasRandMaxTargetPer}
+  		</if>
+  		<if test="randomTargetPer != null">
+  			and RANDOM_TARGET_PER = #{randomTargetPer}
+  		</if>
+  		<if test="defDdol != null">
+  			and DEF_DDOL = #{defDdol}
+  		</if>
+  		<if test="termOnlinePinCap != null">
+  			and TERM_ONLINE_PIN_CAP = #{termOnlinePinCap}
+  		</if>
+  		<if test="termEcashLimit != null">
+  			and TERM_ECASH_LIMIT = #{termEcashLimit}
+  		</if>
+  		<if test="contactlessOfflineLimit != null">
+  			and CONTACTLESS_OFFLINE_LIMIT = #{contactlessOfflineLimit}
+  		</if>
+  		<if test="contactlessLimit != null">
+  			and CONTACTLESS_LIMIT = #{contactlessLimit}
+  		</if>
+  		<if test="cvmLimit != null">
+  			and CVM_LIMIT = #{cvmLimit}
+  		</if>
+  		<if test="updateTime != null">
+  			and UPDATE_TIME = #{updateTime}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TInfoTermPara" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_TERM_PARA
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TInfoTermPara" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_INFO_TERM_PARA
+  		where 1=1 
+  		<if test="paraId != null">
+  			and PARA_ID = #{paraId}
+  		</if>
+  		<if test="aid != null">
+  			and AID = #{aid}
+  		</if>
+  		<if test="appSelectId != null">
+  			and APP_SELECT_ID = #{appSelectId}
+  		</if>
+  		<if test="appVersion != null">
+  			and APP_VERSION = #{appVersion}
+  		</if>
+  		<if test="tacDefault != null">
+  			and TAC_DEFAULT = #{tacDefault}
+  		</if>
+  		<if test="tacOnline != null">
+  			and TAC_ONLINE = #{tacOnline}
+  		</if>
+  		<if test="tacDeny != null">
+  			and TAC_DENY = #{tacDeny}
+  		</if>
+  		<if test="termMinLimit != null">
+  			and TERM_MIN_LIMIT = #{termMinLimit}
+  		</if>
+  		<if test="biasRandValue != null">
+  			and BIAS_RAND_VALUE = #{biasRandValue}
+  		</if>
+  		<if test="biasRandMaxTargetPer != null">
+  			and BIAS_RAND_MAX_TARGET_PER = #{biasRandMaxTargetPer}
+  		</if>
+  		<if test="randomTargetPer != null">
+  			and RANDOM_TARGET_PER = #{randomTargetPer}
+  		</if>
+  		<if test="defDdol != null">
+  			and DEF_DDOL = #{defDdol}
+  		</if>
+  		<if test="termOnlinePinCap != null">
+  			and TERM_ONLINE_PIN_CAP = #{termOnlinePinCap}
+  		</if>
+  		<if test="termEcashLimit != null">
+  			and TERM_ECASH_LIMIT = #{termEcashLimit}
+  		</if>
+  		<if test="contactlessOfflineLimit != null">
+  			and CONTACTLESS_OFFLINE_LIMIT = #{contactlessOfflineLimit}
+  		</if>
+  		<if test="contactlessLimit != null">
+  			and CONTACTLESS_LIMIT = #{contactlessLimit}
+  		</if>
+  		<if test="cvmLimit != null">
+  			and CVM_LIMIT = #{cvmLimit}
+  		</if>
+  		<if test="updateTime != null">
+  			and UPDATE_TIME = #{updateTime}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TInfoTermPara">
+	 INSERT INTO T_INFO_TERM_PARA
+	   (PARA_ID,AID,APP_SELECT_ID,APP_VERSION,TAC_DEFAULT,TAC_ONLINE,TAC_DENY,TERM_MIN_LIMIT,BIAS_RAND_VALUE,BIAS_RAND_MAX_TARGET_PER,RANDOM_TARGET_PER,DEF_DDOL,TERM_ONLINE_PIN_CAP,TERM_ECASH_LIMIT,CONTACTLESS_OFFLINE_LIMIT,CONTACTLESS_LIMIT,CVM_LIMIT,UPDATE_TIME)
+     VALUES (
+	    #{paraId,jdbcType=VARCHAR},
+	    #{aid,jdbcType=CHAR},
+	    #{appSelectId,jdbcType=CHAR},
+	    #{appVersion,jdbcType=VARCHAR},
+	    #{tacDefault,jdbcType=VARCHAR},
+	    #{tacOnline,jdbcType=VARCHAR},
+	    #{tacDeny,jdbcType=VARCHAR},
+	    #{termMinLimit,jdbcType=VARCHAR},
+	    #{biasRandValue,jdbcType=VARCHAR},
+	    #{biasRandMaxTargetPer,jdbcType=CHAR},
+	    #{randomTargetPer,jdbcType=CHAR},
+	    #{defDdol,jdbcType=VARCHAR},
+	    #{termOnlinePinCap,jdbcType=CHAR},
+	    #{termEcashLimit,jdbcType=VARCHAR},
+	    #{contactlessOfflineLimit,jdbcType=VARCHAR},
+	    #{contactlessLimit,jdbcType=VARCHAR},
+	    #{cvmLimit,jdbcType=VARCHAR},
+	    #{updateTime,jdbcType=TIMESTAMP}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TInfoTermPara">
+	UPDATE T_INFO_TERM_PARA SET
+	  	<if test="paraId != null">
+	  		 PARA_ID = #{paraId,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="aid != null">
+	  		, AID = #{aid,jdbcType=CHAR}
+	  	</if>
+	  	<if test="appSelectId != null">
+	  		, APP_SELECT_ID = #{appSelectId,jdbcType=CHAR}
+	  	</if>
+	  	<if test="appVersion != null">
+	  		, APP_VERSION = #{appVersion,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tacDefault != null">
+	  		, TAC_DEFAULT = #{tacDefault,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tacOnline != null">
+	  		, TAC_ONLINE = #{tacOnline,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tacDeny != null">
+	  		, TAC_DENY = #{tacDeny,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="termMinLimit != null">
+	  		, TERM_MIN_LIMIT = #{termMinLimit,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="biasRandValue != null">
+	  		, BIAS_RAND_VALUE = #{biasRandValue,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="biasRandMaxTargetPer != null">
+	  		, BIAS_RAND_MAX_TARGET_PER = #{biasRandMaxTargetPer,jdbcType=CHAR}
+	  	</if>
+	  	<if test="randomTargetPer != null">
+	  		, RANDOM_TARGET_PER = #{randomTargetPer,jdbcType=CHAR}
+	  	</if>
+	  	<if test="defDdol != null">
+	  		, DEF_DDOL = #{defDdol,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="termOnlinePinCap != null">
+	  		, TERM_ONLINE_PIN_CAP = #{termOnlinePinCap,jdbcType=CHAR}
+	  	</if>
+	  	<if test="termEcashLimit != null">
+	  		, TERM_ECASH_LIMIT = #{termEcashLimit,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="contactlessOfflineLimit != null">
+	  		, CONTACTLESS_OFFLINE_LIMIT = #{contactlessOfflineLimit,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="contactlessLimit != null">
+	  		, CONTACTLESS_LIMIT = #{contactlessLimit,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="cvmLimit != null">
+	  		, CVM_LIMIT = #{cvmLimit,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="updateTime != null">
+	  		, UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+	  	</if>
+		WHERE PARA_ID = #{paraId, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

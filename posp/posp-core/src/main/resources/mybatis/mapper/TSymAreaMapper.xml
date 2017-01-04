@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TSymAreaDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TSymArea" >
+	    <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+	    <result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+	    <result column="PARENT_AREA" property="parentArea" jdbcType="VARCHAR" />
+	    <result column="AREA_TYPE" property="areaType" jdbcType="VARCHAR" />
+	    <result column="AREA_DESC" property="areaDesc" jdbcType="VARCHAR" />
+	    <result column="ZIP" property="zip" jdbcType="VARCHAR" />
+	    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+	    <result column="MACRO_VALUE" property="macroValue" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	AREA_CODE,AREA_NAME,PARENT_AREA,AREA_TYPE,AREA_DESC,ZIP,TEL,STAT,MACRO_VALUE
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYM_AREA where AREA_CODE = #{id}
+  </select>
+  
+  <select id="findByAreaCode" parameterType="java.lang.String"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYM_AREA where AREA_CODE = #{areaCode}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TSymArea" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_SYM_AREA
+  		where 1=1 
+  		
+  		<if test="areaCode != null">
+  			and AREA_CODE = #{areaCode}
+  		</if>
+  		<if test="areaName != null">
+  			and AREA_NAME = #{areaName}
+  		</if>
+  		<if test="parentArea != null">
+  			and PARENT_AREA = #{parentArea}
+  		</if>
+  		<if test="areaType != null">
+  			and AREA_TYPE = #{areaType}
+  		</if>
+  		<if test="areaDesc != null">
+  			and AREA_DESC = #{areaDesc}
+  		</if>
+  		<if test="zip != null">
+  			and ZIP = #{zip}
+  		</if>
+  		<if test="tel != null">
+  			and TEL = #{tel}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="macroValue != null">
+  			and MACRO_VALUE = #{macroValue}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TSymArea" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_SYM_AREA
+  		where 1=1 
+  		<if test="areaCode != null">
+  			and AREA_CODE = #{areaCode}
+  		</if>
+  		<if test="areaName != null">
+  			and AREA_NAME = #{areaName}
+  		</if>
+  		<if test="parentArea != null">
+  			and PARENT_AREA = #{parentArea}
+  		</if>
+  		<if test="areaType != null">
+  			and AREA_TYPE = #{areaType}
+  		</if>
+  		<if test="areaDesc != null">
+  			and AREA_DESC = #{areaDesc}
+  		</if>
+  		<if test="zip != null">
+  			and ZIP = #{zip}
+  		</if>
+  		<if test="tel != null">
+  			and TEL = #{tel}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="macroValue != null">
+  			and MACRO_VALUE = #{macroValue}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TSymArea" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_SYM_AREA
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TSymArea" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_SYM_AREA
+  		where 1=1 
+  		<if test="areaCode != null">
+  			and AREA_CODE = #{areaCode}
+  		</if>
+  		<if test="areaName != null">
+  			and AREA_NAME = #{areaName}
+  		</if>
+  		<if test="parentArea != null">
+  			and PARENT_AREA = #{parentArea}
+  		</if>
+  		<if test="areaType != null">
+  			and AREA_TYPE = #{areaType}
+  		</if>
+  		<if test="areaDesc != null">
+  			and AREA_DESC = #{areaDesc}
+  		</if>
+  		<if test="zip != null">
+  			and ZIP = #{zip}
+  		</if>
+  		<if test="tel != null">
+  			and TEL = #{tel}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="macroValue != null">
+  			and MACRO_VALUE = #{macroValue}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TSymArea">
+	 INSERT INTO T_SYM_AREA
+	   (AREA_CODE,AREA_NAME,PARENT_AREA,AREA_TYPE,AREA_DESC,ZIP,TEL,STAT,MACRO_VALUE)
+     VALUES (
+	    #{areaCode,jdbcType=VARCHAR},
+	    #{areaName,jdbcType=VARCHAR},
+	    #{parentArea,jdbcType=VARCHAR},
+	    #{areaType,jdbcType=VARCHAR},
+	    #{areaDesc,jdbcType=VARCHAR},
+	    #{zip,jdbcType=VARCHAR},
+	    #{tel,jdbcType=VARCHAR},
+	    #{stat,jdbcType=CHAR},
+	    #{macroValue,jdbcType=DECIMAL}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TSymArea">
+	UPDATE T_SYM_AREA SET
+	  	<if test="areaCode != null">
+	  		 AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="areaName != null">
+	  		, AREA_NAME = #{areaName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="parentArea != null">
+	  		, PARENT_AREA = #{parentArea,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="areaType != null">
+	  		, AREA_TYPE = #{areaType,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="areaDesc != null">
+	  		, AREA_DESC = #{areaDesc,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="zip != null">
+	  		, ZIP = #{zip,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tel != null">
+	  		, TEL = #{tel,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stat != null">
+	  		, STAT = #{stat,jdbcType=CHAR}
+	  	</if>
+	  	<if test="macroValue != null">
+	  		, MACRO_VALUE = #{macroValue,jdbcType=DECIMAL}
+	  	</if>
+		WHERE AREA_CODE = #{areaCode, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

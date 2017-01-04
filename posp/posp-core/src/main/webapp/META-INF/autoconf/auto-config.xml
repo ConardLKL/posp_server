@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <!--<group name="logback">-->
+        <!--<property name="log.home" defaultValue="/u2/data/appLogs/posp-code"-->
+                  <!--description="日志存放目录"/>-->
+    <!--</group>-->
+    <!--<group name="logback">-->
+        <!--<property name="log.level" defaultValue="debug"-->
+                  <!--description="日志级别"/>-->
+    <!--</group>-->
+    <!--<group name="jdbc">-->
+        <!--<property name="jdbc.url" defaultValue="jdbc:oracle:thin:@172.26.3.11:1521:test"-->
+                  <!--description="数据库url"/>-->
+    <!--</group>-->
+    <!--<group name="logback">-->
+        <!--<property name="jdbc.username" defaultValue="newposp"-->
+                  <!--description="数据库帐号"/>-->
+    <!--</group>-->
+    <!--<group name="logback">-->
+        <!--<property name="log.password" defaultValue="NEWPOSP"-->
+                  <!--description="数据库密码"/>-->
+    <!--</group>-->
+    <script>
+        <generate template="posp-core-jdbc.properties.vm"
+                  destfile="WEB-INF/classes/properties/posp-core-jdbc.properties" charset="UTF-8">
+        </generate>
+    </script>
+    <script>
+        <generate template="logback.xml.vm"
+                  destfile="WEB-INF/classes/logback.xml" charset="UTF-8">
+        </generate>
+    </script>
+    <!--<script>-->
+        <!--<generate template="slf4j-posp-core.xml.vm"-->
+                  <!--destfile="WEB-INF/classes/slf4j-posp-core.xml" charset="UTF-8">-->
+        <!--</generate>-->
+    <!--</script>-->
+    <script>
+        <generate template="sys.properties.vm"
+                  destfile="WEB-INF/classes/sys.properties" charset="UTF-8">
+        </generate>
+    </script>
+    <script>
+        <generate template="dubbo-consumer.xml.vm"
+                  destfile="WEB-INF/classes/dubbo-consumer.xml" charset="UTF-8">
+        </generate>
+    </script>
+</config>

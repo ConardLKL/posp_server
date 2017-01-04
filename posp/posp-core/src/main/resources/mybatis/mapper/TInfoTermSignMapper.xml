@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TInfoTermSignDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TInfoTermSign" >
+	    <result column="TERM_CODE" property="termCode" jdbcType="CHAR" />
+	    <result column="MERCH_CODE" property="merchCode" jdbcType="VARCHAR" />
+	    <result column="TMK_TPK" property="tmkTpk" jdbcType="VARCHAR" />
+	    <result column="TMK_TDK" property="tmkTdk" jdbcType="VARCHAR" />
+	    <result column="TMK_TAK" property="tmkTak" jdbcType="VARCHAR" />
+	    <result column="BATCH_NO" property="batchNo" jdbcType="CHAR" />
+	    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="SIGN_STATE" property="signState" jdbcType="CHAR" />
+	    <result column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+	    <result column="CHANNEL_CODE" property="channelCode" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	TERM_CODE,MERCH_CODE,TMK_TPK,TMK_TDK,TMK_TAK,BATCH_NO,UPDATE_TIME,SIGN_STATE,SERIAL_NO,CHANNEL_CODE
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_INFO_TERM_SIGN 
+		where 1=1 
+  		
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TInfoTermSign" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_TERM_SIGN
+  		where 1=1 
+  		
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		<if test="tmkTpk != null">
+  			and TMK_TPK = #{tmkTpk}
+  		</if>
+  		<if test="tmkTdk != null">
+  			and TMK_TDK = #{tmkTdk}
+  		</if>
+  		<if test="tmkTak != null">
+  			and TMK_TAK = #{tmkTak}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="updateTime != null">
+  			and UPDATE_TIME = #{updateTime}
+  		</if>
+  		<if test="signState != null">
+  			and SIGN_STATE = #{signState}
+  		</if>
+  		<if test="serialNo != null">
+  			and SERIAL_NO = #{serialNo}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TInfoTermSign" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_TERM_SIGN
+  		where 1=1 
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		<if test="tmkTpk != null">
+  			and TMK_TPK = #{tmkTpk}
+  		</if>
+  		<if test="tmkTdk != null">
+  			and TMK_TDK = #{tmkTdk}
+  		</if>
+  		<if test="tmkTak != null">
+  			and TMK_TAK = #{tmkTak}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="updateTime != null">
+  			and UPDATE_TIME = #{updateTime}
+  		</if>
+  		<if test="signState != null">
+  			and SIGN_STATE = #{signState}
+  		</if>
+  		<if test="serialNo != null">
+  			and SERIAL_NO = #{serialNo}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TInfoTermSign" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_INFO_TERM_SIGN
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TInfoTermSign" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_INFO_TERM_SIGN
+  		where 1=1 
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		<if test="tmkTpk != null">
+  			and TMK_TPK = #{tmkTpk}
+  		</if>
+  		<if test="tmkTdk != null">
+  			and TMK_TDK = #{tmkTdk}
+  		</if>
+  		<if test="tmkTak != null">
+  			and TMK_TAK = #{tmkTak}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="updateTime != null">
+  			and UPDATE_TIME = #{updateTime}
+  		</if>
+  		<if test="signState != null">
+  			and SIGN_STATE = #{signState}
+  		</if>
+  		<if test="serialNo != null">
+  			and SERIAL_NO = #{serialNo}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TInfoTermSign">
+	 INSERT INTO T_INFO_TERM_SIGN
+	   (TERM_CODE,MERCH_CODE,TMK_TPK,TMK_TDK,TMK_TAK,BATCH_NO,UPDATE_TIME,SIGN_STATE,SERIAL_NO,CHANNEL_CODE)
+     VALUES (
+	    #{termCode,jdbcType=CHAR},
+	    #{merchCode,jdbcType=VARCHAR},
+	    #{tmkTpk,jdbcType=VARCHAR},
+	    #{tmkTdk,jdbcType=VARCHAR},
+	    #{tmkTak,jdbcType=VARCHAR},
+	    #{batchNo,jdbcType=CHAR},
+	    #{updateTime,jdbcType=TIMESTAMP},
+	    #{signState,jdbcType=CHAR},
+	    #{serialNo,jdbcType=VARCHAR},
+	    #{channelCode,jdbcType=DECIMAL}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TInfoTermSign">
+	UPDATE T_INFO_TERM_SIGN SET
+	  	<if test="termCode != null">
+	  		 TERM_CODE = #{termCode,jdbcType=CHAR}
+	  	</if>
+	  	<if test="merchCode != null">
+	  		, MERCH_CODE = #{merchCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tmkTpk != null">
+	  		, TMK_TPK = #{tmkTpk,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tmkTdk != null">
+	  		, TMK_TDK = #{tmkTdk,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="tmkTak != null">
+	  		, TMK_TAK = #{tmkTak,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="batchNo != null">
+	  		, BATCH_NO = #{batchNo,jdbcType=CHAR}
+	  	</if>
+	  	<if test="updateTime != null">
+	  		, UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="signState != null">
+	  		, SIGN_STATE = #{signState,jdbcType=CHAR}
+	  	</if>
+	  	<if test="serialNo != null">
+	  		, SERIAL_NO = #{serialNo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="channelCode != null">
+	  		, CHANNEL_CODE = #{channelCode,jdbcType=DECIMAL}
+	  	</if>
+		WHERE 1=1
+		<if test="termCode != null">
+	  		and TERM_CODE = #{termCode,jdbcType=CHAR}
+	  	</if>
+	  	<if test="merchCode != null">
+	  		and MERCH_CODE = #{merchCode,jdbcType=VARCHAR}
+	  	</if>
+  </update>
+
+</mapper>

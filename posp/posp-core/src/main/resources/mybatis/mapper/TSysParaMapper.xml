@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TSysParaDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TSysPara" >
+	    <result column="PARA_KEY" property="paraKey" jdbcType="VARCHAR" />
+	    <result column="CHANNEL_CODE" property="channelCode" jdbcType="DECIMAL" />
+	    <result column="PARA_RANGE" property="paraRange" jdbcType="VARCHAR" />
+	    <result column="PARA_NAME" property="paraName" jdbcType="VARCHAR" />
+	    <result column="PARA_VALUES" property="paraValues" jdbcType="VARCHAR" />
+	    <result column="PARA_DESC" property="paraDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	PARA_KEY,CHANNEL_CODE,PARA_RANGE,PARA_NAME,PARA_VALUES,PARA_DESC
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYS_PARA where PARA_KEY = #{id}
+  </select>
+  
+  <select id="findByParaKey" parameterType="java.lang.String"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYS_PARA where PARA_KEY = #{paraKey}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TSysPara" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_SYS_PARA
+  		where 1=1 
+  		
+  		<if test="paraKey != null">
+  			and PARA_KEY = #{paraKey}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="paraRange != null">
+  			and PARA_RANGE = #{paraRange}
+  		</if>
+  		<if test="paraName != null">
+  			and PARA_NAME = #{paraName}
+  		</if>
+  		<if test="paraValues != null">
+  			and PARA_VALUES = #{paraValues}
+  		</if>
+  		<if test="paraDesc != null">
+  			and PARA_DESC = #{paraDesc}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TSysPara" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_SYS_PARA
+  		where 1=1 
+  		<if test="paraKey != null">
+  			and PARA_KEY = #{paraKey}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="paraRange != null">
+  			and PARA_RANGE = #{paraRange}
+  		</if>
+  		<if test="paraName != null">
+  			and PARA_NAME = #{paraName}
+  		</if>
+  		<if test="paraValues != null">
+  			and PARA_VALUES = #{paraValues}
+  		</if>
+  		<if test="paraDesc != null">
+  			and PARA_DESC = #{paraDesc}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TSysPara" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_SYS_PARA
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TSysPara" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_SYS_PARA
+  		where 1=1 
+  		<if test="paraKey != null">
+  			and PARA_KEY = #{paraKey}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="paraRange != null">
+  			and PARA_RANGE = #{paraRange}
+  		</if>
+  		<if test="paraName != null">
+  			and PARA_NAME = #{paraName}
+  		</if>
+  		<if test="paraValues != null">
+  			and PARA_VALUES = #{paraValues}
+  		</if>
+  		<if test="paraDesc != null">
+  			and PARA_DESC = #{paraDesc}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TSysPara">
+	 INSERT INTO T_SYS_PARA
+	   (PARA_KEY,CHANNEL_CODE,PARA_RANGE,PARA_NAME,PARA_VALUES,PARA_DESC)
+     VALUES (
+	    #{paraKey,jdbcType=VARCHAR},
+	    #{channelCode,jdbcType=DECIMAL},
+	    #{paraRange,jdbcType=VARCHAR},
+	    #{paraName,jdbcType=VARCHAR},
+	    #{paraValues,jdbcType=VARCHAR},
+	    #{paraDesc,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TSysPara">
+	UPDATE T_SYS_PARA SET
+	  	<if test="paraKey != null">
+	  		 PARA_KEY = #{paraKey,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="channelCode != null">
+	  		, CHANNEL_CODE = #{channelCode,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="paraRange != null">
+	  		, PARA_RANGE = #{paraRange,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="paraName != null">
+	  		, PARA_NAME = #{paraName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="paraValues != null">
+	  		, PARA_VALUES = #{paraValues,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="paraDesc != null">
+	  		, PARA_DESC = #{paraDesc,jdbcType=VARCHAR}
+	  	</if>
+		WHERE PARA_KEY = #{paraKey, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

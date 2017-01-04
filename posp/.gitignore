@@ -1,0 +1,11 @@
+/posp-core/src/main/resources/jdbc.tisson
+/posp-core/*.myumldata
+/posp-core/.myeclipse/profiler
+/posp-core/bin/.myeclipse/profiler
+/posp-core/bin
+logs
+/posp-core/src/main/java/cn/com/bestpay/posp/protocol/util/SubConsumer.java
+*.project
+.settings
+.classpath
+target

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TMcmPostransprivDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TMcmPostranspriv" >
+	    <result column="POSPRIV_ID" property="posprivId" jdbcType="DECIMAL" />
+	    <result column="MCT_CODE" property="mctCode" jdbcType="VARCHAR" />
+	    <result column="POS_CODE" property="posCode" jdbcType="VARCHAR" />
+	    <result column="TRANS_ID" property="transId" jdbcType="VARCHAR" />
+	    <result column="TRANS_ID_NAME" property="transIdName" jdbcType="VARCHAR" />
+	    <result column="TRANS_CODE" property="transCode" jdbcType="VARCHAR" />
+	    <result column="PROCESS_CODE" property="processCode" jdbcType="VARCHAR" />
+	    <result column="CHANNEL_CODE" property="channelCode" jdbcType="VARCHAR" />
+	    <result column="CONF_TYPE" property="confType" jdbcType="CHAR" />
+	    <result column="CREATE_STAFF" property="createStaff" jdbcType="VARCHAR" />
+	    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+	    <result column="MOD_STAFF" property="modStaff" jdbcType="VARCHAR" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="DATE" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	POSPRIV_ID,MCT_CODE,POS_CODE,TRANS_ID,TRANS_ID_NAME,TRANS_CODE,PROCESS_CODE,CHANNEL_CODE,CONF_TYPE,CREATE_STAFF,CREATE_DATE,MOD_STAFF,MOD_DATE,STAT
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_MCM_POSTRANSPRIV where POSPRIV_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TMcmPostranspriv" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_POSTRANSPRIV
+  		where 1=1 
+  		
+  		<if test="posprivId != null">
+  			and POSPRIV_ID = #{posprivId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="transId != null">
+  			and TRANS_ID = #{transId}
+  		</if>
+  		<if test="transIdName != null">
+  			and TRANS_ID_NAME = #{transIdName}
+  		</if>
+  		<if test="transCode != null">
+  			and TRANS_CODE = #{transCode}
+  		</if>
+  		<if test="processCode != null">
+  			and PROCESS_CODE = #{processCode}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="confType != null">
+  			and CONF_TYPE = #{confType}
+  		</if>
+  		<if test="createStaff != null">
+  			and CREATE_STAFF = #{createStaff}
+  		</if>
+  		<if test="createDate != null">
+  			and CREATE_DATE = #{createDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TMcmPostranspriv" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_POSTRANSPRIV
+  		where 1=1 
+  		<if test="posprivId != null">
+  			and POSPRIV_ID = #{posprivId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="transId != null">
+  			and TRANS_ID = #{transId}
+  		</if>
+  		<if test="transIdName != null">
+  			and TRANS_ID_NAME = #{transIdName}
+  		</if>
+  		<if test="transCode != null">
+  			and TRANS_CODE = #{transCode}
+  		</if>
+  		<if test="processCode != null">
+  			and PROCESS_CODE = #{processCode}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="confType != null">
+  			and CONF_TYPE = #{confType}
+  		</if>
+  		<if test="createStaff != null">
+  			and CREATE_STAFF = #{createStaff}
+  		</if>
+  		<if test="createDate != null">
+  			and CREATE_DATE = #{createDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TMcmPostranspriv" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_POSTRANSPRIV
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TMcmPostranspriv" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_MCM_POSTRANSPRIV
+  		where 1=1 
+  		<if test="posprivId != null">
+  			and POSPRIV_ID = #{posprivId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="transId != null">
+  			and TRANS_ID = #{transId}
+  		</if>
+  		<if test="transIdName != null">
+  			and TRANS_ID_NAME = #{transIdName}
+  		</if>
+  		<if test="transCode != null">
+  			and TRANS_CODE = #{transCode}
+  		</if>
+  		<if test="processCode != null">
+  			and PROCESS_CODE = #{processCode}
+  		</if>
+  		<if test="channelCode != null">
+  			and CHANNEL_CODE = #{channelCode}
+  		</if>
+  		<if test="confType != null">
+  			and CONF_TYPE = #{confType}
+  		</if>
+  		<if test="createStaff != null">
+  			and CREATE_STAFF = #{createStaff}
+  		</if>
+  		<if test="createDate != null">
+  			and CREATE_DATE = #{createDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TMcmPostranspriv">
+	 INSERT INTO T_MCM_POSTRANSPRIV
+	   (POSPRIV_ID,MCT_CODE,POS_CODE,TRANS_ID,TRANS_ID_NAME,TRANS_CODE,PROCESS_CODE,CHANNEL_CODE,CONF_TYPE,CREATE_STAFF,CREATE_DATE,MOD_STAFF,MOD_DATE,STAT)
+     VALUES (
+	    #{posprivId,jdbcType=DECIMAL},
+	    #{mctCode,jdbcType=VARCHAR},
+	    #{posCode,jdbcType=VARCHAR},
+	    #{transId,jdbcType=VARCHAR},
+	    #{transIdName,jdbcType=VARCHAR},
+	    #{transCode,jdbcType=VARCHAR},
+	    #{processCode,jdbcType=VARCHAR},
+	    #{channelCode,jdbcType=VARCHAR},
+	    #{confType,jdbcType=CHAR},
+	    #{createStaff,jdbcType=VARCHAR},
+	    #{createDate,jdbcType=DATE},
+	    #{modStaff,jdbcType=VARCHAR},
+	    #{modDate,jdbcType=DATE},
+	    #{stat,jdbcType=CHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TMcmPostranspriv">
+	UPDATE T_MCM_POSTRANSPRIV SET
+	  	<if test="posprivId != null">
+	  		 POSPRIV_ID = #{posprivId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="mctCode != null">
+	  		, MCT_CODE = #{mctCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="posCode != null">
+	  		, POS_CODE = #{posCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="transId != null">
+	  		, TRANS_ID = #{transId,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="transIdName != null">
+	  		, TRANS_ID_NAME = #{transIdName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="transCode != null">
+	  		, TRANS_CODE = #{transCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="processCode != null">
+	  		, PROCESS_CODE = #{processCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="channelCode != null">
+	  		, CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="confType != null">
+	  		, CONF_TYPE = #{confType,jdbcType=CHAR}
+	  	</if>
+	  	<if test="createStaff != null">
+	  		, CREATE_STAFF = #{createStaff,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="createDate != null">
+	  		, CREATE_DATE = #{createDate,jdbcType=DATE}
+	  	</if>
+	  	<if test="modStaff != null">
+	  		, MOD_STAFF = #{modStaff,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="modDate != null">
+	  		, MOD_DATE = #{modDate,jdbcType=DATE}
+	  	</if>
+	  	<if test="stat != null">
+	  		, STAT = #{stat,jdbcType=CHAR}
+	  	</if>
+		WHERE POSPRIV_ID = #{posprivId, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

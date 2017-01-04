@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TLogSettleFlowStatisticsDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TLogSettleFlowStatistics" >
+      <result column="MERCH_CODE" property="merchCode" jdbcType="VARCHAR" />
+	  <result column="TERM_CODE" property="termCode" jdbcType="VARCHAR" />
+	  <result column="BATCH_NO" property="batchNo" jdbcType="CHAR" />
+	  <result column="DEBIT_SUM" property="debitSum" jdbcType="DECIMAL" />
+	  <result column="DEBIT_COUNT" property="debitCount" jdbcType="DECIMAL" />
+	  <result column="CREDIT_SUM" property="creditSum" jdbcType="DECIMAL" />
+	  <result column="CREDIT_COUNT" property="creditCount" jdbcType="DECIMAL" />
+  </resultMap>
+ 
+  <select id="querySettleFlowStatistics" parameterType="com.bestpay.posp.system.entity.TLogSettleFlowStatistics" resultMap="BaseResultMap">
+ 		select MERCH_CODE,TERM_CODE,BATCH_NO,sum(DEBIT_SUM) * 100 as DEBIT_SUM,sum(DEBIT_COUNT) as DEBIT_COUNT,sum(CREDIT_SUM) * 100 as CREDIT_SUM,sum(CREDIT_COUNT) as CREDIT_COUNT from (select MERCH_CODE,TERM_CODE,BATCH_NO,sum(tran_amount) as DEBIT_SUM,count(*) as DEBIT_COUNT,0 as CREDIT_SUM,0 as CREDIT_COUNT from T_LOG_TRAN_FLOW where TRAN_TYPE in ('20','22','24') 
+ 		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		 <if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+ 		AND TRAN_STATE='2' AND TRAN_FLAG IN (0,1,4,9) group by MERCH_CODE,TERM_CODE,BATCH_NO union select MERCH_CODE,TERM_CODE,BATCH_NO,0 as DEBIT_SUM,0 as DEBIT_COUNT,sum(tran_amount) as CREDIT_SUM,count(*) as CREDIT_COUNT from T_LOG_TRAN_FLOW where TRAN_TYPE in ('25','23','21','45','46','47')
+ 		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		 <if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>  
+ 		 AND TRAN_STATE='2' AND TRAN_FLAG not in ('2','5') group by MERCH_CODE,TERM_CODE,BATCH_NO) TEMP_TABLE group by MERCH_CODE,TERM_CODE,BATCH_NO 
+  </select>
+   <select id="queryOffliceSettleFlowStatistics" parameterType="com.bestpay.posp.system.entity.TLogSettleFlowStatistics" resultMap="BaseResultMap">
+ 		select MERCH_CODE,TERM_CODE,BATCH_NO,sum(tran_amount)*100 as DEBIT_SUM,count(*) as DEBIT_COUNT,0 as CREDIT_SUM,0 as CREDIT_COUNT
+		From T_LOG_OFFLINE_TRAN_FLOW where TRAN_TYPE in ('36')
+		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		 <if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if> 
+		 group by MERCH_CODE,TERM_CODE,BATCH_NO
+  </select>
+</mapper>

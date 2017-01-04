@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TStlMerchantBlackListDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TStlMerchantBlackList" >
+	    <result column="ORGCODE" property="orgCode" jdbcType="VARCHAR" />
+	    <result column="MERCHANTNAME" property="merchantName" jdbcType="VARCHAR" />
+	    <result column="MERCHANTTYPECODE" property="merchantTypeCode" jdbcType="VARCHAR" />
+	    <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+	    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+	    <result column="CITY" property="city" jdbcType="VARCHAR" />
+	    <result column="ADDR" property="addr" jdbcType="VARCHAR" />
+	    <result column="DUTYMEMBER" property="dutyMember" jdbcType="VARCHAR" />
+	    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+	   <result column="INPUTTELLER" property="inputTeller" jdbcType="VARCHAR" />
+	    <result column="INPUTDATE" property="inputDate" jdbcType="VARCHAR" />
+	    <result column="INPUTTIME" property="inputTime" jdbcType="VARCHAR" />
+	    <result column="UPDATETELLER" property="upDateTeller" jdbcType="VARCHAR" />
+	    <result column="UPDATEDATE" property="upDateDate" jdbcType="VARCHAR" />
+	    <result column="UPDATETIME" property="upDateTime" jdbcType="VARCHAR" />
+	    <result column="STAT" property="stat" jdbcType="VARCHAR" />
+	    <result column="INPUTDATETIME" property="inputDateTime" jdbcType="VARCHAR" />
+	    <result column="UPDATEDATETIME" property="updateDateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	ORGCODE,MERCHANTNAME,MERCHANTTYPECODE,COUNTRY,PROVINCE,CITY,ADDR,DUTYMEMBER,REMARK,INPUTTELLER,INPUTDATE,INPUTTIME,UPDATETELLER,UPDATEDATE,UPDATETIME,STAT,INPUTDATETIME,UPDATEDATETIME
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_STL_MERCHANTBLACKLIST where ORGCODE = #{orgCode}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TStlMerchantBlackList" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_STL_MERCHANTBLACKLIST
+  		where 1=1 
+  		
+  		<if test="orgCode != null">
+  			and ORGCODE = #{orgCode}
+  		</if>
+  		<if test="merchantName != null">
+  			and MERCHANTNAME = #{merchantName}
+  		</if>
+  		<if test="merchantTypeCode != null">
+  			and MERCHANTTYPECODE = #{merchantTypeCode}
+  		</if>
+  		<if test="country != null">
+  			and COUNTRY = #{country}
+  		</if>
+  		<if test="province != null">
+  			and PROVINCE = #{province}
+  		</if>
+  		<if test="city != null">
+  			and CITY = #{city}
+  		</if>
+  		<if test="addr != null">
+  			and ADDR = #{addr}
+  		</if>
+  		<if test="dutyMember != null">
+  			and DUTYMEMBER = #{dutyMember}
+  		</if>
+  		<if test="remark != null">
+  			and REMARK = #{remark}
+  		</if>
+  		<if test="inputTeller != null">
+  			and INPUTTELLER = #{inputTeller}
+  		</if>
+  		<if test="inputDate != null">
+  			and INPUTDATE = #{inputDate}
+  		</if>
+  		<if test="inputTime != null">
+  			and INPUTTIME = #{inputTime}
+  		</if>
+  		<if test="upDateTeller != null">
+  			and UPDATETELLER = #{upDateTeller}
+  		</if>
+  		<if test="upDateDate != null">
+  			and UPDATEDATE = #{upDateDate}
+  		</if>
+  		<if test="upDateTime != null">
+  			and UPDATETIME = #{upDateTime}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="inputDateTime != null">
+  			and INPUTDATETIME = #{inputDateTime}
+  		</if>
+  		<if test="updateDateTime != null">
+  			and UPDATEDATETIME = #{updateDateTime}
+  		</if>
+  </select>
+  
+ <select id="find" parameterType="com.bestpay.posp.system.entity.TStlMerchantBlackList" resultMap="BaseResultMap">
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TStlMerchantBlackList" resultMap="BaseResultMap">
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TStlMerchantBlackList" resultType="java.lang.Integer">
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TStlMerchantBlackList">
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TStlMerchantBlackList">
+  </update>
+
+</mapper>

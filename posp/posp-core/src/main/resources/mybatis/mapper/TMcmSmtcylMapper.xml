@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TMcmSmtcylDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TMcmSmtcyl" >
+	    <result column="SMTCYL_ID" property="smtcylId" jdbcType="DECIMAL" />
+	    <result column="MCT_CODE" property="mctCode" jdbcType="VARCHAR" />
+	    <result column="PERIOD_TYPE" property="periodType" jdbcType="VARCHAR" />
+	    <result column="PERIOD_VAL" property="periodVal" jdbcType="VARCHAR" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="TIMESTAMP" />
+	    <result column="MOD_STAFF" property="modStaff" jdbcType="VARCHAR" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+	    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	SMTCYL_ID,MCT_CODE,PERIOD_TYPE,PERIOD_VAL,MOD_DATE,MOD_STAFF,STAT,MEMO
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_MCM_SMTCYL where SMTCYL_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TMcmSmtcyl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_SMTCYL
+  		where 1=1 
+  		
+  		<if test="smtcylId != null">
+  			and SMTCYL_ID = #{smtcylId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="periodType != null">
+  			and PERIOD_TYPE = #{periodType}
+  		</if>
+  		<if test="periodVal != null">
+  			and PERIOD_VAL = #{periodVal}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TMcmSmtcyl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_SMTCYL
+  		where 1=1 
+  		<if test="smtcylId != null">
+  			and SMTCYL_ID = #{smtcylId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="periodType != null">
+  			and PERIOD_TYPE = #{periodType}
+  		</if>
+  		<if test="periodVal != null">
+  			and PERIOD_VAL = #{periodVal}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TMcmSmtcyl" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_SMTCYL
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TMcmSmtcyl" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_MCM_SMTCYL
+  		where 1=1 
+  		<if test="smtcylId != null">
+  			and SMTCYL_ID = #{smtcylId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="periodType != null">
+  			and PERIOD_TYPE = #{periodType}
+  		</if>
+  		<if test="periodVal != null">
+  			and PERIOD_VAL = #{periodVal}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TMcmSmtcyl">
+	 INSERT INTO T_MCM_SMTCYL
+	   (SMTCYL_ID,MCT_CODE,PERIOD_TYPE,PERIOD_VAL,MOD_DATE,MOD_STAFF,STAT,MEMO)
+     VALUES (
+	    #{smtcylId,jdbcType=DECIMAL},
+	    #{mctCode,jdbcType=VARCHAR},
+	    #{periodType,jdbcType=VARCHAR},
+	    #{periodVal,jdbcType=VARCHAR},
+	    #{modDate,jdbcType=TIMESTAMP},
+	    #{modStaff,jdbcType=VARCHAR},
+	    #{stat,jdbcType=CHAR},
+	    #{memo,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TMcmSmtcyl">
+	UPDATE T_MCM_SMTCYL SET
+	  	<if test="smtcylId != null">
+	  		 SMTCYL_ID = #{smtcylId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="mctCode != null">
+	  		, MCT_CODE = #{mctCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="periodType != null">
+	  		, PERIOD_TYPE = #{periodType,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="periodVal != null">
+	  		, PERIOD_VAL = #{periodVal,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="modDate != null">
+	  		, MOD_DATE = #{modDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="modStaff != null">
+	  		, MOD_STAFF = #{modStaff,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stat != null">
+	  		, STAT = #{stat,jdbcType=CHAR}
+	  	</if>
+	  	<if test="memo != null">
+	  		, MEMO = #{memo,jdbcType=VARCHAR}
+	  	</if>
+		WHERE SMTCYL_ID = #{smtcylId, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TLogSignePuchaseInfoDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TLogSignePuchaseInfo" >
+	    <result column="MERCH_CODE" property="merchCode" jdbcType="CHAR" />
+	    <result column="TERM_CODE" property="termCode" jdbcType="CHAR" />
+	    <result column="BATCH_NO" property="batchNo" jdbcType="CHAR" />
+	    <result column="TERM_SERIAL_NO" property="termSerialNo" jdbcType="CHAR" />
+	    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+	    <result column="TRAN_DATE" property="tranDate" jdbcType="VARCHAR" />
+	    <result column="REFER_NO" property="referNo" jdbcType="CHAR" />
+	    <result column="SETTLE_DATE" property="settleDate" jdbcType="VARCHAR" />
+	    <result column="TRAN_CODE" property="tranCode" jdbcType="VARCHAR" />
+	    <result column="TRAN_AMOUNT" property="tranAmount" jdbcType="DECIMAL" />
+	    <result column="MERCH_NAME" property="merchName" jdbcType="VARCHAR" />
+	    <result column="TRAN_TYPE" property="tranType" jdbcType="VARCHAR" />
+	    <result column="OPERATOR_NUM" property="operatorNum" jdbcType="CHAR" />
+	    <result column="RCV_BRANCH_CODE" property="rcvBranchCode" jdbcType="VARCHAR" />
+	    <result column="RCV_BANK_CODE" property="rcvBankCode" jdbcType="VARCHAR" />
+	    <result column="AUTH_NO" property="authNo" jdbcType="CHAR" />
+	    <result column="TIP_AMOUNT" property="tipAmount" jdbcType="DECIMAL" />
+	    <result column="CARD_ORGANIZATION" property="cardOrganization" jdbcType="VARCHAR" />
+	    <result column="TRAN_CCY" property="tranCcy" jdbcType="CHAR" />
+	    <result column="PHONE_NUM" property="phoneNum" jdbcType="VARCHAR" />
+	    <result column="APP_LABEL_TERM" property="appLabelTerm" jdbcType="VARCHAR" />
+	    <result column="APP_NAME_TERM" property="appNameTerm" jdbcType="VARCHAR" />
+	    <result column="APP_LABEL" property="appLabel" jdbcType="VARCHAR" />
+	    <result column="APP_NAME" property="appName" jdbcType="VARCHAR" />
+	    <result column="APP_IDENT" property="appIdent" jdbcType="VARCHAR" />
+	    <result column="APP_CRYPT" property="appCrypt" jdbcType="VARCHAR" />
+	    <result column="CARD_BALANCE" property="cardBalance" jdbcType="VARCHAR" />
+	    <result column="ADD_CARD_NO" property="addCardNo" jdbcType="VARCHAR" />
+	    <result column="UNPDT_NUM" property="unpdtNum" jdbcType="VARCHAR" />
+	    <result column="AIP" property="aip" jdbcType="VARCHAR" />
+	    <result column="TERM_VER_RESULTS" property="termVerResults" jdbcType="VARCHAR" />
+	    <result column="TRAN_STATUS" property="tranStatus" jdbcType="VARCHAR" />
+	    <result column="ATC" property="atc" jdbcType="VARCHAR" />
+	    <result column="ISSUE_APPDATA" property="issueAppdata" jdbcType="VARCHAR" />
+	    <result column="ORIG_DOCUMT_NO" property="origDocumtNo" jdbcType="CHAR" />
+	    <result column="ORIG_BATCH_NO" property="origBatchNo" jdbcType="CHAR" />
+	    <result column="ORIG_REFER_NO" property="origReferNo" jdbcType="CHAR" />
+	    <result column="ORIG_TRAN_DATE" property="origTranDate" jdbcType="CHAR" />
+	    <result column="ORIG_AUTH_NO" property="origAuthNo" jdbcType="CHAR" />
+	    <result column="ORIG_TERM_CODE" property="origTermCode" jdbcType="CHAR" />
+	    <result column="PRINT_NO" property="printNo" jdbcType="CHAR" />
+	    <result column="ELE_SIGNAT_INFO" property="eleSignatInfo" jdbcType="BLOB" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	MERCH_CODE,TERM_CODE,BATCH_NO,TERM_SERIAL_NO,CARD_NO,TRAN_DATE,REFER_NO,SETTLE_DATE,TRAN_CODE,TRAN_AMOUNT,MERCH_NAME,TRAN_TYPE,OPERATOR_NUM,RCV_BRANCH_CODE,RCV_BANK_CODE,AUTH_NO,TIP_AMOUNT,CARD_ORGANIZATION,TRAN_CCY,PHONE_NUM,APP_LABEL_TERM,APP_NAME_TERM,APP_LABEL,APP_NAME,APP_IDENT,APP_CRYPT,CARD_BALANCE,ADD_CARD_NO,UNPDT_NUM,AIP,TERM_VER_RESULTS,TRAN_STATUS,ATC,ISSUE_APPDATA,ORIG_DOCUMT_NO,ORIG_BATCH_NO,ORIG_REFER_NO,ORIG_TRAN_DATE,ORIG_AUTH_NO,ORIG_TERM_CODE,PRINT_NO,ELE_SIGNAT_INFO
+  </sql>
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_LOG_SIGNE_PUCHASE_INFO where MERCH_CODE = #{merchCode}
+  </select>
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TLogSignePuchaseInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_LOG_SIGNE_PUCHASE_INFO
+  		where 1=1 
+  		
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="termSerialNo != null">
+  			and TERM_SERIAL_NO = #{termSerialNo}
+  		</if>
+  		<if test="cardNo != null">
+  			and CARD_NO = #{cardNo}
+  		</if>
+  		<if test="tranDate != null">
+  			and TRAN_DATE = #{tranDate}
+  		</if>
+  		<if test="referNo != null">
+  			and REFER_NO = #{referNo}
+  		</if>
+  		<if test="settleDate != null">
+  			and SETTLE_DATE = #{settleDate}
+  		</if>
+  		<if test="tranCode != null">
+  			and TRAN_CODE = #{tranCode}
+  		</if>
+  		<if test="tranAmount != null">
+  			and TRAN_AMOUNT = #{tranAmount}
+  		</if>
+  		<if test="merchName != null">
+  			and MERCH_NAME = #{merchName}
+  		</if>
+  		<if test="tranType != null">
+  			and TRAN_TYPE = #{tranType}
+  		</if>
+  		<if test="operatorNum != null">
+  			and OPERATOR_NUM = #{operatorNum}
+  		</if>
+  		<if test="rcvBranchCode != null">
+  			and RCV_BRANCH_CODE = #{rcvBranchCode}
+  		</if>
+  		<if test="rcvBankCode != null">
+  			and RCV_BANK_CODE = #{rcvBankCode}
+  		</if>
+  		<if test="authNo != null">
+  			and AUTH_NO = #{authNo}
+  		</if>
+  		<if test="tipAmount != null">
+  			and TIP_AMOUNT = #{tipAmount}
+  		</if>
+  		<if test="cardOrganization != null">
+  			and CARD_ORGANIZATION = #{cardOrganization}
+  		</if>
+  		<if test="tranCcy != null">
+  			and TRAN_CCY = #{tranCcy}
+  		</if>
+  		<if test="phoneNum != null">
+  			and PHONE_NUM = #{phoneNum}
+  		</if>
+  		<if test="appLabelTerm != null">
+  			and APP_LABEL_TERM = #{appLabelTerm}
+  		</if>
+  		<if test="appNameTerm != null">
+  			and APP_NAME_TERM = #{appNameTerm}
+  		</if>
+  		<if test="appLabel != null">
+  			and APP_LABEL = #{appLabel}
+  		</if>
+  		<if test="appName != null">
+  			and APP_NAME = #{appName}
+  		</if>
+  		<if test="appIdent != null">
+  			and APP_IDENT = #{appIdent}
+  		</if>
+  		<if test="appCrypt != null">
+  			and APP_CRYPT = #{appCrypt}
+  		</if>
+  		<if test="cardBalance != null">
+  			and CARD_BALANCE = #{cardBalance}
+  		</if>
+  		<if test="addCardNo != null">
+  			and ADD_CARD_NO = #{addCardNo}
+  		</if>
+  		<if test="unpdtNum != null">
+  			and UNPDT_NUM = #{unpdtNum}
+  		</if>
+  		<if test="aip != null">
+  			and AIP = #{aip}
+  		</if>
+  		<if test="termVerResults != null">
+  			and TERM_VER_RESULTS = #{termVerResults}
+  		</if>
+  		<if test="tranStatus != null">
+  			and TRAN_STATUS = #{tranStatus}
+  		</if>
+  		<if test="atc != null">
+  			and ATC = #{atc}
+  		</if>
+  		<if test="issueAppdata != null">
+  			and ISSUE_APPDATA = #{issueAppdata}
+  		</if>
+  		<if test="origDocumtNo != null">
+  			and ORIG_DOCUMT_NO = #{origDocumtNo}
+  		</if>
+  		<if test="origBatchNo != null">
+  			and ORIG_BATCH_NO = #{origBatchNo}
+  		</if>
+  		<if test="origReferNo != null">
+  			and ORIG_REFER_NO = #{origReferNo}
+  		</if>
+  		<if test="origTranDate != null">
+  			and ORIG_TRAN_DATE = #{origTranDate}
+  		</if>
+  		<if test="origAuthNo != null">
+  			and ORIG_AUTH_NO = #{origAuthNo}
+  		</if>
+  		<if test="origTermCode != null">
+  			and ORIG_TERM_CODE = #{origTermCode}
+  		</if>
+  		<if test="printNo != null">
+  			and PRINT_NO = #{printNo}
+  		</if>
+  		<if test="eleSignatInfo != null">
+  			and ELE_SIGNAT_INFO = #{eleSignatInfo}
+  		</if>
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TLogSignePuchaseInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_LOG_SIGNE_PUCHASE_INFO
+  		where 1=1 
+  		
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="termSerialNo != null">
+  			and TERM_SERIAL_NO = #{termSerialNo}
+  		</if>
+  		<if test="cardNo != null">
+  			and CARD_NO = #{cardNo}
+  		</if>
+  		<if test="tranDate != null">
+  			and TRAN_DATE = #{tranDate}
+  		</if>
+  		<if test="referNo != null">
+  			and REFER_NO = #{referNo}
+  		</if>
+  		<if test="settleDate != null">
+  			and SETTLE_DATE = #{settleDate}
+  		</if>
+  		<if test="tranCode != null">
+  			and TRAN_CODE = #{tranCode}
+  		</if>
+  		<if test="tranAmount != null">
+  			and TRAN_AMOUNT = #{tranAmount}
+  		</if>
+  		<if test="merchName != null">
+  			and MERCH_NAME = #{merchName}
+  		</if>
+  		<if test="tranType != null">
+  			and TRAN_TYPE = #{tranType}
+  		</if>
+  		<if test="operatorNum != null">
+  			and OPERATOR_NUM = #{operatorNum}
+  		</if>
+  		<if test="rcvBranchCode != null">
+  			and RCV_BRANCH_CODE = #{rcvBranchCode}
+  		</if>
+  		<if test="rcvBankCode != null">
+  			and RCV_BANK_CODE = #{rcvBankCode}
+  		</if>
+  		<if test="authNo != null">
+  			and AUTH_NO = #{authNo}
+  		</if>
+  		<if test="tipAmount != null">
+  			and TIP_AMOUNT = #{tipAmount}
+  		</if>
+  		<if test="cardOrganization != null">
+  			and CARD_ORGANIZATION = #{cardOrganization}
+  		</if>
+  		<if test="tranCcy != null">
+  			and TRAN_CCY = #{tranCcy}
+  		</if>
+  		<if test="phoneNum != null">
+  			and PHONE_NUM = #{phoneNum}
+  		</if>
+  		<if test="appLabelTerm != null">
+  			and APP_LABEL_TERM = #{appLabelTerm}
+  		</if>
+  		<if test="appNameTerm != null">
+  			and APP_NAME_TERM = #{appNameTerm}
+  		</if>
+  		<if test="appLabel != null">
+  			and APP_LABEL = #{appLabel}
+  		</if>
+  		<if test="appName != null">
+  			and APP_NAME = #{appName}
+  		</if>
+  		<if test="appIdent != null">
+  			and APP_IDENT = #{appIdent}
+  		</if>
+  		<if test="appCrypt != null">
+  			and APP_CRYPT = #{appCrypt}
+  		</if>
+  		<if test="cardBalance != null">
+  			and CARD_BALANCE = #{cardBalance}
+  		</if>
+  		<if test="addCardNo != null">
+  			and ADD_CARD_NO = #{addCardNo}
+  		</if>
+  		<if test="unpdtNum != null">
+  			and UNPDT_NUM = #{unpdtNum}
+  		</if>
+  		<if test="aip != null">
+  			and AIP = #{aip}
+  		</if>
+  		<if test="termVerResults != null">
+  			and TERM_VER_RESULTS = #{termVerResults}
+  		</if>
+  		<if test="tranStatus != null">
+  			and TRAN_STATUS = #{tranStatus}
+  		</if>
+  		<if test="atc != null">
+  			and ATC = #{atc}
+  		</if>
+  		<if test="issueAppdata != null">
+  			and ISSUE_APPDATA = #{issueAppdata}
+  		</if>
+  		<if test="origDocumtNo != null">
+  			and ORIG_DOCUMT_NO = #{origDocumtNo}
+  		</if>
+  		<if test="origBatchNo != null">
+  			and ORIG_BATCH_NO = #{origBatchNo}
+  		</if>
+  		<if test="origReferNo != null">
+  			and ORIG_REFER_NO = #{origReferNo}
+  		</if>
+  		<if test="origTranDate != null">
+  			and ORIG_TRAN_DATE = #{origTranDate}
+  		</if>
+  		<if test="origAuthNo != null">
+  			and ORIG_AUTH_NO = #{origAuthNo}
+  		</if>
+  		<if test="origTermCode != null">
+  			and ORIG_TERM_CODE = #{origTermCode}
+  		</if>
+  		<if test="printNo != null">
+  			and PRINT_NO = #{printNo}
+  		</if>
+  		<if test="eleSignatInfo != null">
+  			and ELE_SIGNAT_INFO = #{eleSignatInfo}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TLogSignePuchaseInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_LOG_SIGNE_PUCHASE_INFO
+  </select>
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TLogSignePuchaseInfo" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_LOG_SIGNE_PUCHASE_INFO
+  		where 1=1 
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TLogSignePuchaseInfo">
+	 INSERT INTO T_LOG_SIGNE_PUCHASE_INFO
+	   (MERCH_CODE,TERM_CODE,BATCH_NO,TERM_SERIAL_NO,CARD_NO,TRAN_DATE,REFER_NO,SETTLE_DATE,TRAN_CODE,TRAN_AMOUNT,MERCH_NAME,TRAN_TYPE,OPERATOR_NUM,RCV_BRANCH_CODE,RCV_BANK_CODE,AUTH_NO,TIP_AMOUNT,CARD_ORGANIZATION,TRAN_CCY,PHONE_NUM,APP_LABEL_TERM,APP_NAME_TERM,APP_LABEL,APP_NAME,APP_IDENT,APP_CRYPT,CARD_BALANCE,ADD_CARD_NO,UNPDT_NUM,AIP,TERM_VER_RESULTS,TRAN_STATUS,ATC,ISSUE_APPDATA,ORIG_DOCUMT_NO,ORIG_BATCH_NO,ORIG_REFER_NO,ORIG_TRAN_DATE,ORIG_AUTH_NO,ORIG_TERM_CODE,PRINT_NO,ELE_SIGNAT_INFO)
+     VALUES (
+	    #{merchCode,jdbcType=CHAR},
+	    #{termCode,jdbcType=CHAR},
+	    #{batchNo,jdbcType=CHAR},
+	    #{termSerialNo,jdbcType=CHAR},
+	    #{cardNo,jdbcType=VARCHAR},
+	    #{tranDate,jdbcType=VARCHAR},
+	    #{referNo,jdbcType=CHAR},
+	    #{settleDate,jdbcType=VARCHAR},
+	    #{tranCode,jdbcType=VARCHAR},
+	    #{tranAmount,jdbcType=DECIMAL},
+	    #{merchName,jdbcType=VARCHAR},
+	    #{tranType,jdbcType=VARCHAR},
+	    #{operatorNum,jdbcType=CHAR},
+	    #{rcvBranchCode,jdbcType=VARCHAR},
+	    #{rcvBankCode,jdbcType=VARCHAR},
+	    #{authNo,jdbcType=CHAR},
+	    #{tipAmount,jdbcType=DECIMAL},
+	    #{cardOrganization,jdbcType=VARCHAR},
+	    #{tranCcy,jdbcType=CHAR},
+	    #{phoneNum,jdbcType=VARCHAR},
+	    #{appLabelTerm,jdbcType=VARCHAR},
+	    #{appNameTerm,jdbcType=VARCHAR},
+	    #{appLabel,jdbcType=VARCHAR},
+	    #{appName,jdbcType=VARCHAR},
+	    #{appIdent,jdbcType=VARCHAR},
+	    #{appCrypt,jdbcType=VARCHAR},
+	    #{cardBalance,jdbcType=VARCHAR},
+	    #{addCardNo,jdbcType=VARCHAR},
+	    #{unpdtNum,jdbcType=VARCHAR},
+	    #{aip,jdbcType=VARCHAR},
+	    #{termVerResults,jdbcType=VARCHAR},
+	    #{tranStatus,jdbcType=VARCHAR},
+	    #{atc,jdbcType=VARCHAR},
+	    #{issueAppdata,jdbcType=VARCHAR},
+	    #{origDocumtNo,jdbcType=CHAR},
+	    #{origBatchNo,jdbcType=CHAR},
+	    #{origReferNo,jdbcType=CHAR},
+	    #{origTranDate,jdbcType=CHAR},
+	    #{origAuthNo,jdbcType=CHAR},
+	    #{origTermCode,jdbcType=CHAR},
+	    #{printNo,jdbcType=CHAR},
+	    #{eleSignatInfo,jdbcType=BLOB}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TLogSignePuchaseInfo">
+	UPDATE T_LOG_SIGNE_PUCHASE_INFO SET
+	  	<if test="merchCode != null">
+  			 MERCH_CODE = #{merchCode,jdbcType=CHAR}
+  		</if>
+  		<if test="termCode != null">
+  			, TERM_CODE = #{termCode,jdbcType=CHAR}
+  		</if>
+  		<if test="batchNo != null">
+  			, BATCH_NO = #{batchNo,jdbcType=CHAR}
+  		</if>
+  		<if test="termSerialNo != null">
+  			, TERM_SERIAL_NO = #{termSerialNo,jdbcType=CHAR}
+  		</if>
+  		<if test="cardNo != null">
+  			, CARD_NO = #{cardNo,jdbcType=VARCHAR}
+  		</if>
+  		<if test="tranDate != null">
+  			, TRAN_DATE = #{tranDate,jdbcType=VARCHAR}
+  		</if>
+  		<if test="referNo != null">
+  			, REFER_NO = #{referNo,jdbcType=CHAR}
+  		</if>
+  		<if test="settleDate != null">
+  			, SETTLE_DATE = #{settleDate,jdbcType=VARCHAR}
+  		</if>
+  		<if test="tranCode != null">
+  			, TRAN_CODE = #{tranCode,jdbcType=VARCHAR}
+  		</if>
+  		<if test="tranAmount != null">
+  			, TRAN_AMOUNT = #{tranAmount,jdbcType=DECIMAL}
+  		</if>
+  		<if test="merchName != null">
+  			, MERCH_NAME = #{merchName,jdbcType=VARCHAR}
+  		</if>
+  		<if test="tranType != null">
+  			, TRAN_TYPE = #{tranType,jdbcType=VARCHAR}
+  		</if>
+  		<if test="operatorNum != null">
+  			, OPERATOR_NUM = #{operatorNum,jdbcType=CHAR}
+  		</if>
+  		<if test="rcvBranchCode != null">
+  			, RCV_BRANCH_CODE = #{rcvBranchCode,jdbcType=VARCHAR}
+  		</if>
+  		<if test="rcvBankCode != null">
+  			, RCV_BANK_CODE = #{rcvBankCode,jdbcType=VARCHAR}
+  		</if>
+  		<if test="authNo != null">
+  			, AUTH_NO = #{authNo,jdbcType=CHAR}
+  		</if>
+  		<if test="tipAmount != null">
+  			, TIP_AMOUNT = #{tipAmount,jdbcType=DECIMAL}
+  		</if>
+  		<if test="cardOrganization != null">
+  			, CARD_ORGANIZATION = #{cardOrganization,jdbcType=VARCHAR}
+  		</if>
+  		<if test="tranCcy != null">
+  			, TRAN_CCY = #{tranCcy,jdbcType=CHAR}
+  		</if>
+  		<if test="phoneNum != null">
+  			, PHONE_NUM = #{phoneNum,jdbcType=VARCHAR}
+  		</if>
+  		<if test="appLabelTerm != null">
+  			, APP_LABEL_TERM = #{appLabelTerm,jdbcType=VARCHAR}
+  		</if>
+  		<if test="appNameTerm != null">
+  			, APP_NAME_TERM = #{appNameTerm,jdbcType=VARCHAR}
+  		</if>
+  		<if test="appLabel != null">
+  			,APP_LABEL = #{appLabel,jdbcType=VARCHAR}
+  		</if>
+  		<if test="appName != null">
+  			, APP_NAME = #{appName,jdbcType=VARCHAR}
+  		</if>
+  		<if test="appIdent != null">
+  			, APP_IDENT = #{appIdent,jdbcType=VARCHAR}
+  		</if>
+  		<if test="appCrypt != null">
+  			, APP_CRYPT = #{appCrypt,jdbcType=VARCHAR}
+  		</if>
+  		<if test="cardBalance != null">
+  			, CARD_BALANCE = #{cardBalance,jdbcType=VARCHAR}
+  		</if>
+  		<if test="addCardNo != null">
+  			, ADD_CARD_NO = #{addCardNo,jdbcType=VARCHAR}
+  		</if>
+  		<if test="unpdtNum != null">
+  			, UNPDT_NUM = #{unpdtNum,jdbcType=VARCHAR}
+  		</if>
+  		<if test="aip != null">
+  			, AIP = #{aip,jdbcType=VARCHAR}
+  		</if>
+  		<if test="termVerResults != null">
+  			, TERM_VER_RESULTS = #{termVerResults,jdbcType=VARCHAR}
+  		</if>
+  		<if test="tranStatus != null">
+  			, TRAN_STATUS = #{tranStatus,jdbcType=VARCHAR}
+  		</if>
+  		<if test="atc != null">
+  			, ATC = #{atc,jdbcType=VARCHAR}
+  		</if>
+  		<if test="issueAppdata != null">
+  			, ISSUE_APPDATA = #{issueAppdata,jdbcType=VARCHAR}
+  		</if>
+  		<if test="origDocumtNo != null">
+  			, ORIG_DOCUMT_NO = #{origDocumtNo,jdbcType=CHAR}
+  		</if>
+  		<if test="origBatchNo != null">
+  			, ORIG_BATCH_NO = #{origBatchNo,jdbcType=CHAR}
+  		</if>
+  		<if test="origReferNo != null">
+  			, ORIG_REFER_NO = #{origReferNo,jdbcType=CHAR}
+  		</if>
+  		<if test="origTranDate != null">
+  			, ORIG_TRAN_DATE = #{origTranDate,jdbcType=CHAR}
+  		</if>
+  		<if test="origAuthNo != null">
+  			, ORIG_AUTH_NO = #{origAuthNo,jdbcType=CHAR}
+  		</if>
+  		<if test="origTermCode != null">
+  			, ORIG_TERM_CODE = #{origTermCode,jdbcType=CHAR}
+  		</if>
+  		<if test="printNo != null">
+  			, PRINT_NO = #{printNo,jdbcType=CHAR}
+  		</if>
+  		<if test="eleSignatInfo != null">
+  			, ELE_SIGNAT_INFO = #{eleSignatInfo,jdbcType=BLOB}
+  		</if>
+		where 1=1 
+  		
+  		<if test="merchCode != null">
+  			and MERCH_CODE = #{merchCode}
+  		</if>
+  		<if test="termCode != null">
+  			and TERM_CODE = #{termCode}
+  		</if>
+  		<if test="batchNo != null">
+  			and BATCH_NO = #{batchNo}
+  		</if>
+  		<if test="termSerialNo != null">
+  			and TERM_SERIAL_NO = #{termSerialNo}
+  		</if>
+  		<if test="tranDate != null">
+  			and TRAN_DATE = #{tranDate}
+  		</if>
+	 
+  </update>
+  
+</mapper>

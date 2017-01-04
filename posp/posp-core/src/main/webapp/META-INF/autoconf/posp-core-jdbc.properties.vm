@@ -1,0 +1,4 @@
+jdbc.driver=oracle.jdbc.driver.OracleDriver
+jdbc.url=${jdbc_url}
+jdbc.username.encrypt=${jdbc_username}
+jdbc.password.encrypt=${jdbc_password}

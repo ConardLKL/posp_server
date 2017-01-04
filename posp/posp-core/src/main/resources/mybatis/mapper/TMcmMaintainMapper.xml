@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TMcmMaintainDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TMcmMaintain" >
+	    <result column="MAINTAIN_ID" property="maintainId" jdbcType="DECIMAL" />
+	    <result column="MAINTAIN_COMP" property="maintainComp" jdbcType="VARCHAR" />
+	    <result column="MTN_LINKMAN" property="mtnLinkman" jdbcType="VARCHAR" />
+	    <result column="MTN_LINKPHONE" property="mtnLinkphone" jdbcType="VARCHAR" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="TIMESTAMP" />
+	    <result column="MOD_STAFF" property="modStaff" jdbcType="VARCHAR" />
+	    <result column="STAT" property="stat" jdbcType="CHAR" />
+	    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+	    <result column="POS_CODE" property="posCode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	MAINTAIN_ID,MAINTAIN_COMP,MTN_LINKMAN,MTN_LINKPHONE,MOD_DATE,MOD_STAFF,STAT,MEMO,POS_CODE
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_MCM_MAINTAIN where MAINTAIN_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TMcmMaintain" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_MAINTAIN
+  		where 1=1 
+  		
+  		<if test="maintainId != null">
+  			and MAINTAIN_ID = #{maintainId}
+  		</if>
+  		<if test="maintainComp != null">
+  			and MAINTAIN_COMP = #{maintainComp}
+  		</if>
+  		<if test="mtnLinkman != null">
+  			and MTN_LINKMAN = #{mtnLinkman}
+  		</if>
+  		<if test="mtnLinkphone != null">
+  			and MTN_LINKPHONE = #{mtnLinkphone}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		 
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TMcmMaintain" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_MAINTAIN
+  		where 1=1 
+  		<if test="maintainId != null">
+  			and MAINTAIN_ID = #{maintainId}
+  		</if>
+  		<if test="maintainComp != null">
+  			and MAINTAIN_COMP = #{maintainComp}
+  		</if>
+  		<if test="mtnLinkman != null">
+  			and MTN_LINKMAN = #{mtnLinkman}
+  		</if>
+  		<if test="mtnLinkphone != null">
+  			and MTN_LINKPHONE = #{mtnLinkphone}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TMcmMaintain" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_MCM_MAINTAIN
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TMcmMaintain" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_MCM_MAINTAIN
+  		where 1=1 
+  		<if test="maintainId != null">
+  			and MAINTAIN_ID = #{maintainId}
+  		</if>
+  		<if test="maintainComp != null">
+  			and MAINTAIN_COMP = #{maintainComp}
+  		</if>
+  		<if test="mtnLinkman != null">
+  			and MTN_LINKMAN = #{mtnLinkman}
+  		</if>
+  		<if test="mtnLinkphone != null">
+  			and MTN_LINKPHONE = #{mtnLinkphone}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="stat != null">
+  			and STAT = #{stat}
+  		</if>
+  		<if test="memo != null">
+  			and MEMO = #{memo}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TMcmMaintain">
+	 INSERT INTO T_MCM_MAINTAIN
+	   (MAINTAIN_ID,MAINTAIN_COMP,MTN_LINKMAN,MTN_LINKPHONE,MOD_DATE,MOD_STAFF,STAT,MEMO,POS_CODE)
+     VALUES (
+	    #{maintainId,jdbcType=DECIMAL},
+	    #{maintainComp,jdbcType=VARCHAR},
+	    #{mtnLinkman,jdbcType=VARCHAR},
+	    #{mtnLinkphone,jdbcType=VARCHAR},
+	    #{modDate,jdbcType=TIMESTAMP},
+	    #{modStaff,jdbcType=VARCHAR},
+	    #{stat,jdbcType=CHAR},
+	    #{memo,jdbcType=VARCHAR},
+	    #{posCode,jdbcType=VARCHAR}
+     ) 
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TMcmMaintain">
+	UPDATE T_MCM_MAINTAIN SET
+	  	<if test="maintainId != null">
+	  		 MAINTAIN_ID = #{maintainId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="maintainComp != null">
+	  		, MAINTAIN_COMP = #{maintainComp,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="mtnLinkman != null">
+	  		, MTN_LINKMAN = #{mtnLinkman,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="mtnLinkphone != null">
+	  		, MTN_LINKPHONE = #{mtnLinkphone,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="modDate != null">
+	  		, MOD_DATE = #{modDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="modStaff != null">
+	  		, MOD_STAFF = #{modStaff,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="stat != null">
+	  		, STAT = #{stat,jdbcType=CHAR}
+	  	</if>
+	  	<if test="memo != null">
+	  		, MEMO = #{memo,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="posCode != null">
+	  		, POS_CODE = #{posCode,jdbcType=VARCHAR}
+	  	</if>
+		WHERE MAINTAIN_ID = #{maintainId, jdbcType=DECIMAL}
+  </update>
+
+</mapper>

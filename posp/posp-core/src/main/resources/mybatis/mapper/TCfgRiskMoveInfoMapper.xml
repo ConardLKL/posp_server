@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TCfgRiskMoveInfoDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TCfgRiskMoveInfo" >
+	    <result column="MOVE_ID" property="moveId" jdbcType="DECIMAL" />
+	    <result column="BATCH_ID" property="batchId" jdbcType="VARCHAR" />
+	    <result column="MCT_CODE" property="mctCode" jdbcType="VARCHAR" />
+	    <result column="POS_CODE" property="posCode" jdbcType="VARCHAR" />
+	    <result column="HAND_STAT" property="handStat" jdbcType="VARCHAR" />
+	    <result column="MOVE_FLAG" property="moveFlag" jdbcType="VARCHAR" />
+	    <result column="MOVE_DATE" property="moveDate" jdbcType="TIMESTAMP" />
+	    <result column="MCT_NAME" property="mctName" jdbcType="VARCHAR" />
+	    <result column="TIMES" property="times" jdbcType="DECIMAL" />
+	    <result column="STATION_VAL" property="stationVal" jdbcType="VARCHAR" />
+	    <result column="HAND_STAFF" property="handStaff" jdbcType="VARCHAR" />
+	    <result column="HAND_WAY" property="handWay" jdbcType="VARCHAR" />
+	    <result column="RESULT_MSG" property="resultMsg" jdbcType="VARCHAR" />
+	    <result column="BEGIN_DATE" property="beginDate" jdbcType="TIMESTAMP" />
+	    <result column="END_DATE" property="endDate" jdbcType="TIMESTAMP" />
+	    <result column="BELIEVE" property="believe" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	MOVE_ID,BATCH_ID,MCT_CODE,POS_CODE,HAND_STAT,MOVE_FLAG,MOVE_DATE,MCT_NAME,TIMES,STATION_VAL,HAND_STAFF,HAND_WAY,RESULT_MSG,BEGIN_DATE,END_DATE,BELIEVE
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_CFG_RISK_MOVE_INFO where MOVE_ID = #{id}
+  </select>
+  
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TCfgRiskMoveInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_RISK_MOVE_INFO
+  		where 1=1 
+  		
+  		<if test="moveId != null">
+  			and MOVE_ID = #{moveId}
+  		</if>
+  		<if test="batchId != null">
+  			and BATCH_ID = #{batchId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="handStat != null">
+  			and HAND_STAT = #{handStat}
+  		</if>
+  		<if test="moveFlag != null">
+  			and MOVE_FLAG = #{moveFlag}
+  		</if>
+  		<if test="moveDate != null">
+  			and MOVE_DATE = #{moveDate}
+  		</if>
+  		<if test="mctName != null">
+  			and MCT_NAME = #{mctName}
+  		</if>
+  		<if test="times != null">
+  			and TIMES = #{times}
+  		</if>
+  		<if test="stationVal != null">
+  			and STATION_VAL = #{stationVal}
+  		</if>
+  		<if test="handStaff != null">
+  			and HAND_STAFF = #{handStaff}
+  		</if>
+  		<if test="handWay != null">
+  			and HAND_WAY = #{handWay}
+  		</if>
+  		<if test="resultMsg != null">
+  			and RESULT_MSG = #{resultMsg}
+  		</if>
+  		<if test="beginDate != null">
+  			and BEGIN_DATE = #{beginDate}
+  		</if>
+  		<if test="endDate != null">
+  			and END_DATE = #{endDate}
+  		</if>
+  		<if test="believe != null">
+  			and BELIEVE = #{believe}
+  		</if>
+
+  </select>
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TCfgRiskMoveInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_RISK_MOVE_INFO
+  		where 1=1 
+  		<if test="moveId != null">
+  			and MOVE_ID = #{moveId}
+  		</if>
+  		<if test="batchId != null">
+  			and BATCH_ID = #{batchId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="handStat != null">
+  			and HAND_STAT = #{handStat}
+  		</if>
+	  	<if test="moveFlag != null">
+		  	and MOVE_FLAG = #{moveFlag}
+	  	</if>
+	  	<if test="moveDate != null">
+		 	and MOVE_DATE = #{moveDate}
+	  	</if>
+	  	<if test="mctName != null">
+		  	and MCT_NAME = #{mctName}
+	  	</if>
+	  	<if test="times != null">
+		  	and TIMES = #{times}
+	  	</if>
+	  	<if test="stationVal != null">
+		  	and STATION_VAL = #{stationVal}
+	  	</if>
+	  	<if test="handStaff != null">
+		  	and HAND_STAFF = #{handStaff}
+	  	</if>
+	  	<if test="handWay != null">
+		  	and HAND_WAY = #{handWay}
+	  	</if>
+	  	<if test="resultMsg != null">
+		  	and RESULT_MSG = #{resultMsg}
+	  	</if>
+	  	<if test="beginDate != null">
+		  	and BEGIN_DATE = #{beginDate}
+	  	</if>
+	  	<if test="endDate != null">
+		  	and END_DATE = #{endDate}
+	  	</if>
+	  	<if test="believe != null">
+		  	and BELIEVE = #{believe}
+	  	</if>
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TCfgRiskMoveInfo" resultMap="BaseResultMap">
+  		select 
+  			<include refid="Base_Column_List"/>
+  		from T_CFG_RISK_MOVE_INFO
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TCfgRiskMoveInfo" resultType="java.lang.Integer">
+  		select 
+  			count(*)
+  		from T_CFG_RISK_MOVE_INFO
+  		where 1=1 
+  		<if test="moveId != null">
+  			and MOVE_ID = #{moveId}
+  		</if>
+  		<if test="batchId != null">
+  			and BATCH_ID = #{batchId}
+  		</if>
+  		<if test="mctCode != null">
+  			and MCT_CODE = #{mctCode}
+  		</if>
+  		<if test="posCode != null">
+  			and POS_CODE = #{posCode}
+  		</if>
+  		<if test="handStat != null">
+  			and HAND_STAT = #{handStat}
+  		</if>
+	  	<if test="moveFlag != null">
+		  	and MOVE_FLAG = #{moveFlag}
+	  	</if>
+	  	<if test="moveDate != null">
+		  	and MOVE_DATE = #{moveDate}
+	  	</if>
+	  	<if test="mctName != null">
+		  	and MCT_NAME = #{mctName}
+	  	</if>
+	  	<if test="times != null">
+		  	and TIMES = #{times}
+	  	</if>
+	  	<if test="stationVal != null">
+		  	and STATION_VAL = #{stationVal}
+	  	</if>
+	  	<if test="handStaff != null">
+		  	and HAND_STAFF = #{handStaff}
+	  	</if>
+	  	<if test="handWay != null">
+		  	and HAND_WAY = #{handWay}
+	  	</if>
+	  	<if test="resultMsg != null">
+		  	and RESULT_MSG = #{resultMsg}
+	  	</if>
+	  	<if test="beginDate != null">
+		  	and BEGIN_DATE = #{beginDate}
+	  	</if>
+	  	<if test="endDate != null">
+		  	and END_DATE = #{endDate}
+	  	</if>
+	  	<if test="believe != null">
+		  	and BELIEVE = #{believe}
+	  	</if>
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TCfgRiskMoveInfo">
+	  <selectKey keyProperty="moveId" resultType="java.lang.Long" order="BEFORE" >
+		  select SEQ_RISK_MOVE_ID.nextval from dual
+	  </selectKey>
+	 INSERT INTO T_CFG_RISK_MOVE_INFO
+	   (MOVE_ID,BATCH_ID,MCT_CODE,POS_CODE,HAND_STAT,MOVE_FLAG,MOVE_DATE,MCT_NAME,TIMES,STATION_VAL,HAND_STAFF,HAND_WAY,RESULT_MSG,BEGIN_DATE,END_DATE,BELIEVE)
+     VALUES (
+	    #{moveId,jdbcType=DECIMAL},
+	    #{batchId,jdbcType=VARCHAR},
+	    #{mctCode,jdbcType=VARCHAR},
+	    #{posCode,jdbcType=VARCHAR},
+	    #{handStat,jdbcType=VARCHAR},
+	    #{moveFlag,jdbcType=VARCHAR},
+	    #{moveDate,jdbcType=TIMESTAMP},
+	    #{mctName,jdbcType=VARCHAR},
+	    #{times,jdbcType=DECIMAL},
+	    #{stationVal,jdbcType=VARCHAR},
+	    #{handStaff,jdbcType=VARCHAR},
+	    #{handWay,jdbcType=VARCHAR},
+	    #{resultMsg,jdbcType=VARCHAR},
+	    #{beginDate,jdbcType=TIMESTAMP},
+	    #{endDate,jdbcType=TIMESTAMP},
+	    #{believe,jdbcType=VARCHAR}
+     )
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TCfgRiskMoveInfo">
+	UPDATE T_CFG_RISK_MOVE_INFO SET
+	  	<if test="moveId != null">
+	  		 MOVE_ID = #{moveId,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="batchId != null">
+	  		, BATCH_ID = #{batchId,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="mctCode != null">
+	  		, MCT_CODE = #{mctCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="posCode != null">
+	  		, POS_CODE = #{posCode,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="handStat != null">
+	  		, HAND_STAT = #{handStat,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="moveFlag != null">
+	  		, MOVE_FLAG = #{moveFlag,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="moveDate != null">
+	  		, MOVE_DATE = #{moveDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="mctName != null">
+	  		, MCT_NAME = #{mctName,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="times != null">
+	  		, TIMES = #{times,jdbcType=DECIMAL}
+	  	</if>
+	  	<if test="stationVal != null">
+	  		, STATION_VAL = #{stationVal,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="handStaff != null">
+	  		, HAND_STAFF = #{handStaff,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="handWay != null">
+	  		, HAND_WAY = #{handWay,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="resultMsg != null">
+	  		, RESULT_MSG = #{resultMsg,jdbcType=VARCHAR}
+	  	</if>
+	  	<if test="beginDate != null">
+	  		, BEGIN_DATE = #{beginDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="endDate != null">
+	  		, END_DATE = #{endDate,jdbcType=TIMESTAMP}
+	  	</if>
+	  	<if test="believe != null">
+	  		, BELIEVE = #{believe,jdbcType=VARCHAR}
+	  	</if>
+		WHERE MOVE_ID = #{moveId,jdbcType=DECIMAL}
+  </update>
+
+</mapper>

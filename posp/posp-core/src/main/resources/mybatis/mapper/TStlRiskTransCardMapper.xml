@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bestpay.posp.system.dao.TStlRiskTransCardDao" >
+
+  <resultMap id="BaseResultMap" type="com.bestpay.posp.system.entity.TStlRiskTransCard" >
+	    <result column="TRANS_CARD_ID" property="transCardId" jdbcType="DECIMAL" />
+	    <result column="CARD_TYPE" property="cardType" jdbcType="VARCHAR" />
+	    <result column="ALARM_AMOUNT_TRANS" property="alarmAmountTrans" jdbcType="DECIMAL" />
+	    <result column="MAX_AMOUNT_TRANS" property="maxAmountTrans" jdbcType="DECIMAL" />
+	    <result column="PEAK_AMOUNT_PERDAY" property="peakAmountPerday" jdbcType="DECIMAL" />
+	    <result column="MOD_DATE" property="modDate" jdbcType="DATE" />
+	    <result column="MOD_STAFF" property="modStaff" jdbcType="VARCHAR" />
+	    <result column="FREE_LIMIT" property="freeLimit" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+	TRANS_CARD_ID,CARD_TYPE,ALARM_AMOUNT_TRANS,MAX_AMOUNT_TRANS,PEAK_AMOUNT_PERDAY,MOD_DATE,MOD_STAFF,FREE_LIMIT
+  </sql>
+  
+  <select id="findById" parameterType="java.lang.Long"  resultMap="BaseResultMap" >
+  	  select 
+  	  	<include refid="Base_Column_List"/>
+  	  from T_SYM_DBKEY where TRANS_CARD_ID = #{transCardId}
+  </select>
+  <select id="findUnique" parameterType="com.bestpay.posp.system.entity.TStlRiskTransCard" resultMap="BaseResultMap">
+ 	select 
+  			<include refid="Base_Column_List"/>
+  		from T_STL_RISK_TRANS_CARD
+  		where 1=1 
+  		
+  		<if test="transCardId != null">
+  			and TRANS_CARD_ID = #{transCardId}
+  		</if>
+  		<if test="cardType != null">
+  			and CARD_TYPE = #{cardType}
+  		</if>
+  		<if test="alarmAmountTrans != null">
+  			and ALARM_AMOUNT_TRANS = #{alarmAmountTrans}
+  		</if>
+  		<if test="maxAmountTrans != null">
+  			and MAX_AMOUNT_TRANS = #{maxAmountTrans}
+  		</if>
+  		<if test="peakAmountPerday != null">
+  			and PEAK_AMOUNT_PERDAY = #{peakAmountPerday}
+  		</if>
+  		<if test="modDate != null">
+  			and MOD_DATE = #{modDate}
+  		</if>
+  		<if test="modStaff != null">
+  			and MOD_STAFF = #{modStaff}
+  		</if>
+  		<if test="freeLimit != null">
+  			and FREE_LIMIT = #{freeLimit}
+  		</if>
+  </select>
+  
+  <select id="find" parameterType="com.bestpay.posp.system.entity.TStlRiskTransCard" resultMap="BaseResultMap">
+  </select>
+  
+  <select id="findAll" parameterType="com.bestpay.posp.system.entity.TStlRiskTransCard" resultMap="BaseResultMap">
+  </select>
+  
+  <select id="countBy" parameterType="com.bestpay.posp.system.entity.TStlRiskTransCard" resultType="java.lang.Integer">
+  </select>
+  
+  <insert id="insert" parameterType="com.bestpay.posp.system.entity.TStlRiskTransCard">
+  </insert>
+  
+  <update id="update" parameterType="com.bestpay.posp.system.entity.TStlRiskTransCard">
+  </update>
+
+</mapper>

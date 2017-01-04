@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="bpposp-core"
+  id="myeclipse.1479869717517"
+  context-root="/bpposp-core"
+  j2ee-spec="6.0"
+  archive="bpposp-core.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,98 @@
+package com.bestpay.posp.system.entity;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+public class FullChannelMessage{
+
+	private String version;
+	private String certId;
+	private String signature;
+	private String encoding;
+	private String txnType;
+	private String txnSubType;
+	private String bizType;
+	private String frontUrl;
+	private String backUrl;
+	private String accessType;
+	private String acqInsCode;
+	private String merCatCode;
+	private String merId;
+	private String merName;
+	private String merAbbr;
+	private String subMerId;
+	private String subMerName;
+	private String subMerAbbr;
+	private String orderId;
+	private String txnTime;
+	private String orderTimeout;
+	private String payTimeout;
+	private String defaultPayType;
+	private String supPayType;
+	private String payType;
+	private String currencyCode;
+	private String accType;
+	private String accNo;
+	private String payCardType;
+	private String issInsCode;
+	private String issInsProvince;
+	private String issInsCity;
+	private String issInsName;
+	private String customerInfo;
+	private String txnAmt;
+	private String balance;
+	private String billType;
+	private String billNo;
+	private String bussCode;
+	private String billPeriod;
+	private String billQueryInfo;
+	private String billDetailInfo;
+	private String bindId;
+	private String bindInfoQty;
+	private String bindInfoList;
+	private String batchNo;
+	private String totalQty;
+	private String totalAmt;
+	private String fileType;
+	private String fileName;
+	private String fileContent;
+	private String reqReserved;
+	private String reserved;
+	private String termId;
+	private String issuerIdentifyMode;
+	private String customerIp;
+	private String queryId;
+	private String origQryId;
+	private String traceNo;
+	private String traceTime;
+	private String settleDate;
+	private String settleCurrencyCode;
+	private String settleAmt;
+	private String exchangeRate;
+	private String exchangeDate;
+	private String respTime;
+	private String origRespCode;
+	private String origRespMsg;
+	private String respCode;
+	private String respMsg;
+	private String checkFlag;
+	private String activateStatus;
+	private String encryptCertId;
+	private String userMac;
+	private String riskRateInfo;
+	private String temporaryPayInfo;
+	private String frontFailUrl;
+	private String cardTransData;
+	private String tn;
+	private String payCardNo;
+	private String payCardIssueName;
+	private String channelType;
+	private String signMethod;
+	private String instalTransInfo;
+	private String orderDesc;
+	private String relTxnType;
+	private String bookedAccNo;
+
+}
